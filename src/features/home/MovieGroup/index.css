@@ -1,0 +1,13 @@
+.card_div {
+    width: 60%
+}
+.movie_desc {
+    z-index: 99;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 2px auto;
+}
+.movie_score {
+    color: coral;
+}
