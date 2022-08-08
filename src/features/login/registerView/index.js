@@ -3,7 +3,7 @@ import { Button, Form, Input } from 'antd';
 import { useEffect, useState } from 'react';
 import "./index.css"
 
-function RegisterView() {
+function RegisterView(props) {
     const [form] = Form.useForm();
     const [, forceUpdate] = useState({});
 
@@ -74,6 +74,12 @@ function RegisterView() {
                     )}
                 </Form.Item>
             </Form>
+            <Button
+                size="large"
+                type="primary"
+                onClick={props.updateLoginState}>
+                切换到登录
+            </Button>
         </div>
     )
 }
