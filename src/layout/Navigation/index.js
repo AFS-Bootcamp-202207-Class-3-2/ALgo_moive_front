@@ -13,7 +13,7 @@ function Navigation() {
   return (
     <Row>
       <Col span={6}>
-        <img src={logo} alt="ALGO MOVIE" width="185" height="80" />
+        <img src={logo} alt="ALGO MOVIE" className="nav-logo" />
       </Col>
       <Col span={12}>
         <nav className="nav-list">
@@ -52,7 +52,7 @@ function Navigation() {
         </nav>
       </Col>
       <Col span={6}>
-        <div className="right-box">
+        <div className="nav-right-box">
           <Input.Group compact>
             <Select defaultValue="movie">
               <Option value="movie">电影</Option>
@@ -66,7 +66,7 @@ function Navigation() {
             />
           </Input.Group>
           <Avatar
-            size={{ xs: 24, sm: 24, md: 40, lg: 40, xl: 40, xxl: 50 }}
+            size={{ xs: 24, sm: 24, md: 32, lg: 32, xl: 32, xxl: 40 }}
             icon={<UserOutlined />}
           ></Avatar>
         </div>

@@ -1,7 +1,15 @@
+.nav-logo {
+  height: 60px;
+  width: 138px;
+  position: absolute;
+  top: 0;
+}
+
 .nav-list {
   display: flex;
-  line-height: 80px;
-  font-size: 26px;
+  height: 60px;
+  line-height: 60px;
+  font-size: 20px;
   list-style-type: none;
   list-style-image: none;
 }
@@ -27,13 +35,13 @@
   background-color: #2a797c;
 }
 
-.right-box {
+.nav-right-box {
   display: flex;
   justify-content: space-between;
   align-items: center;
   height: 100%;
 }
 
-.right-box .ant-input-group {
+.nav-right-box .ant-input-group {
   width: auto;
 }
