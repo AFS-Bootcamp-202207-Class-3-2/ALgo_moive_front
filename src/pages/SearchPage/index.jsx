@@ -11,8 +11,8 @@ export default function SearchPage (props) {
     const [totalData, setTotalData] = useState({});
     const [currPage, setCurrPage] = useState(1);
     const [movies, setMovies] = useState([]);
-    useEffect(()=>{
 
+    useEffect(()=>{
         searchApi.searchCinemasOrMovies({keyword : state.keyword,
             pageSize:6})
             .then(res=>{
@@ -20,9 +20,8 @@ export default function SearchPage (props) {
                 setMovies(res.data.data.movies.content)
             })
     },[state])
-    console.log(totalData)
+
     const changePage = (page, pageSize) => {
-        console.log(page,pageSize)
         searchApi.searchCinemasOrMovies({keyword : state.keyword,
             page:page,
             pageSize:pageSize})
@@ -33,7 +32,7 @@ export default function SearchPage (props) {
             })
         setCurrPage(page);
     };
-    let title="标题"
+
     return (
         <>
             <div className="movie-list-card-col">
