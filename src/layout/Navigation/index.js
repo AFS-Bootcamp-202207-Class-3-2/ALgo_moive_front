@@ -62,7 +62,7 @@ function Navigation() {
               placeholder="找电影、影院"
               allowClear
               onSearch={onSearch}
-              style={{ width: 200 }}
+              className="nav-searchinput"
             />
           </Input.Group>
           <Avatar
