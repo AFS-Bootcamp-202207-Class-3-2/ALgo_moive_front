@@ -18,7 +18,7 @@ function RegisterView() {
 
     return (
         <div className="register-view">
-            <h1 className="register-title">register</h1>
+            <h1 className="register-title">REGISTER</h1>
 
             <Form
                 size='large'
@@ -32,7 +32,10 @@ function RegisterView() {
                     name="username"
                     rules={[{ required: true, message: 'Please input your username!' }]}
                 >
-                    <Input prefix={<UserOutlined className="site-form-item-icon" />} placeholder="Username" />
+                    <Input
+                        prefix={<UserOutlined
+                        className="site-form-item-icon" />}
+                        placeholder="user name" />
                 </Form.Item>
                 <Form.Item
                     className='form-item'
@@ -42,18 +45,18 @@ function RegisterView() {
                     <Input
                         prefix={<LockOutlined className="site-form-item-icon" />}
                         type="password"
-                        placeholder="Password"
+                        placeholder="your password"
                     />
                 </Form.Item>
                 <Form.Item
                     className='form-item'
-                    name="password"
-                    rules={[{ required: true, message: 'Please input your password again!' }]}
+                    name="confirm-password"
+                    rules={[{ required: true, message: 'Please confirm your password!' }]}
                 >
                     <Input
                         prefix={<LockOutlined className="site-form-item-icon" />}
                         type="password"
-                        placeholder="Ensure Password"
+                        placeholder="confirm password"
                     />
                 </Form.Item>
                 <Form.Item shouldUpdate>
