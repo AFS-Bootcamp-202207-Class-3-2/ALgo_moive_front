@@ -1,0 +1,181 @@
+.movie-list-card {
+    transition: all .5s;
+    width: 500px;
+    height: 300px;
+    border-radius: 6px;
+    margin: 20px 0px;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #f3ece8;
+    position: relative;
+}
+.movie-list-card:hover {
+    box-shadow:2px 2px 4px #3f3f3f,
+    4px 4px 4px #3f3f3f,
+    6px 6px 4px #3f3f3f;
+}
+.movie-list-card img{
+    display: block;
+}
+@media (max-width:1480px ) {
+    .movie-list-card {
+        transition: all 1.5s;
+        width: 400px;
+        height: 300px;
+    }
+}
+@media (max-width:1190px ) {
+    .movie-list-card {
+        transition: all 1.5s;
+        width: 300px;
+        height: 300px;
+    }
+}
+.movie-card-image {
+    width: 190px;
+    height: 286px;
+    border-radius: 6px;
+    transition: all .5s;
+}
+.movie-card-image:hover{
+    box-shadow:2px 2px 4px #3f3f3f,
+    4px 4px 4px #3f3f3f,
+    6px 6px 4px #3f3f3f;
+}
+.movie-card-image-box{
+    box-sizing: border-box;
+    padding: 0 10px 0 0;
+    width: 200px;
+    height: 300px;
+    border-radius: 6px;
+}
+.mobile-movie-title-box {
+    display: none;
+    border-radius: 4px;
+    font-weight: 600;
+    font-size: 12px;
+    font-family: "JetBrains Mono";
+    width: 40px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+}
+.mobile-movie-score-box {
+    display: none;
+    border-radius: 4px;
+    font-weight: 600;
+    font-size: 12px;
+    font-family: "JetBrains Mono";
+    width: 40px;
+    height: 30px;
+    left: 0;
+    top: 40px;
+    line-height: 30px;
+    text-align: center;
+}
+/*这里是变成手机端的效果*/
+@media (max-width:870px ) {
+    .movie-list-card {
+        transition: all 1.5s;
+        width: 190px;
+        height: 300px;
+    }
+    .movie-card-image {
+        width: 190px;
+    }
+    .movie-msg-box{
+        display: none;
+    }
+    .movie-card-image-box{
+        height: 286px;
+    }
+    .movie-list-card{
+        height: 286px;
+    }
+    .mobile-movie-title-box{
+        display:block;
+        position: absolute;
+        background-color: #ffb400;
+    }
+    .mobile-movie-score-box{
+        display:block;
+        position: absolute;
+        background-color: #ff0059;
+
+    }
+}
+
+.movie-msg-box {
+
+    position: relative;
+    width: 250px;
+    height: 300px;
+    border-top-right-radius: 6px;
+    border-bottom-right-radius: 6px;
+}
+.movie-list-card-col{
+    display: flex;
+    justify-content: space-evenly;
+}
+.movie-msg-data-layout {
+    box-sizing: border-box;
+    padding: 20px 0 0 10px;
+    display: flex;
+    flex-direction: column;
+}
+.movie-msg-data-layout:before {
+    content: "";
+    width: calc(100% - 20px);
+    box-shadow: 0 0 3px #d4d4d4;
+    position: absolute;
+    border: 1px solid #c1afaf;
+    left: 10px;
+    bottom: 20px;
+}
+.movie-msg-title{
+    font-size: 2rem;
+    font-family:"JetBrains Mono";
+    position: relative;
+}
+.movie-msg-title:before{
+    content: "";
+    width: calc(100% - 20px);
+    border-bottom: 1px solid #cdcaca;
+    box-shadow: 0 0 3px #d4d4d4;
+    position: absolute;
+    bottom: 8px;
+}
+.movie-msg-title:after{
+    transition: all 0.35s;
+    content: "";
+    position: absolute;
+    background: rgba(255, 78, 106, 0.85);
+    width: 1em;
+    height: 5px;
+    bottom: 5px;
+    left: 0;
+    border-radius: 6px;
+    box-shadow: 0 2px 6px rgba(255, 78, 106, 0.85);
+}
+.movie-msg-title:hover:after{
+    width: 2em;
+}
+.movie-score{
+    margin-top: 6px;
+    color: #ffb400;
+    font-size: 2em;
+    font-weight: 600;
+    text-shadow: 2px 2px 4px #3f3f3f,
+    2px 2px 4px #3f3f3f,
+    2px 2px 4px #3f3f3f;
+}
+.movie-desc-movie-desc{
+    margin-top: 24px;
+}
+.movie-desc-movie-release-date {
+    position: absolute;
+    left: 10px;
+    bottom: 26px;
+}
