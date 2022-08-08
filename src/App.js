@@ -5,6 +5,8 @@ import Home from "./pages/Home";
 import Movie from "./pages/Movie";
 import Login from "./features/login";
 import SearchPage from "./pages/SearchPage";
+import MovieDetail from "./pages/MovieDetail";
+
 function App() {
   return (
     <div className="App">
@@ -13,8 +15,9 @@ function App() {
           <Route index element={<Home />} />
             <Route path="movie" element={<Movie />} />
             <Route path="searchPage" element={<SearchPage />} />
+          <Route path="movie/:id" element={<MovieDetail />} />
         </Route>
-        <Route path="/login" element={<Login/>}></Route>
+        <Route path="/login" element={<Login />} />
       </Routes>
     </div>
   );

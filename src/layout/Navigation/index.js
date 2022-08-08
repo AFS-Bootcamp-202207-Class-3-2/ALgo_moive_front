@@ -31,6 +31,7 @@ function Navigation() {
       <Col span={12}>
         <nav className="nav-list">
           <NavLink
+            exact
             to="/"
             className={({ isActive }) =>
               "nav-item" + (isActive ? " active" : " ")
@@ -39,6 +40,7 @@ function Navigation() {
             首页
           </NavLink>
           <NavLink
+            exact
             to="/movie"
             className={({ isActive }) =>
               "nav-item" + (isActive ? " active" : " ")
@@ -47,6 +49,7 @@ function Navigation() {
             电影
           </NavLink>
           <NavLink
+            exact
             to="/cinema"
             className={({ isActive }) =>
               "nav-item" + (isActive ? " active" : " ")
@@ -55,6 +58,7 @@ function Navigation() {
             影院
           </NavLink>
           <NavLink
+            exact
             to="/top"
             className={({ isActive }) =>
               "nav-item" + (isActive ? " active" : " ")
@@ -75,7 +79,7 @@ function Navigation() {
               placeholder="找电影、影院"
               allowClear
               onSearch={onSearch}
-              style={{ width: 200 }}
+              className="nav-searchinput"
             />
           </Input.Group>
           <Avatar

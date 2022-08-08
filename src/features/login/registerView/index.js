@@ -1,9 +1,9 @@
-import { LockOutlined, UserOutlined } from '@ant-design/icons';
+import { LockOutlined, UserOutlined, EyeTwoTone, EyeInvisibleOutlined } from '@ant-design/icons';
 import { Button, Form, Input } from 'antd';
 import { useEffect, useState } from 'react';
 import "./index.css"
 
-function RegisterView() {
+function RegisterView(props) {
     const [form] = Form.useForm();
     const [, forceUpdate] = useState({});
 
@@ -18,7 +18,7 @@ function RegisterView() {
 
     return (
         <div className="register-view">
-            <h1 className="register-title">register</h1>
+            <h1 className="register-title">REGISTER</h1>
 
             <Form
                 size='large'
@@ -28,32 +28,35 @@ function RegisterView() {
                 layout="horizontal"
                 onFinish={onFinish}>
                 <Form.Item
-                    className='form-item'
                     name="username"
                     rules={[{ required: true, message: 'Please input your username!' }]}
                 >
-                    <Input prefix={<UserOutlined className="site-form-item-icon" />} placeholder="Username" />
+                    <Input
+                        prefix={<UserOutlined
+                        className="site-form-item-icon" />}
+                        placeholder="user name" />
                 </Form.Item>
                 <Form.Item
-                    className='form-item'
                     name="password"
                     rules={[{ required: true, message: 'Please input your password!' }]}
                 >
-                    <Input
+                    <Input.Password
                         prefix={<LockOutlined className="site-form-item-icon" />}
                         type="password"
-                        placeholder="Password"
+                        iconRender={(visible) => (visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />)}
+                        placeholder="your password"
                     />
                 </Form.Item>
                 <Form.Item
                     className='form-item'
-                    name="password"
-                    rules={[{ required: true, message: 'Please input your password again!' }]}
+                    name="confirm-password"
+                    rules={[{ required: true, message: 'Please confirm your password!' }]}
                 >
-                    <Input
+                    <Input.Password
                         prefix={<LockOutlined className="site-form-item-icon" />}
                         type="password"
-                        placeholder="Ensure Password"
+                        iconRender={(visible) => (visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />)}
+                        placeholder="confirm password"
                     />
                 </Form.Item>
                 <Form.Item shouldUpdate>
@@ -66,11 +69,17 @@ function RegisterView() {
                                 !!form.getFieldsError().filter(({ errors }) => errors.length).length
                             }
                         >
-                            注册
+                            Register
                         </Button>
                     )}
                 </Form.Item>
             </Form>
+            <Button
+                size="large"
+                type="primary"
+                onClick={props.updateLoginState}>
+                Switch to Log in
+            </Button>
         </div>
     )
 }

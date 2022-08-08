@@ -1,6 +1,6 @@
 .ticket_button {
-    vertical-align: middle;
     display: block;
-    margin: 0 auto;
+    margin: 5px auto 0;
     bottom: 0;
+    width: 100%;
 }

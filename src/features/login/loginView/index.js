@@ -1,9 +1,9 @@
-import { LockOutlined, UserOutlined } from '@ant-design/icons';
+import {EyeInvisibleOutlined, EyeTwoTone, LockOutlined, UserOutlined} from '@ant-design/icons';
 import { Button, Form, Input } from 'antd';
 import { useEffect, useState } from 'react';
 import "./index.css"
 
-function LoginView() {
+function LoginView(props) {
     const [form] = Form.useForm();
     const [, forceUpdate] = useState({});
 
@@ -28,21 +28,20 @@ function LoginView() {
                 layout="horizontal"
                 onFinish={onFinish}>
                 <Form.Item
-                    className='form-item'
                     name="username"
                     rules={[{ required: true, message: 'Please input your username!' }]}
                 >
-                    <Input prefix={<UserOutlined className="site-form-item-icon" />} placeholder="Username" />
+                    <Input prefix={<UserOutlined className="site-form-item-icon" />} placeholder="user name" />
                 </Form.Item>
                 <Form.Item
-                    className='form-item'
                     name="password"
                     rules={[{ required: true, message: 'Please input your password!' }]}
                 >
-                    <Input
+                    <Input.Password
                         prefix={<LockOutlined className="site-form-item-icon" />}
                         type="password"
-                        placeholder="Password"
+                        placeholder="your password"
+                        iconRender={(visible) => (visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />)}
                     />
                 </Form.Item>
                 <Form.Item shouldUpdate>
@@ -55,11 +54,17 @@ function LoginView() {
                                 !!form.getFieldsError().filter(({ errors }) => errors.length).length
                             }
                         >
-                            登录
+                            Log in
                         </Button>
                     )}
                 </Form.Item>
             </Form>
+            <Button
+                size="large"
+                type="primary"
+                onClick={props.updateLoginState}>
+                Switch to Register
+            </Button>
         </div>
     )
 }
