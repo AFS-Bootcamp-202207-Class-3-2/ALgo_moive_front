@@ -1,15 +1,28 @@
 import { Col, Row, Input, Select, Avatar } from "antd";
 import { UserOutlined } from "@ant-design/icons";
-import { NavLink } from "react-router-dom";
+import { NavLink,useNavigate } from "react-router-dom";
 import logo from "../../static/images/Logo.png";
 import "./index.css";
-
+import {useState} from 'react'
 const { Option } = Select;
 const { Search } = Input;
 
 function Navigation() {
-  const onSearch = () => {};
-
+  const navigate = useNavigate()
+  const onSearch = (event) => {
+    navigate('searchPage',{
+      replace:false,
+      state:{
+        category:selectSearchCategory,
+        keyword:event
+      }
+    })
+  };
+  const [searchKeyWord,setSearchKeyWord] = useState('')
+  const [selectSearchCategory,setSelectSearchCategory] = useState("movie")
+  const selectSearchCategoryChange = (event)=>{
+    setSelectSearchCategory(event)
+  }
   return (
     <Row>
       <Col span={6}>
@@ -54,7 +67,7 @@ function Navigation() {
       <Col span={6}>
         <div className="nav-right-box">
           <Input.Group compact>
-            <Select defaultValue="movie">
+            <Select defaultValue="movie" onChange={selectSearchCategoryChange}>
               <Option value="movie">电影</Option>
               <Option value="cinema">影院</Option>
             </Select>

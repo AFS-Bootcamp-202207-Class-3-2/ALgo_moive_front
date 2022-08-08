@@ -1,15 +1,24 @@
 .movie-list-card {
     transition: all .5s;
     width: 500px;
+    /*max-width: 500px;*/
     height: 300px;
     border-radius: 6px;
-    margin: 20px 0px;
+    margin: 20px 40px;
     box-sizing: border-box;
     display: flex;
     align-items: center;
-    justify-content: space-between;
     background-color: #f3ece8;
     position: relative;
+    flex: 1;
+    cursor: pointer;
+}
+.movie-list-card-col {
+    margin: 0 auto;
+    width: 1200px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
 }
 .movie-list-card:hover {
     box-shadow:2px 2px 4px #3f3f3f,
@@ -21,16 +30,21 @@
 }
 @media (max-width:1480px ) {
     .movie-list-card {
-        transition: all 1.5s;
+        transition: all .5s;
         width: 400px;
         height: 300px;
     }
 }
 @media (max-width:1190px ) {
     .movie-list-card {
-        transition: all 1.5s;
+        transition: all .5s;
         width: 300px;
         height: 300px;
+
+        flex: 1 1 38%;
+    }
+    .movie-list-card-col {
+        width: 100%;
     }
 }
 .movie-card-image {
@@ -78,9 +92,19 @@
 /*这里是变成手机端的效果*/
 @media (max-width:870px ) {
     .movie-list-card {
-        transition: all 1.5s;
+        transition: all .5s;
         width: 190px;
         height: 300px;
+        min-width: 190px;
+        flex: 1 1 42%;
+        margin: 20px 0;
+        background-color: transparent;
+    }
+    .movie-list-card:hover {
+        box-shadow: 0 0 0 transparent;
+    }
+    .movie-list-card-col {
+        width: 100%;
     }
     .movie-card-image {
         width: 190px;
@@ -115,10 +139,7 @@
     border-top-right-radius: 6px;
     border-bottom-right-radius: 6px;
 }
-.movie-list-card-col{
-    display: flex;
-    justify-content: space-evenly;
-}
+
 .movie-msg-data-layout {
     box-sizing: border-box;
     padding: 20px 0 0 10px;
@@ -138,6 +159,8 @@
     font-size: 2rem;
     font-family:"JetBrains Mono";
     position: relative;
+    color: #208589;
+    text-shadow: 2px 2px 1px #2A797C;
 }
 .movie-msg-title:before{
     content: "";
@@ -178,4 +201,45 @@
     position: absolute;
     left: 10px;
     bottom: 26px;
+    color: #a19a9a;
+}
+
+.movie-desc-movie-desc{
+    font-size: 12px;
+    color: #bbb7ae;
+    text-shadow: 1px 1px 1px #000000;
+}
+
+.movie-card-inner-desc{
+    font-size: 16px;
+    color: #bbb7ae;
+}
+.movie-hot-spot {
+    color: #298589;
+    font-family: "JetBrains Mono";
+    font-weight: 600;
+}
+.movie-card-hot-spot-show {
+    background-color: #fc647c;
+    border-radius: 4px;
+    width: 30px;
+    height: 20px;
+    display: inline-block;
+    text-align: center;
+    transition: all .5s;
+}
+.movie-card-hot-spot-show:hover{
+    box-shadow: 2px 2px 4px #3f3f3f,
+    4px 4px 4px #3f3f3f;
+}
+
+.movie-list-pagination {
+    text-align: center;
+    margin: 40px auto;
+    width: 600px;
+    background-color: #298589;
+    height: 40px;
+    box-sizing: border-box;
+    padding: 4px;
+    border-radius: 12px;
 }
