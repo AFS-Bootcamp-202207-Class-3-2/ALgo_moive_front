@@ -1,4 +1,4 @@
-import { LockOutlined, UserOutlined } from '@ant-design/icons';
+import {EyeInvisibleOutlined, EyeTwoTone, LockOutlined, UserOutlined} from '@ant-design/icons';
 import { Button, Form, Input } from 'antd';
 import { useEffect, useState } from 'react';
 import "./index.css"
@@ -39,10 +39,11 @@ function LoginView(props) {
                     name="password"
                     rules={[{ required: true, message: 'Please input your password!' }]}
                 >
-                    <Input
+                    <Input.Password
                         prefix={<LockOutlined className="site-form-item-icon" />}
                         type="password"
                         placeholder="Password"
+                        iconRender={(visible) => (visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />)}
                     />
                 </Form.Item>
                 <Form.Item shouldUpdate>
