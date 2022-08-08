@@ -28,21 +28,19 @@ function LoginView(props) {
                 layout="horizontal"
                 onFinish={onFinish}>
                 <Form.Item
-                    className='form-item'
                     name="username"
                     rules={[{ required: true, message: 'Please input your username!' }]}
                 >
-                    <Input prefix={<UserOutlined className="site-form-item-icon" />} placeholder="Username" />
+                    <Input prefix={<UserOutlined className="site-form-item-icon" />} placeholder="user name" />
                 </Form.Item>
                 <Form.Item
-                    className='form-item'
                     name="password"
                     rules={[{ required: true, message: 'Please input your password!' }]}
                 >
                     <Input.Password
                         prefix={<LockOutlined className="site-form-item-icon" />}
                         type="password"
-                        placeholder="Password"
+                        placeholder="your password"
                         iconRender={(visible) => (visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />)}
                     />
                 </Form.Item>
@@ -56,7 +54,7 @@ function LoginView(props) {
                                 !!form.getFieldsError().filter(({ errors }) => errors.length).length
                             }
                         >
-                            登录
+                            Log in
                         </Button>
                     )}
                 </Form.Item>
@@ -65,7 +63,7 @@ function LoginView(props) {
                 size="large"
                 type="primary"
                 onClick={props.updateLoginState}>
-                切换到注册
+                Switch to Register
             </Button>
         </div>
     )

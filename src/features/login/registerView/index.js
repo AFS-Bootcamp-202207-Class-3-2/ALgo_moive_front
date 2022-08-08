@@ -28,7 +28,6 @@ function RegisterView(props) {
                 layout="horizontal"
                 onFinish={onFinish}>
                 <Form.Item
-                    className='form-item'
                     name="username"
                     rules={[{ required: true, message: 'Please input your username!' }]}
                 >
@@ -38,7 +37,6 @@ function RegisterView(props) {
                         placeholder="user name" />
                 </Form.Item>
                 <Form.Item
-                    className='form-item'
                     name="password"
                     rules={[{ required: true, message: 'Please input your password!' }]}
                 >
@@ -71,7 +69,7 @@ function RegisterView(props) {
                                 !!form.getFieldsError().filter(({ errors }) => errors.length).length
                             }
                         >
-                            注册
+                            Register
                         </Button>
                     )}
                 </Form.Item>
@@ -80,7 +78,7 @@ function RegisterView(props) {
                 size="large"
                 type="primary"
                 onClick={props.updateLoginState}>
-                切换到登录
+                Switch to Log in
             </Button>
         </div>
     )
