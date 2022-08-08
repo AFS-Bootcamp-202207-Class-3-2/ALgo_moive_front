@@ -8,6 +8,8 @@ export default () => {
     const [carousels, setCarousels] = useState([])
     getCarousels().then(response => {
         setCarousels(response.data.data.carousel);
+    }).catch(function (msg) {
+        console.log(msg);
     })
     return (
         <div>
