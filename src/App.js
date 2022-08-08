@@ -3,6 +3,7 @@ import { Route, Routes } from "react-router-dom";
 import PageLayout from "./layout/PageLayout";
 import Home from "./pages/Home";
 import Movie from "./pages/Movie";
+import Login from "./features/login";
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
           <Route index element={<Home />} />
           <Route path="movie" element={<Movie />} />
         </Route>
+        <Route path="/login" element={<Login/>}></Route>
       </Routes>
     </div>
   );
