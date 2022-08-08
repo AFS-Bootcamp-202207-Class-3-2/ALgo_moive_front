@@ -1,16 +1,16 @@
 import "./App.css";
 import { Route, Routes } from "react-router-dom";
-import Layout from "./layout/Layout";
+import PageLayout from "./layout/PageLayout";
 import Home from "./pages/Home";
 
 function App() {
   return (
     <div className="App">
       <Routes>
-        <Route path="/" element={<Layout />}>
+        <Route path="/" element={<PageLayout />}>
           <Route index element={<Home />} />
         </Route>
-      </Routes>
+      </Routes>+
     </div>
   );
 }
