@@ -4,6 +4,7 @@ import PageLayout from "./layout/PageLayout";
 import Home from "./pages/Home";
 import Movie from "./pages/Movie";
 import Login from "./features/login";
+import MovieDetail from "./pages/MovieDetail";
 
 function App() {
   return (
@@ -12,8 +13,9 @@ function App() {
         <Route path="/" element={<PageLayout />}>
           <Route index element={<Home />} />
           <Route path="movie" element={<Movie />} />
+          <Route path="movie/:id" element={<MovieDetail />} />
         </Route>
-        <Route path="/login" element={<Login/>}></Route>
+        <Route path="/login" element={<Login />} />
       </Routes>
     </div>
   );
