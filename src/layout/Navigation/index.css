@@ -1,0 +1,39 @@
+.nav-list {
+  display: flex;
+  line-height: 80px;
+  font-size: 26px;
+  list-style-type: none;
+  list-style-image: none;
+}
+
+.nav-item {
+  position: relative;
+  display: inline-block;
+  width: 104px;
+  height: 100%;
+  margin: 0 32px;
+  text-align: center;
+  color: #2a797c;
+}
+
+.nav-item:hover {
+  cursor: pointer;
+  color: #fff;
+  background-color: #2a797c;
+}
+
+.active {
+  color: #fff;
+  background-color: #2a797c;
+}
+
+.right-box {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+}
+
+.right-box .ant-input-group {
+  width: auto;
+}
