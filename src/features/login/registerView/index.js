@@ -1,9 +1,9 @@
-import { LockOutlined, UserOutlined } from '@ant-design/icons';
+import { LockOutlined, UserOutlined, EyeTwoTone, EyeInvisibleOutlined } from '@ant-design/icons';
 import { Button, Form, Input } from 'antd';
 import { useEffect, useState } from 'react';
 import "./index.css"
 
-function RegisterView() {
+function RegisterView(props) {
     const [form] = Form.useForm();
     const [, forceUpdate] = useState({});
 
@@ -28,7 +28,6 @@ function RegisterView() {
                 layout="horizontal"
                 onFinish={onFinish}>
                 <Form.Item
-                    className='form-item'
                     name="username"
                     rules={[{ required: true, message: 'Please input your username!' }]}
                 >
@@ -38,13 +37,13 @@ function RegisterView() {
                         placeholder="user name" />
                 </Form.Item>
                 <Form.Item
-                    className='form-item'
                     name="password"
                     rules={[{ required: true, message: 'Please input your password!' }]}
                 >
-                    <Input
+                    <Input.Password
                         prefix={<LockOutlined className="site-form-item-icon" />}
                         type="password"
+                        iconRender={(visible) => (visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />)}
                         placeholder="your password"
                     />
                 </Form.Item>
@@ -53,9 +52,10 @@ function RegisterView() {
                     name="confirm-password"
                     rules={[{ required: true, message: 'Please confirm your password!' }]}
                 >
-                    <Input
+                    <Input.Password
                         prefix={<LockOutlined className="site-form-item-icon" />}
                         type="password"
+                        iconRender={(visible) => (visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />)}
                         placeholder="confirm password"
                     />
                 </Form.Item>
@@ -69,11 +69,17 @@ function RegisterView() {
                                 !!form.getFieldsError().filter(({ errors }) => errors.length).length
                             }
                         >
-                            注册
+                            Register
                         </Button>
                     )}
                 </Form.Item>
             </Form>
+            <Button
+                size="large"
+                type="primary"
+                onClick={props.updateLoginState}>
+                Switch to Log in
+            </Button>
         </div>
     )
 }
