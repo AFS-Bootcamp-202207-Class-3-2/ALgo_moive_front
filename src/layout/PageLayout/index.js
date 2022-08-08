@@ -13,7 +13,7 @@ function PageLayout() {
         <Header className="header">
           <Navigation />
         </Header>
-        <Content>
+        <Content className="content">
           <Outlet />
         </Content>
       </Layout>
