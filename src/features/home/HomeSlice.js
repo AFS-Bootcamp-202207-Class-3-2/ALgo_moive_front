@@ -9,7 +9,6 @@ const homeSlice = createSlice({
     initialState,
     reducers: {
         addAllMovies: (state, action) => {
-            console.log(action.payload);
             state.movies = action.payload;
         }
     }

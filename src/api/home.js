@@ -5,5 +5,5 @@ export const getCarousels = () => {
 };
 
 export const getMovies = () =>{
-    return api.get("/movies?pageSize=8")
+    return api.get("/movies?pageSize=8&sortType=hotSpot")
 };

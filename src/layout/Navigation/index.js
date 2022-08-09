@@ -77,10 +77,12 @@ function Navigation() {
               className="nav-searchinput"
             />
           </Input.Group>
-          <Avatar
-            size={{ xs: 24, sm: 24, md: 32, lg: 32, xl: 32, xxl: 40 }}
-            icon={<UserOutlined />}
-          ></Avatar>
+         <NavLink to="/login">
+           <Avatar
+               size={{ xs: 24, sm: 24, md: 32, lg: 32, xl: 32, xxl: 40 }}
+               icon={<UserOutlined />}
+           ></Avatar>
+         </NavLink>
         </div>
       </Col>
     </Row>

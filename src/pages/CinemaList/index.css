@@ -1,0 +1,22 @@
+.cinema_div {
+    margin: auto;
+    width: 70%;
+}
+.empty_style {
+    padding: 50px;
+}
+.cinemaList_div {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 30px;
+    border-bottom: 1px #795da3 dashed;
+}
+.cinema_style {
+    font-size: medium;
+    color: black;
+}
+.address_style {
+    font-size: small;
+    color: darkgray;
+}

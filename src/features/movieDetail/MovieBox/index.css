@@ -1,0 +1,85 @@
+.movie-box {
+  height: 370px;
+  border: 3px solid #2a797c;
+  border-image: linear-gradient(rgba(255, 255, 255, 0), rgba(42, 121, 124, 0.5))
+    1 1;
+  margin-bottom: 20px;
+}
+
+.movie-box .avatar-col {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.movie-box .avatar-box {
+  height: auto;
+  width: auto;
+  padding: 10px 10px 40px 10px;
+  margin: 0 30px;
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPAAAAAyAgMAAAAfG76+AAAADFBMVEUAAAAAAAAAAAAAAAA16TeWAAAABHRSTlMOAgoGQ0SIeAAAADpJREFUSMdjGAWjYBRgAasoAAwdFACKbB7VPEI076YAUGbzfwrAqOYRormcAjCANodSAEY1j2oexJoBlx1+yE7RXIIAAAAASUVORK5CYII=)
+    no-repeat bottom;
+}
+
+.movie-box .avatar {
+  width: 220px;
+  height: auto;
+  outline: rgba(42, 121, 124, 0.05) solid 10px;
+  border-radius: 2px;
+}
+
+.movie-col {
+  height: 100%;
+  padding-bottom: 40px;
+}
+
+.movie-col .movie-detail-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  font-size: 14px;
+  color: #2a2d56;
+}
+
+.movie-col .movie-detail-msg > div {
+  margin-bottom: 10px;
+}
+
+.movie-detail-box span {
+  font-weight: bold;
+}
+
+.movie-detail-box .movie-name {
+  font-size: 26px;
+  font-weight: bold;
+}
+
+.movie-detail-box .movie-buy-button {
+  width: 250px;
+}
+
+.statistic-col {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  height: 100%;
+  padding-bottom: 40px;
+}
+
+.statistic-col .movie-thumbsup .ant-statistic-content-prefix {
+  color: #ffc600;
+}
+
+.statistic-col .movie-thumbsup .ant-statistic-content-value {
+  color: #ffc600;
+}
+
+.statistic-col .ant-statistic-title {
+  color: #2a2d56;
+}
+
+.statistic-col .iconfont {
+  font-size: 24px;
+  color: #ff5b5b;
+}
