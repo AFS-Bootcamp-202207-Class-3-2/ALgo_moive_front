@@ -1,28 +1,28 @@
 import { Col, Row, Input, Select, Avatar } from "antd";
 import { UserOutlined } from "@ant-design/icons";
-import { NavLink,useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import logo from "../../static/images/Logo.png";
 import "./index.css";
-import {useState} from 'react'
+import { useState } from "react";
 const { Option } = Select;
 const { Search } = Input;
 
 function Navigation() {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const onSearch = (event) => {
-    navigate('searchPage',{
-      replace:false,
-      state:{
-        category:selectSearchCategory,
-        keyword:event
-      }
-    })
+    navigate("searchPage", {
+      replace: false,
+      state: {
+        category: selectSearchCategory,
+        keyword: event,
+      },
+    });
   };
-  const [searchKeyWord,setSearchKeyWord] = useState('')
-  const [selectSearchCategory,setSelectSearchCategory] = useState("movie")
-  const selectSearchCategoryChange = (event)=>{
-    setSelectSearchCategory(event)
-  }
+  const [searchKeyWord, setSearchKeyWord] = useState("");
+  const [selectSearchCategory, setSelectSearchCategory] = useState("movie");
+  const selectSearchCategoryChange = (event) => {
+    setSelectSearchCategory(event);
+  };
   return (
     <Row>
       <Col span={6}>
@@ -31,7 +31,6 @@ function Navigation() {
       <Col span={12}>
         <nav className="nav-list">
           <NavLink
-            exact
             to="/"
             className={({ isActive }) =>
               "nav-item" + (isActive ? " active" : " ")
@@ -40,8 +39,7 @@ function Navigation() {
             首页
           </NavLink>
           <NavLink
-            exact
-            to="/movie"
+            to="/movies"
             className={({ isActive }) =>
               "nav-item" + (isActive ? " active" : " ")
             }
@@ -49,7 +47,6 @@ function Navigation() {
             电影
           </NavLink>
           <NavLink
-            exact
             to="/cinema"
             className={({ isActive }) =>
               "nav-item" + (isActive ? " active" : " ")
@@ -58,7 +55,6 @@ function Navigation() {
             影院
           </NavLink>
           <NavLink
-            exact
             to="/top"
             className={({ isActive }) =>
               "nav-item" + (isActive ? " active" : " ")

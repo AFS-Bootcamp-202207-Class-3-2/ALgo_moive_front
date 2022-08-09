@@ -13,8 +13,8 @@ function App() {
       <Routes>
         <Route path="/" element={<PageLayout />}>
           <Route index element={<Home />} />
-            <Route path="movie" element={<Movie />} />
-            <Route path="searchPage" element={<SearchPage />} />
+          <Route path="movies" element={<Movie />} />
+          <Route path="searchPage" element={<SearchPage />} />
           <Route path="movie/:id" element={<MovieDetail />} />
         </Route>
         <Route path="/login" element={<Login />} />
