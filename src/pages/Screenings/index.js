@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react'
-import {Divider, List, Typography, Pagination, Avatar, Button, Skeleton, Table, Tabs} from 'antd';
+import { Table, Tabs} from 'antd';
 import '../SearchPage/index.css'
 import ScreeningApi from "../../api/ScreeningApi";
 import './index.css';
@@ -48,7 +48,7 @@ export default function ScreeningList() {
     ];
 
     function TabPane(props) {
-        console.log('props',props)
+
         return null;
     }
 
@@ -68,8 +68,6 @@ export default function ScreeningList() {
             setScreeningList(res.data.data.sessionList)
         })
     },[])
-
-    console.log("csss",screeningList)
 
     const dataSource = screeningList.map((item)=>{
         return {

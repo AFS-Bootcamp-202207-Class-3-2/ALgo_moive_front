@@ -16,7 +16,6 @@ import CinemaList from "./pages/CinemaList";
 import ChooseSeat from "../src/features/chooseSeat/index"
 import ALGO from "./features/pay/PayWay/ALGO";
 
-// import ScreeningList from './pages/Screenings'
 import Ticket from "./pages/Ticket";
 
 function App() {
