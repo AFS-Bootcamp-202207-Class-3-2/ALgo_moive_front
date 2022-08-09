@@ -13,12 +13,12 @@
 }
 
 .box-office-title{
-    font-size: x-large;
+    font-size: 20px;
     color: orange;
 }
 
 .box-office-rank-title{
-    font-size: medium;
+    font-size: 16px;
     color: orange;
 }
 
@@ -35,22 +35,71 @@
     width: 100%;
     display: flex;
     justify-content: space-between;
+    position: relative;
 }
 
 .box-office-rank-one-cover{
     width: 40%;
     height: 100%;
-    background-color: red;
 }
 
 .box-office-rank-one-box{
     width: 55%;
-    background-color: blue;
+    padding: 20px 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.item-first-movieName{
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.item-first-boxOffice{
+    font-size: 16px;
+    color: red;
 }
 
 .box-office-rank-behind{
     margin-top: 20px;
     width: 100%;
     height: 250px;
-    background-color: yellow;
+}
+
+.box-office-item{
+    display: flex;
+    justify-content: space-between;
+    height: 30px;
+    font-size: 18px;
+    padding: 30px 0;
+    align-items: center;
+}
+.box-office-item-left{
+    width: 40%;
+    display: flex;
+    justify-content: space-around;
+}
+
+.box-office-item-right{
+    color: red;
+    font-size: 16px;
+}
+
+.item-movieName{
+    width: 75%;
+    text-align: center;
+}
+.item-index {
+    color: #ee9900;
+}
+.box-office-item:hover{
+    background-color: #efefef;
+}
+
+.icon-crown{
+    position: absolute;
+    z-index: 2;
+    font-size: 30px;
+    color: #ee9900;
 }

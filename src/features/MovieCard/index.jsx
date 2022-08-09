@@ -17,7 +17,7 @@ export default function MovieCard (props) {
                 <img
                     className="movie-card-image"
                       alt="movie-pic"
-                     src='https://czy-blog-system.oss-cn-shenzhen.aliyuncs.com/2020/11/01/374.gif'/>
+                     src={movie.cover}/>
             </div>
             <div className="movie-msg-box">
                 <div className="movie-msg-data-layout">
