@@ -23,7 +23,7 @@ export default function Carousels(props) {
                     carousels.map((item, index) => {
                         return (
                             <div key={index}>
-                                <img alt="Carousel" className="carouselStyle" src={item}/>
+                                <img resizeMode="contain" alt="Carousel" className="carouselStyle" src={item}/>
                             </div>
                         )
                     })
