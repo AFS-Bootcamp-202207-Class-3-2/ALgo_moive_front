@@ -15,7 +15,7 @@ export default function MovieGroup(props) {
         <span className="hot-title">
           正在热映<i className="iconfont fire-icon">&#xe617;</i>
         </span>
-        <NavLink to="/movie" className="hot-link">
+        <NavLink to="/movies" className="hot-link">
           {"全部 >"}
         </NavLink>
       </div>
@@ -32,19 +32,16 @@ export default function MovieGroup(props) {
                       src={movie.cover}
                       style={{ width: 180 }}
                     />
+                    <div className="movie_desc">
+                      <div className="movie_score">
+                        <b>{movie.score}</b>
+                      </div>
+                    </div>
                   </div>
                 }
                 style={{ width: 180 }}
                 onClick={() => jumpToMovieDetail(movie.id)}
               >
-                <div className="movie_desc">
-                  <div>
-                    <b>{movie.movieName}</b>
-                  </div>
-                  <div className="movie_score">
-                    <b>{movie.score}</b>
-                  </div>
-                </div>
                 <MovieItem key={movie.id} movie={{ movie }} />
               </Card>
             </Col>

@@ -13,6 +13,7 @@ import ALGOBank from "./features/pay/PayWay/ALGOBank";
 
 import CinemaList from "./pages/CinemaList";
 import ChooseSeat from "../src/features/chooseSeat/index"
+import Ticket from "./pages/Ticket";
 
 function App() {
     return (
@@ -30,25 +31,11 @@ function App() {
                         <Route path="payway/:way" element={<ZhiFuBao/>}></Route>
                     </Route>
                   <Route path="chooseSeat" element={<ChooseSeat/>}/>
+                  <Route path="order/:orderId" element={<Ticket />} />
                 </Route>
                 <Route path="/login" element={<Login/>}/>
             </Routes>
         </div>
     );
-  return (
-    <div className="App">
-      <Routes>
-        <Route path="/" element={<PageLayout />}>
-          <Route index element={<Home />} />
-          <Route path="movies" element={<Movie />} />
-          <Route path="searchPage" element={<SearchPage />} />
-          <Route path="movie/:id" element={<MovieDetail />} />
-          <Route path="screenings" element={<ScreeningList />} />
-        </Route>
-        <Route path="/login" element={<Login />} />
-      </Routes>
-    </div>
-  );
 }
-
 export default App;

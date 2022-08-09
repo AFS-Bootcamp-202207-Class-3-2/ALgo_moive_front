@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { getMovieById } from "../../api/movieDetail";
 import { getMovieDetail } from "../../features/movieDetail/movieDetailSlice";
 import MovieBox from "../../features/movieDetail/MovieBox";
@@ -9,19 +9,24 @@ import "./index.css";
 
 function MovieDetail() {
   const dispatch = useDispatch();
+  const nevigator = useNavigate();
   const { id } = useParams();
-  const getMovie = () => {
+  useEffect(() => {
     getMovieById(id).then((response) => {
       dispatch(getMovieDetail(response.data.data.movie));
     });
-  };
-  useEffect(() => {
-    getMovie();
-  }, []);
+  }, [id, dispatch]);
   const movie = useSelector((state) => state.movieDetail.movie);
+  const jumpToCinema = () => {
+    nevigator(`/cinemas/${id}`);
+  };
   return (
     <div className="movie-detail-page">
-      <MovieBox movie={movie} buttonMsg="购票"></MovieBox>
+      <MovieBox
+        movie={movie}
+        buttonMsg="购票"
+        clickButton={jumpToCinema}
+      ></MovieBox>
       <MovieDetailTabs movie={movie}></MovieDetailTabs>
     </div>
   );

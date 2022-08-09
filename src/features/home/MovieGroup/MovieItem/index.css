@@ -1,6 +1,11 @@
 .ticket_button {
-    display: block;
-    margin: 8px auto 0 0;
-    bottom: 0;
-    width: 100%;
+  text-align: center;
+  padding: 15px;
+  color: #2a797c;
+  font-size: 16px;
+}
+
+.ticket_button:hover {
+  background-color: #2a797c;
+  color: white;
 }
