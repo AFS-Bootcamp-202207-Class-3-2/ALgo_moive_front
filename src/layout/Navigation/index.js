@@ -9,6 +9,9 @@ const { Search } = Input;
 
 function Navigation() {
   const navigate = useNavigate();
+  const toHomePage =() => {
+    navigate("/");
+  }
   const onSearch = (event) => {
     navigate("searchPage", {
       replace: false,
@@ -18,7 +21,6 @@ function Navigation() {
       },
     });
   };
-  const [searchKeyWord, setSearchKeyWord] = useState("");
   const [selectSearchCategory, setSelectSearchCategory] = useState("movie");
   const selectSearchCategoryChange = (event) => {
     setSelectSearchCategory(event);
@@ -26,7 +28,7 @@ function Navigation() {
   return (
     <Row>
       <Col span={6}>
-        <img src={logo} alt="ALGO MOVIE" className="nav-logo" />
+        <img src={logo} alt="ALGO MOVIE" className="nav-logo" onClick={toHomePage} />
       </Col>
       <Col span={12}>
         <nav className="nav-list">

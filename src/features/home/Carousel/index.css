@@ -1,5 +1,6 @@
 .carouselStyle{
     width: 70%;
-    height: 500px;
+    height: 350px;
+    object-fit:cover;
     margin: auto;
 }
