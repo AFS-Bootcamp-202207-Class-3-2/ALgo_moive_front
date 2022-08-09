@@ -2,8 +2,16 @@
   z-index: 99;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: flex-end;
   margin: 2px auto;
+  width: 100%;
+  height: 20px;
+  position: absolute;
+  top: 225px;
+  left: 0;
+  padding: 0 5px;
+  background-image: linear-gradient(rgba(255, 255, 255, 0), rgb(220, 215, 215))
+    1 1;
 }
 .movie_score {
   color: coral;
@@ -33,5 +41,10 @@
 }
 .image_style {
   width: 180px;
-  height: 200px;
+  height: auto;
+  position: relative;
+}
+
+.site-card-wrapper .ant-card-body {
+  padding: 0;
 }
