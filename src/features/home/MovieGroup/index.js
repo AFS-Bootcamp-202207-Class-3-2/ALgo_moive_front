@@ -15,7 +15,7 @@ export default function MovieGroup(props) {
         <span className="hot-title">
           正在热映<i className="iconfont fire-icon">&#xe617;</i>
         </span>
-        <NavLink to="/movie" className="hot-link">
+        <NavLink to="/movies" className="hot-link">
           {"全部 >"}
         </NavLink>
       </div>
