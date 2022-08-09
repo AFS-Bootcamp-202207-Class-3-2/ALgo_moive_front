@@ -2,6 +2,9 @@
     margin: auto;
     width: 70%;
 }
+.empty_style {
+    padding: 50px;
+}
 .cinemaList_div {
     display: flex;
     flex-direction: row;

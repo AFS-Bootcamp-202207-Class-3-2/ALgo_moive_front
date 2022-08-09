@@ -6,6 +6,7 @@ import Movie from "./pages/Movie";
 import Login from "./features/login";
 import SearchPage from "./pages/SearchPage";
 import MovieDetail from "./pages/MovieDetail";
+import CinemaList from "./pages/CinemaList";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           <Route path="movies" element={<Movie />} />
           <Route path="searchPage" element={<SearchPage />} />
           <Route path="movie/:id" element={<MovieDetail />} />
+          <Route path="cinemas/:movieId" element={<CinemaList />} />
         </Route>
         <Route path="/login" element={<Login />} />
       </Routes>

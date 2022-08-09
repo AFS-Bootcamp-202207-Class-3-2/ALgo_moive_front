@@ -2,7 +2,7 @@ import React, {useEffect, useState} from "react";
 import { getCinemaListByMovieId } from "../../api/cinema";
 import {useParams} from 'react-router-dom';
 import './index.css'
-import {Button} from "antd";
+import {Button, Empty} from "antd";
 
 export default function CinemaList() {
     const {movieId} = useParams();
@@ -17,7 +17,7 @@ export default function CinemaList() {
     return (
         <div className="cinema_div">
             <h2>影院列表</h2>
-            {cinemaList.map((cinema) => (
+            {cinemaList.length === 0 ? <Empty className="empty_style" /> : cinemaList.map((cinema) => (
                 <div className="cinemaList_div" key={cinema.id}>
                     <div>
                         <span className="cinema_style">{cinema.cinemaName}</span>
