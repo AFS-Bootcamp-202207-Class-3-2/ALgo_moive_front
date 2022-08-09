@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getMovies } from "../../api/home";
 import { addAllMovies } from "../../features/home/HomeSlice";
 import "./index.css"
+import BoxOffice from "../../features/home/BoxOffice";
 
 function Home() {
   const movies = useSelector((state) => state.home.movies);
@@ -22,7 +23,10 @@ function Home() {
         <Col span={16}>
           <MovieGroup movies={movies} />
         </Col>
-        <Col span={8}></Col>
+        <Col span={1}></Col>
+        <Col span={7}>
+          <BoxOffice/>
+        </Col>
       </Row>
     </div>
   );
