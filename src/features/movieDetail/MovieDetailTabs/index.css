@@ -1,0 +1,11 @@
+.movie-detail-tabs .ant-tabs-nav-list .ant-tabs-tab {
+  font-size: 18px;
+}
+
+.movie-detail-tabs article h2 {
+  font-weight: bold;
+}
+
+.movie-detail-tabs article p {
+  font-size: 18px;
+}

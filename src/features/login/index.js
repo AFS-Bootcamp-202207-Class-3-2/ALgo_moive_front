@@ -5,6 +5,7 @@ import LoginView from "./loginView";
 import RegisterView from "./registerView";
 import {changePageState} from "./loginSlice";
 import "./index.css"
+import {Button} from "antd";
 
 function Login() {
     const isLogin = useSelector((state) => state.login.isLogin);
@@ -18,11 +19,17 @@ function Login() {
         <div className="login-background">
             <div className="login-box">
                 <div className="login-logo">
-                    <img src={loginGlasses} alt="LOGIN GLASSES" className="login-glasses" />
+                    <i className="iconfont login-glasses" >&#xe62b;</i>
                     <img src={loginAlgo} alt="LOGIN ALGO" className="login-algo" />
                 </div>
                 <div className="login-big-board">
                     {isLogin ? <LoginView updateLoginState={updateLoginState} /> : <RegisterView updateLoginState={updateLoginState} />}
+                    <Button
+                        size="large"
+                        type="ghost"
+                        onClick={updateLoginState}>
+                        {isLogin ? 'Switch to Register' : 'Switch to Log in'}
+                    </Button>
                 </div>
             </div>
         </div>

@@ -4,6 +4,8 @@ import { useParams } from "react-router-dom";
 import { getMovieById } from "../../api/movieDetail";
 import { getMovieDetail } from "../../features/movieDetail/movieDetailSlice";
 import MovieBox from "../../features/movieDetail/MovieBox";
+import MovieDetailTabs from "../../features/movieDetail/MovieDetailTabs";
+import "./index.css";
 
 function MovieDetail() {
   const dispatch = useDispatch();
@@ -15,11 +17,12 @@ function MovieDetail() {
   };
   useEffect(() => {
     getMovie();
-  },[]);
+  }, []);
   const movie = useSelector((state) => state.movieDetail.movie);
   return (
-    <div>
-      <MovieBox movie={movie}></MovieBox>
+    <div className="movie-detail-page">
+      <MovieBox movie={movie} buttonMsg="购票"></MovieBox>
+      <MovieDetailTabs movie={movie}></MovieDetailTabs>
     </div>
   );
 }
