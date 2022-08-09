@@ -29,6 +29,7 @@ function RegisterView(props) {
                 onFinish={onFinish}>
                 <Form.Item
                     name="username"
+                    className="form-item"
                     rules={[{ required: true, message: 'Please input your username!' }]}
                 >
                     <Input
@@ -38,6 +39,7 @@ function RegisterView(props) {
                 </Form.Item>
                 <Form.Item
                     name="password"
+                    className="form-item"
                     rules={[{ required: true, message: 'Please input your password!' }]}
                 >
                     <Input.Password
@@ -48,8 +50,8 @@ function RegisterView(props) {
                     />
                 </Form.Item>
                 <Form.Item
-                    className='form-item'
                     name="confirm-password"
+                    className='form-item'
                     rules={[{ required: true, message: 'Please confirm your password!' }]}
                 >
                     <Input.Password
