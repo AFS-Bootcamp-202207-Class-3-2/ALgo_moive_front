@@ -6,6 +6,7 @@ const service = axios.create({
     //   'token': 'one'
     // },
     baseURL: 'https://algo-moive-backed.herokuapp.com',//TODO:For your configuration
+    //baseURL: 'http://localhost:9999',
     withCredentials: true,
     timeout: 5000
 })

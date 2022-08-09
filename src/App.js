@@ -10,6 +10,7 @@ import PaymentPage from "./pages/PaymentPage/PaymentPage";
 import WechatWay from "./features/pay/PayWay/WechatWay";
 import ZhiFuBao from "./features/pay/PayWay/ZhiFuBao";
 import ALGOBank from "./features/pay/PayWay/ALGOBank";
+import ScreeningList from "./pages/Screenings"
 
 import CinemaList from "./pages/CinemaList";
 import ChooseSeat from "../src/features/chooseSeat/index"
@@ -17,6 +18,7 @@ import Ticket from "./pages/Ticket";
 
 function App() {
     return (
+        <>
         <div className="App">
             <Routes>
                 <Route path="/" element={<PageLayout/>}>
@@ -30,12 +32,15 @@ function App() {
                         <Route path="payway/:way" element={<WechatWay/>}></Route>
                         <Route path="payway/:way" element={<ZhiFuBao/>}></Route>
                     </Route>
-                  <Route path="chooseSeat" element={<ChooseSeat/>}/>
-                  <Route path="order/:orderId" element={<Ticket />} />
+                    <Route path="chooseSeat" element={<ChooseSeat/>}/>
+                    <Route path="order/:orderId" element={<Ticket/>}/>
+                    <Route path="screenings" element={<ScreeningList/>}/>
                 </Route>
                 <Route path="/login" element={<Login/>}/>
             </Routes>
         </div>
+            </>
     );
 }
+
 export default App;
