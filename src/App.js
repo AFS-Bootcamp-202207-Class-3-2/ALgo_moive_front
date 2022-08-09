@@ -37,20 +37,5 @@ function App() {
             </Routes>
         </div>
     );
-  return (
-    <div className="App">
-      <Routes>
-        <Route path="/" element={<PageLayout />}>
-          <Route index element={<Home />} />
-          <Route path="movies" element={<Movie />} />
-          <Route path="searchPage" element={<SearchPage />} />
-          <Route path="movie/:id" element={<MovieDetail />} />
-          <Route path="screenings" element={<ScreeningList />} />
-        </Route>
-        <Route path="/login" element={<Login />} />
-      </Routes>
-    </div>
-  );
 }
-
 export default App;
