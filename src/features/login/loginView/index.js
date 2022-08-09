@@ -29,12 +29,14 @@ function LoginView(props) {
                 onFinish={onFinish}>
                 <Form.Item
                     name="username"
+                    className="form-item"
                     rules={[{ required: true, message: 'Please input your username!' }]}
                 >
                     <Input prefix={<UserOutlined className="site-form-item-icon" />} placeholder="user name" />
                 </Form.Item>
                 <Form.Item
                     name="password"
+                    className="form-item"
                     rules={[{ required: true, message: 'Please input your password!' }]}
                 >
                     <Input.Password
