@@ -1,14 +1,15 @@
 import React, {useEffect} from 'react'
 import { gsap } from "gsap";
 import './algo.css'
-import {useNavigate} from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
 export default function ALGO() {
     const navigate = useNavigate()
-
+    const {id} = useParams()
     useEffect(()=>{
+        console.log(id)
         setTimeout(()=>{
-            navigate('/')
-        },4000)
+            navigate('/order/'+id)
+        },4600)
         const timeline1 = gsap.timeline()
         const timeline2 = gsap.timeline()
         timeline1.staggerFromTo('.text-letter-wrapper span', .5, {

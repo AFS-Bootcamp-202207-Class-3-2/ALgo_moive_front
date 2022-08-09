@@ -23,7 +23,7 @@ export default function ALGOBank (props) {
             .then((res=>{
                 let order = res.data.data.order;
                 if (order.status === "1") {
-                    navigate('/algo')
+                    navigate('/algo/'+id)
                 }
             }))
         if (min < 0) {

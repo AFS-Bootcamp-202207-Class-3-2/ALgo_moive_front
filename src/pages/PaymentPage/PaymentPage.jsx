@@ -5,7 +5,7 @@ import {FieldTimeOutlined,
     InsertRowAboveOutlined,BankOutlined, WechatOutlined,
     VideoCameraTwoTone ,InfoCircleOutlined,
     AlipayCircleFilled} from '@ant-design/icons';
-import { Steps , Menu} from 'antd';
+import {Button, Steps , Menu} from 'antd';
 import {useParams, Outlet, useNavigate} from 'react-router-dom'
 import {useDispatch, useSelector} from "react-redux";
 
@@ -78,6 +78,15 @@ export default function PaymentPage (props) {
         }
 
     }
+
+    const items = [
+        { label: 'ALGO 银行支付', key: 'ALGOpay' ,icon:<BankOutlined />}, // 菜单项务必填写 key
+        { label: '微信支付', key: 'WechatWay',icon:<WechatOutlined /> },
+        {
+            label: '支付宝支付',
+            key: 'ZhiFuBao',icon:<AlipayCircleFilled />
+        },
+    ];
     return(
         <div className="pay-tot-box">
             <div className="pay-step-box">
@@ -181,7 +190,7 @@ export default function PaymentPage (props) {
                             {orderData.roomName}
                         </div>
                         <div className="pay-info-row">
-                            seatInFo
+                            <Button type="primary">{orderData.seatInfo}</Button>
                         </div>
                     </div>
                 </div>
@@ -189,18 +198,18 @@ export default function PaymentPage (props) {
             </div>
 
             <div className="pay-operation-box">
-                <Menu mode="horizontal"
+                <Menu mode="horizontal" items={items}
                       onClick={selectPayWay}
                       defaultSelectedKeys={['ALGOpay']}>
-                    <Menu.Item key="ALGOpay"  icon={<BankOutlined />}>
-                        ALGO 银行支付
-                    </Menu.Item>
-                    <Menu.Item key="WechatWay" icon={<WechatOutlined />}>
-                        微信支付
-                    </Menu.Item>
-                    <Menu.Item key="ZhiFuBao"  icon={<AlipayCircleFilled />}>
-                        支付宝支付
-                    </Menu.Item>
+                    {/*<Menu.Item key="ALGOpay"  icon={<BankOutlined />}>*/}
+                    {/*    ALGO 银行支付*/}
+                    {/*</Menu.Item>*/}
+                    {/*<Menu.Item key="WechatWay" icon={<WechatOutlined />}>*/}
+                    {/*    微信支付*/}
+                    {/*</Menu.Item>*/}
+                    {/*<Menu.Item key="ZhiFuBao"  icon={<AlipayCircleFilled />}>*/}
+                    {/*    支付宝支付*/}
+                    {/*</Menu.Item>*/}
                 </Menu>
 
                 <Outlet/>

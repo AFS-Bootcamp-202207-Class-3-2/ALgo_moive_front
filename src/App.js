@@ -41,7 +41,7 @@ function App() {
                     <Route path="screenings" element={<ScreeningList/>}/>
                 </Route>
                 <Route path="/login" element={<Login/>}/>
-                <Route path="/algo" element={<ALGO/>}/>
+                <Route path="/algo/:id" element={<ALGO/>}/>
             </Routes>
         </div>
             </>
