@@ -18,6 +18,7 @@ export default function Carousels(props) {
 
     return (
         <div>
+            <br/><br/>
             <Carousel autoplay>
                 {
                     carousels.map((item, index) => {
