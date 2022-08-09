@@ -32,19 +32,16 @@ export default function MovieGroup(props) {
                       src={movie.cover}
                       style={{ width: 180 }}
                     />
+                    <div className="movie_desc">
+                      <div className="movie_score">
+                        <b>{movie.score}</b>
+                      </div>
+                    </div>
                   </div>
                 }
                 style={{ width: 180 }}
                 onClick={() => jumpToMovieDetail(movie.id)}
               >
-                <div className="movie_desc">
-                  <div>
-                    <b>{movie.movieName}</b>
-                  </div>
-                  <div className="movie_score">
-                    <b>{movie.score}</b>
-                  </div>
-                </div>
                 <MovieItem key={movie.id} movie={{ movie }} />
               </Card>
             </Col>
