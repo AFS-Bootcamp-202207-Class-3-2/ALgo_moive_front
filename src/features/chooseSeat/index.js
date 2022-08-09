@@ -5,6 +5,7 @@ import uuid from 'node-uuid';
 import _ from 'lodash';
 import {useState} from 'react'
 import {useSelector, useDispatch} from "react-redux";
+import {getSeatAndMovieInfo} from '../../api/cinema'
 
 import empty from '../../static/images/empty.png';
 import occupy from '../../static/images/occupy.png';
@@ -21,8 +22,7 @@ export default function ChooseSeat() {
     const dispatch = useDispatch();
     const [selectSeat, setSelectSeat] = useState([])
     useEffect(() => {
-        //改个url就行，现在用mock模拟数据
-        axios.get('/detailInfo').then(response => {
+        getSeatAndMovieInfo().then(response => {
             dispatch(setFilmInfo(response.data.data.sessionInfo))
             dispatch(setSeatsInfo(response.data.data.sessionInfo))
             // code();

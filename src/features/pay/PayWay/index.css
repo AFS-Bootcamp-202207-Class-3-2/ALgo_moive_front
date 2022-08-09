@@ -1,0 +1,24 @@
+.pay-box {
+    box-sizing: border-box;
+    padding: 30px;
+}
+.pay-box-title{
+    font-size: 3rem;
+    color: #298589;
+    font-family: "JetBrains Mono";
+    margin-left: 20px;
+    font-weight: 600;
+}
+.pay-real-box{
+    margin-left: 20px;
+    text-align: center;
+    color: #2A797C;
+}
+.pay-real {
+    color: red;
+    font-family: SFMono-Regular, Consolas, Liberation Mono, Menlo, Courier, monospace;
+    font-size: 3rem;
+}
+.pay-real-icon{
+    font-size: 2rem;
+}

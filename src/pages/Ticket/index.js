@@ -55,7 +55,7 @@ function Ticket() {
                 {order.durationTime}
               </Descriptions.Item>
               <Descriptions.Item>{order.roomName}</Descriptions.Item>
-              <Descriptions.Item>1排1座</Descriptions.Item>
+              <Descriptions.Item>{order.seatInfo}</Descriptions.Item>
               <Descriptions.Item>
                 <span className="des-price">总价：{order.price}元</span>
               </Descriptions.Item>

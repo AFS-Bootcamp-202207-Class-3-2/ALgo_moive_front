@@ -76,8 +76,9 @@
     align-items: center;
 }
 .box-office-item-left{
-    width: 40%;
-    display: flex;
+    width: 60%;
+    float: left;
+    display: inline-block;
     justify-content: space-around;
 }
 

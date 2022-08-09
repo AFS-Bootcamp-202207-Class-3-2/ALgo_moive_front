@@ -24,8 +24,8 @@ export default function CinemaList() {
       setMovie(response.data.data.movie);
     });
   }, [movieId]);
-  const toChooseSet = () => {
-    navigator("/chooseSeat");
+  const toScreenings = () => {
+    navigator("/screenings");
   };
 
   const jumpToMovieDetail = () => {
@@ -49,7 +49,7 @@ export default function CinemaList() {
               <br />
               <span className="address_style">地址：{cinema.address}</span>
             </div>
-            <Button type="danger" shape="round" onClick={toChooseSet}>
+            <Button type="danger" shape="round" onClick={toScreenings}>
               选座购票
             </Button>
           </div>
