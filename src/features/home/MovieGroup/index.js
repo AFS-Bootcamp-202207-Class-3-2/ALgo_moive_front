@@ -25,13 +25,17 @@ export default function MovieGroup(props) {
             <Col span={6} key={movie.id}>
               <Card
                 hoverable
-                style={{ width: 200 }}
-                cover={<img alt="example" src={movie.cover} />}
+                cover={
+                    <div className="image_style">
+                        <img alt="example" src={movie.cover} style={{width: 180}} />
+                    </div>
+                }
+                style={{ width: 180 }}
                 onClick={() => jumpToMovieDetail(movie.id)}
               >
                 <div className="movie_desc">
-                  <div>{movie.movieName}</div>
-                  <div className="movie_score">{movie.score}</div>
+                    <div><b>{movie.movieName}</b></div>
+                    <div className="movie_score"><b>{movie.score}</b></div>
                 </div>
                 <MovieItem key={movie.id} movie={{ movie }} />
               </Card>

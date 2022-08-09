@@ -31,3 +31,7 @@
 .hot-link:hover {
   color: #ff5b5b;
 }
+.image_style {
+  width: 180px;
+  height: 200px;
+}
