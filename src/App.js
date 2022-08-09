@@ -7,6 +7,7 @@ import Login from "./features/login";
 import SearchPage from "./pages/SearchPage";
 import MovieDetail from "./pages/MovieDetail";
 import CinemaList from "./pages/CinemaList";
+import ChooseSeat from "../src/features/chooseSeat/index"
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
           <Route path="cinemas/:movieId" element={<CinemaList />} />
         </Route>
         <Route path="/login" element={<Login />} />
+          <Route path="/chooseSeat" element={<ChooseSeat />} />
       </Routes>
     </div>
   );
