@@ -10,14 +10,11 @@ import "./index.css";
 function MovieDetail() {
   const dispatch = useDispatch();
   const { id } = useParams();
-  const getMovie = () => {
+  useEffect(() => {
     getMovieById(id).then((response) => {
       dispatch(getMovieDetail(response.data.data.movie));
     });
-  };
-  useEffect(() => {
-    getMovie();
-  }, []);
+  }, [id,dispatch]);
   const movie = useSelector((state) => state.movieDetail.movie);
   return (
     <div className="movie-detail-page">

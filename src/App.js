@@ -13,6 +13,7 @@ import ALGOBank from "./features/pay/PayWay/ALGOBank";
 
 import CinemaList from "./pages/CinemaList";
 import ChooseSeat from "../src/features/chooseSeat/index"
+import Ticket from "./pages/Ticket";
 
 function App() {
     return (
@@ -30,6 +31,7 @@ function App() {
                         <Route path="payway/:way" element={<ZhiFuBao/>}></Route>
                     </Route>
                   <Route path="chooseSeat" element={<ChooseSeat/>}/>
+                  <Route path="order/:orderId" element={<Ticket />} />
                 </Route>
                 <Route path="/login" element={<Login/>}/>
             </Routes>
