@@ -1,5 +1,5 @@
 import "./App.css";
-import { Route, Routes } from "react-router-dom";
+import {Route, Routes} from "react-router-dom";
 import PageLayout from "./layout/PageLayout";
 import Home from "./pages/Home";
 import Movie from "./pages/Movie";
@@ -29,9 +29,9 @@ function App() {
                         <Route path="payway/:way" element={<WechatWay/>}></Route>
                         <Route path="payway/:way" element={<ZhiFuBao/>}></Route>
                     </Route>
+                  <Route path="chooseSeat" element={<ChooseSeat/>}/>
                 </Route>
                 <Route path="/login" element={<Login/>}/>
-                <Route path="/chooseSeat" element={<ChooseSeat/>}/>
             </Routes>
         </div>
     );
