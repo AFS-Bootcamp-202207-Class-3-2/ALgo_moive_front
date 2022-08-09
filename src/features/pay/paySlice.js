@@ -1,18 +1,18 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-    countDown: null,
+    qrValid: true,
 };
 
 const payCountDown = createSlice({
     name: "payCountDown",
     initialState,
     reducers: {
-        readyForPay: (state, action) => {
-            state.countDown = action.payload;
+        updateQrValid: (state, action) => {
+            state.qrValid = action.payload;
         },
     },
 });
 
-export const { readyForPay } = payCountDown.actions;
+export const { updateQrValid } = payCountDown.actions;
 export default payCountDown.reducer;
