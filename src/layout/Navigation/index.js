@@ -1,15 +1,27 @@
 import { Col, Row, Input, Select, Avatar } from "antd";
 import { UserOutlined } from "@ant-design/icons";
-import { NavLink } from "react-router-dom";
+import { NavLink,useNavigate } from "react-router-dom";
 import logo from "../../static/images/Logo.png";
 import "./index.css";
-
+import {useState} from 'react'
 const { Option } = Select;
 const { Search } = Input;
 
 function Navigation() {
-  const onSearch = () => {};
-
+  const navigate = useNavigate()
+  const onSearch = (event) => {
+    navigate('searchPage',{
+      replace:false,
+      state:{
+        category:selectSearchCategory,
+        keyword:event
+      }
+    })
+  };
+  const [selectSearchCategory,setSelectSearchCategory] = useState("movie")
+  const selectSearchCategoryChange = (event)=>{
+    setSelectSearchCategory(event)
+  }
   return (
     <Row>
       <Col span={6}>
@@ -18,6 +30,7 @@ function Navigation() {
       <Col span={12}>
         <nav className="nav-list">
           <NavLink
+            exact
             to="/"
             className={({ isActive }) =>
               "nav-item" + (isActive ? " active" : " ")
@@ -26,6 +39,7 @@ function Navigation() {
             首页
           </NavLink>
           <NavLink
+            exact
             to="/movie"
             className={({ isActive }) =>
               "nav-item" + (isActive ? " active" : " ")
@@ -34,6 +48,7 @@ function Navigation() {
             电影
           </NavLink>
           <NavLink
+            exact
             to="/cinema"
             className={({ isActive }) =>
               "nav-item" + (isActive ? " active" : " ")
@@ -42,6 +57,7 @@ function Navigation() {
             影院
           </NavLink>
           <NavLink
+            exact
             to="/top"
             className={({ isActive }) =>
               "nav-item" + (isActive ? " active" : " ")
@@ -54,7 +70,7 @@ function Navigation() {
       <Col span={6}>
         <div className="nav-right-box">
           <Input.Group compact>
-            <Select defaultValue="movie">
+            <Select defaultValue="movie" onChange={selectSearchCategoryChange}>
               <Option value="movie">电影</Option>
               <Option value="cinema">影院</Option>
             </Select>
@@ -62,7 +78,7 @@ function Navigation() {
               placeholder="找电影、影院"
               allowClear
               onSearch={onSearch}
-              style={{ width: 200 }}
+              className="nav-searchinput"
             />
           </Input.Group>
           <Avatar

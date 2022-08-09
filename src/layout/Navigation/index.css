@@ -45,3 +45,15 @@
 .nav-right-box .ant-input-group {
   width: auto;
 }
+
+@media screen and (max-width: 1600px){
+  .nav-searchinput {
+    width: 150px;
+  }
+}
+
+@media screen and (min-width: 1600px) and (max-width: 2000px){
+  .nav-searchinput {
+    width: 200px;
+  }
+}

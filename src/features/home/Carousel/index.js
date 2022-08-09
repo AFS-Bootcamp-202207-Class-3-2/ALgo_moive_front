@@ -5,7 +5,7 @@ import {getCarousels} from '../../../api/home'
 import {useEffect, useState} from 'react'
 import {useDispatch} from "react-redux";
 
-export default () => {
+export default function Carousels(props) {
     const [carousels, setCarousels] = useState([])
     const dispatch = useDispatch();
     useEffect(()=>{
@@ -23,7 +23,7 @@ export default () => {
                     carousels.map((item, index) => {
                         return (
                             <div key={index}>
-                                <img className="carouselStyle" src={item}/>
+                                <img alt="Carousel" className="carouselStyle" src={item}/>
                             </div>
                         )
                     })
