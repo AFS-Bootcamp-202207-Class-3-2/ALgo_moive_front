@@ -1,11 +1,20 @@
-import { LockOutlined, UserOutlined, EyeTwoTone, EyeInvisibleOutlined } from '@ant-design/icons';
-import { Button, Form, Input } from 'antd';
-import { useEffect, useState } from 'react';
-import "./index.css"
+import {
+    LockOutlined,
+    UserOutlined,
+    EyeTwoTone,
+    EyeInvisibleOutlined,
+  } from "@ant-design/icons";
+  import { Button, Form, Input, message } from "antd";
+  import { useEffect, useState } from "react";
+  import { useDispatch } from "react-redux";
+  import { register } from "../../../api/login";
+  import { changePageState } from "../loginSlice";
+  import "./index.css";
 
 function RegisterView() {
     const [form] = Form.useForm();
     const [, forceUpdate] = useState({});
+    const dispatch = useDispatch();
 
     // To disable submit button at the beginning.
     useEffect(() => {
@@ -13,8 +22,18 @@ function RegisterView() {
     }, []);
 
     const onFinish = (values) => {
-        console.log('Finish:', values);
-    };
+        if (values.password !== values.confirmPassword) {
+          message.warn("密码和确认密码不一致");
+        }
+        register(values.username, values.password).then(res => {
+            if(res.data.code === '201'){
+                message.success('注册成功');
+                dispatch(changePageState());
+            }
+        }).catch(err => {
+            message.error(err);
+        });
+      };
 
     return (
         <div className="register-view">
@@ -50,7 +69,7 @@ function RegisterView() {
                     />
                 </Form.Item>
                 <Form.Item
-                    name="confirm-password"
+                    name="confirmPassword"
                     className='form-item'
                     rules={[{ required: true, message: 'Please confirm your password!' }]}
                 >
