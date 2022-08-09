@@ -18,7 +18,6 @@ function Navigation() {
       },
     });
   };
-  const [searchKeyWord, setSearchKeyWord] = useState("");
   const [selectSearchCategory, setSelectSearchCategory] = useState("movie");
   const selectSearchCategoryChange = (event) => {
     setSelectSearchCategory(event);
