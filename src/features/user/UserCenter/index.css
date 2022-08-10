@@ -1,0 +1,13 @@
+.user-total-box {
+    box-sizing: border-box;
+    padding: 50px 30px 30px 30px;
+    width: 100%;
+}
+
+.user-total-box-inner-box{
+    box-sizing: border-box;
+    min-height: 500px;
+    border-radius: 12px;
+    border:1px solid #5f5f5f;
+    display: flex;
+}
