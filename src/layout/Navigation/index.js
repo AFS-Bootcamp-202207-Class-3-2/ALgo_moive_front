@@ -124,11 +124,15 @@ function Navigation() {
             />
           </Input.Group>
           <Dropdown overlay={menu} disabled={userInfo ? false : true}>
-            <Link to={userInfo ? "/" : "/login"}>
+            <Link to={userInfo ? "/user/detail" : "/login"}>
               <Avatar
                 size={{ xs: 24, sm: 24, md: 32, lg: 32, xl: 32, xxl: 40 }}
                 icon={
-                  userInfo ? <img src={userInfo.avatar} alt="用户头像" /> : <UserOutlined />
+                  userInfo ? (
+                    <img src={userInfo.avatar} alt="用户头像" />
+                  ) : (
+                    <UserOutlined />
+                  )
                 }
               ></Avatar>
             </Link>
