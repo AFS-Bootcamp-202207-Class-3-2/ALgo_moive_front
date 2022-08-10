@@ -1,11 +1,11 @@
-import uuid from "node-uuid";
+import { v4 as uuidv4 } from 'uuid';
 import QRCode from "qrcode.react";
 import { PageHeader, Tag, Descriptions, Row, Col, Divider, Button } from "antd";
 import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import "./index.css";
 import { getOrderById } from "../../api/order";
-import moment from "moment";
+import { getDurationTime } from "../../util/getDurationTime";
 
 function Ticket() {
   const navigator = useNavigate();
@@ -16,20 +16,7 @@ function Ticket() {
   };
   useEffect(() => {
     getOrderById(orderId).then((response) => {
-      let startTime = new Date(response.data.data.data.startTime);
-      let endTime = new Date(
-        response.data.data.data.movieDuration * 60 * 1000 + startTime.getTime()
-      );
-      let durationTime =
-        moment(response.data.data.data.screeningDate).format("YYYY年MM月DD日") +
-        " " +
-        startTime.getHours() +
-        ":" +
-        startTime.getMinutes() +
-        "-" +
-        endTime.getHours() +
-        ":" +
-        endTime.getMinutes();
+      let durationTime = getDurationTime(response.data.data.data);
       setOrder(Object.assign(response.data.data.data, { durationTime }));
     });
   }, [orderId]);
@@ -42,7 +29,7 @@ function Ticket() {
         title="订单号"
         subTitle={order.orderId}
         extra={[
-          <Tag color="green" key={uuid.v4()}>
+          <Tag color="green" key={uuidv4()}>
             已完成
           </Tag>,
         ]}
@@ -70,15 +57,24 @@ function Ticket() {
           <p>{order.cinemaName}</p>
           <p>地址：{order.cinemaAddress}</p>
         </div>
-        <div className="user-desc">用户名：{order.movieName}</div>
-        <div className="qr-code">
-          <QRCode
-            //之后如果后端可以返回url再加value
-            value={""}
-            size={200}
-            fgColor="#000000"
-          />
+        <div className="user-desc">
+          <p>用户名：{order.userNickname}</p>
+          <p>手机号：{order.userPhone}</p>
         </div>
+        {order.seatInfo &&
+          order.seatInfo.split(" ").map((item, index) => {
+            return (
+              <div className="qr-code" key={"qrcode-" + index}>
+                <QRCode
+                  //之后如果后端可以返回url再加value
+                  value={""}
+                  size={200}
+                  fgColor="#000000"
+                />
+                <p>{item}</p>
+              </div>
+            );
+          })}
         <Button type="primary" onClick={() => navigator("/")}>
           返回
         </Button>

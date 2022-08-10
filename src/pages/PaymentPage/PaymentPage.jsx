@@ -16,6 +16,7 @@ import OrderApi from '../../api/OrderApi'
 export default function PaymentPage (props) {
     const {Step} = Steps;
     const {id} = useParams();
+    console.log(id+'  aa')
     const navigate = useNavigate()
     const [second, setSecond] = useState(30);
     const [min, setMin] = useState(0);

@@ -6,7 +6,6 @@ export default function ALGO() {
     const navigate = useNavigate()
     const {id} = useParams()
     useEffect(()=>{
-        console.log(id)
         setTimeout(()=>{
             navigate('/order/'+id)
         },4600)

@@ -18,14 +18,13 @@ export default function CinemaList() {
         setCinemaList(response.data.data.cinemas);
       }
     });
-  }, []);
-  useEffect(() => {
     getMovieById(movieId).then((response) => {
       setMovie(response.data.data.movie);
     });
   }, [movieId]);
-  const toScreenings = () => {
-    navigator("/screenings");
+  const toScreenings = (cinemaId) => {
+    navigator("/screenings?cinemaId=" + cinemaId + "&movieId=" + movieId);
+
   };
 
   const jumpToMovieDetail = () => {
@@ -49,7 +48,7 @@ export default function CinemaList() {
               <br />
               <span className="address_style">地址：{cinema.address}</span>
             </div>
-            <Button type="danger" shape="round" onClick={toScreenings}>
+            <Button type="danger" shape="round" onClick={(e)=>toScreenings(cinema.id)}>
               选座购票
             </Button>
           </div>
