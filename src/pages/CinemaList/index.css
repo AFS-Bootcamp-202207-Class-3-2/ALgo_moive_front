@@ -2,6 +2,9 @@
     margin: auto;
     width: 70%;
 }
+.cinema_div h2 {
+    font-weight: bold;
+}
 .empty_style {
     padding: 50px;
 }
