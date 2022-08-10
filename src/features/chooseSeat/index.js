@@ -87,7 +87,12 @@ export default function ChooseSeat() {
         param.seats = selectSeat
         getOrderInfoByObject(param).then(response => {
             console.log(response)
-            navigator(`/pay/${response.data.data.order.id}`);
+            navigator(`/pay/${response.data.data.order.id}/alpayway`,{
+                replace:false,
+                state:{
+                    price:param.price
+                }
+            });
         }).catch(function (msg) {
             console.log(msg)
         })

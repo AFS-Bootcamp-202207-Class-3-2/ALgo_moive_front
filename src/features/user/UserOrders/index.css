@@ -1,0 +1,104 @@
+.user-order-tot-box {
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    width: 100%;
+    padding: 30px;
+    min-height: 500px;
+}
+.orders-title-user {
+    font-size: 1rem;
+    font-family: SFMono-Regular, Consolas, Liberation Mono, Menlo, Courier, monospace;
+    font-weight: 600;
+    color: red;
+    height: 50px;
+    line-height: 50px;
+    position: relative;
+}
+.orders-title-user:before {
+    content: '';
+    position: absolute;
+    border: 1px solid #c6c6c6;
+    width: 100%;
+    left: 0;
+    bottom: -1px;
+}
+.user-orders-item {
+    width: 100%;
+    height: 210px;
+    border: 1px solid #298589;
+    margin: 20px 0;
+    border-radius: 6px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+.user-orders-item-delete {
+    position: absolute;
+    background-color: #469699;
+    border-radius: 6px;
+    width: 30px;
+    height: 30px;
+    right: 10px;
+    top: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    cursor: pointer;
+}
+.user-orders-item-upper{
+    display: flex;
+    align-items: center;
+    flex: 1 1 25%;
+    background-color: rgba(41,133,137,.4);
+}
+.user-orders-item-down{
+    flex: 1 1 75%;
+    display: flex;
+    padding: 20px;
+}
+.user-orders-item-upper-time{
+    margin-left: 20px;
+}
+.user-orders-item-upper-sequence{
+    color: #eedbdb;
+    margin-left: 40px;
+}
+.user-orders-item-down-pic {
+    width: 95px;
+    height: 130px;
+}
+
+.user-orders-item-down-detail-box{
+    display: flex;
+    padding-left: 20px;
+    align-items: center;
+    flex: 1 1 86%;
+}
+.ser-orders-item-down-detail{
+    display: flex;
+    flex-direction: column;
+}
+.user-orders-item-down-detail-title {
+    font-size: 20px;
+    font-family: SFMono-Regular, Consolas, Liberation Mono, Menlo, Courier, monospace;
+    font-weight: 600;
+}
+.user-orders-item-down-detail-cinema,.user-orders-item-down-detail-room-seat{
+    color: rgba(65,122,137,0.36);
+}
+.user-orders-item-down-detail-price,.user-orders-item-down-detail-state,.user-orders-item-down-detail-link{
+    flex: 1 1 20%;
+}
+.user-orders-item-down-detail{
+    flex: 1  1 40%;
+    position: relative;
+}
+.user-orders-item-down-detail-time {
+    position: absolute;
+    left: 0;
+    bottom: -30px;
+    font-family: SFMono-Regular, Consolas, Liberation Mono, Menlo, Courier, monospace;
+    color: red;
+}

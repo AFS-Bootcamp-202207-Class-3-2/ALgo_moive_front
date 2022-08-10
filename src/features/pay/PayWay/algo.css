@@ -81,7 +81,7 @@
 
 .video-area {
     height: 100vh;
-    background: #000;
+    background: rgb(253, 253, 253);
 }
 
 .video-area:before {
@@ -120,7 +120,7 @@
     opacity: 0;
     font-size: 28px;
     font-weight: bold;
-    color: #fff;
+    color: rgb(24, 4, 4);
 }
 
 .text-name-wrapper {
@@ -133,7 +133,7 @@
     opacity: 0;
     font-size: 24px;
     font-weight: bold;
-    color: #fff;
+    color: rgb(24, 4, 4);
 }
 
 .text-name-wrapper .rr {

@@ -19,6 +19,10 @@
     font-size: medium;
     color: black;
 }
+.cinema_style:hover {
+    cursor: pointer;
+    color:red;
+}
 .address_style {
     font-size: small;
     color: darkgray;

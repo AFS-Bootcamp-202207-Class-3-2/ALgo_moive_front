@@ -1,0 +1,58 @@
+.cinema-des-banner {
+  margin: 0 auto 20px;
+  width: 70%;
+}
+
+.cinema-des-row {
+  padding: 3% 2%;
+  margin-bottom: 20px;
+  height: 370px;
+  border: 3px solid #2a797c;
+  border-image: linear-gradient(rgba(255, 255, 255, 0), rgba(42, 45, 86, 0.5)) 1
+    1;
+}
+
+.cinema-des-row .image-col {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cinema-des-row .image-box {
+  height: auto;
+  width: auto;
+  padding: 10px 10px 40px 10px;
+  margin: 0 30px;
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPAAAAAyAgMAAAAfG76+AAAADFBMVEUAAAAAAAAAAAAAAAA16TeWAAAABHRSTlMOAgoGQ0SIeAAAADpJREFUSMdjGAWjYBRgAasoAAwdFACKbB7VPEI076YAUGbzfwrAqOYRormcAjCANodSAEY1j2oexJoBlx1+yE7RXIIAAAAASUVORK5CYII=)
+    no-repeat bottom;
+}
+
+.cinema-des-row .image {
+  width: 220px;
+  height: auto;
+  outline: rgba(42, 121, 124, 0.05) solid 10px;
+  border-radius: 2px;
+}
+
+.cinema-col {
+  height: 100%;
+  padding-bottom: 40px;
+}
+
+.cinema-col .cinema-des-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+  font-size: 14px;
+  color: #2a2d56;
+}
+
+.cinema-des-box .cinema-name {
+  font-size: 26px;
+  font-weight: bold;
+}
+
+.cinema-des-box span {
+  font-weight: bold;
+}

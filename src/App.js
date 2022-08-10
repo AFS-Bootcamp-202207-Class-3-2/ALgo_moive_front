@@ -19,6 +19,9 @@ import Ticket from "./pages/Ticket";
 import CinemaPage from "./pages/CinemaPage";
 import CinemaDetail from "./pages/CinemaDetail";
 
+import UserCenter from "./features/user/UserCenter";
+import UserOrders from "./features/user/UserOrders";
+import CinemaDesc from "./features/cinema/CinemaDesc";
 function App() {
     return (
         <>
@@ -31,6 +34,7 @@ function App() {
                     <Route path="searchPage" element={<SearchPage/>}/>
                     <Route path="movie/:id" element={<MovieDetail/>}/>
                     <Route path="cinemas/:movieId" element={<CinemaDetail/>}/>
+                    <Route path="cinemaDesc/:cinemaId" element={<CinemaDesc/>}/>
                     {/*<Route path="screenings" element={<ScreeningList />} />*/}
                     <Route path="pay/:id" element={<PaymentPage/>}>
                         <Route path="alpayway" element={<ALGOBank/>}></Route>
@@ -40,6 +44,9 @@ function App() {
                     <Route path="chooseSeat" element={<ChooseSeat/>}/>
                     <Route path="order/:orderId" element={<Ticket/>}/>
                     <Route path="screenings" element={<ScreeningList/>}/>
+                    <Route path="user" element={<UserCenter/>}>
+                        <Route path="orders" element={<UserOrders/>}></Route>
+                    </Route>
                 </Route>
                 <Route path="/login" element={<Login/>}/>
                 <Route path="/algo/:id" element={<ALGO/>}/>
