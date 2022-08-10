@@ -8,10 +8,13 @@ import { Button, Form, Input, message } from "antd";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { login } from "../../../api/login";
+import {useDispatch} from "react-redux";
+import {saveUserInfo} from "../../../layout/Navigation/NavigationSlice";
 import "./index.css";
 
 function LoginView() {
   const [form] = Form.useForm();
+  const dispatch = useDispatch();
   const [, forceUpdate] = useState({});
   const navigator = useNavigate();
 
@@ -24,7 +27,7 @@ function LoginView() {
     login(values.username, values.password)
       .then((res) => {
         if (res.data.code === "201") {
-          window.localStorage.setItem("token", res.data.data.user.token);
+          dispatch(saveUserInfo(res.data.data.user));
           navigator("/");
         }
       })
