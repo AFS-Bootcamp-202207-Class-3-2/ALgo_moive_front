@@ -5,7 +5,7 @@ import logo from "../../static/images/Logo.png";
 import "./index.css";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { loadUserInfo } from "./NavigationSlice";
+import {loadUserInfo, userLogout} from "./NavigationSlice";
 const { Option } = Select;
 const { Search } = Input;
 
@@ -33,6 +33,11 @@ function Navigation() {
     });
   };
 
+  const logout = () => {
+    dispatch(userLogout());
+    navigate("/");
+  }
+
   useEffect(() => {
     dispatch(loadUserInfo());
   }, [dispatch]);
@@ -55,7 +60,7 @@ function Navigation() {
         },
         {
           key: "3",
-          label: <Link to="/">退出登录</Link>,
+          label: <span onClick={logout}>退出登录</span>,
         },
       ]}
     />
@@ -123,12 +128,12 @@ function Navigation() {
               value={searchValue}
             />
           </Input.Group>
-          <Dropdown overlay={menu} disabled={userInfo ? false : true}>
-            <Link to={userInfo ? "/user/detail" : "/login"}>
+          <Dropdown overlay={menu} disabled={userInfo && userInfo.token ? false : true}>
+            <Link to={userInfo && userInfo.token ? "/user/detail" : "/login"}>
               <Avatar
                 size={{ xs: 24, sm: 24, md: 32, lg: 32, xl: 32, xxl: 40 }}
                 icon={
-                  userInfo ? (
+                  userInfo && userInfo.token ? (
                     <img src={userInfo.avatar} alt="用户头像" />
                   ) : (
                     <UserOutlined />
