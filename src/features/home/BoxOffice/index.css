@@ -96,6 +96,7 @@
 
 .item-movieName {
   width: 75%;
+  margin-left: 10px;
   text-align: center;
 }
 .item-index {

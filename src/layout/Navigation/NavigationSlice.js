@@ -1,8 +1,8 @@
 import {createSlice} from "@reduxjs/toolkit";
 
 const initialState = {
-    userInfo: undefined,
-    token: undefined,
+    userInfo: {},
+    token: '',
 };
 
 // 存值函数
@@ -42,6 +42,13 @@ Storage.prototype.getCanExpireLocal = key => {
     return val.data
 }
 
+const removeUserInfoAndToken = (state) => {
+    state.token = '';
+    state.userInfo = {};
+    localStorage.removeItem("token");
+    localStorage.removeItem("userInfo");
+}
+
 const NavigationSlice = createSlice({
     name: "navigationSlice",
     initialState,
@@ -50,8 +57,7 @@ const NavigationSlice = createSlice({
             const token = Storage.prototype.getCanExpireLocal("token");
             const userInfo = Storage.prototype.getCanExpireLocal("userInfo");
             if(token === '值已失效') {
-                state.token = undefined;
-                state.userInfo = undefined;
+                removeUserInfoAndToken(state);
             } else{
                 state.token = token;
                 state.userInfo = userInfo;
@@ -61,9 +67,13 @@ const NavigationSlice = createSlice({
         saveUserInfo: (state, action) => {
             Storage.prototype.setCanExpireLocal("userInfo", action.payload, 2);
             Storage.prototype.setCanExpireLocal("token", action.payload.token, 2);
+        },
+
+        userLogout: (state, action) => {
+            removeUserInfoAndToken(state);
         }
     },
 });
 
-export const { loadUserInfo, saveUserInfo } = NavigationSlice.actions;
+export const { loadUserInfo, saveUserInfo, userLogout } = NavigationSlice.actions;
 export default NavigationSlice.reducer;

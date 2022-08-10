@@ -1,26 +1,23 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import classnames from 'classnames';
-import { v4 as uuidv4 } from 'uuid';
+import {v4 as uuidv4} from 'uuid';
 import _ from 'lodash';
-import {useState} from 'react'
-import { useNavigate} from "react-router-dom";
-import {useSelector, useDispatch} from "react-redux";
-import {getSeatAndMovieInfo, getOrderInfoByObject} from '../../api/cinema'
-
+import {useNavigate, useSearchParams} from "react-router-dom";
+import {useDispatch, useSelector} from "react-redux";
+import {getOrderInfoByObject, getSeatAndMovieInfo} from '../../api/cinema'
+import {message} from 'antd';
 import empty from '../../static/images/empty.png';
 import occupy from '../../static/images/occupy.png';
 import select from '../../static/images/select.png';
 import screenImage from '../../static/images/screen.png';
 import poster from '../../static/images/1.jpg';
-
 import '../../mock';
 import './index.css';
 import {setFilmInfo, setSeatsInfo, updateSeatInfo} from "./ChooseSeatSlice";
-import {useSearchParams} from "react-router-dom";
 
 export default function ChooseSeat() {
     const navigator = useNavigate();
-    const [params, setParams] = useSearchParams()
+    const [params] = useSearchParams()
     const sessionId = params.get('sessionId')
     let CONSTANT_SEAT_ROW = 7;
     const dispatch = useDispatch();
@@ -33,7 +30,7 @@ export default function ChooseSeat() {
         }).catch(function (msg) {
             console.log(msg)
         })
-    }, [dispatch]);
+    }, [dispatch,sessionId]);
     const roomInfo = useSelector((state) => state.chooseSeat.seatsInfo)
     const filmInfo = useSelector((state) => state.chooseSeat.filmInfo);
     const renderSeat = () => {
@@ -80,23 +77,33 @@ export default function ChooseSeat() {
         setSelectSeat(tmpSelectSeat)
         dispatch(updateSeatInfo(tmpRoom))
     }
+
     const getOrderInfo = () => {
-        let param = {}
-        param.sessionId = sessionId
-        param.price = filmInfo.price * selectSeat.length
-        param.seats = selectSeat
-        getOrderInfoByObject(param).then(response => {
-            console.log(response)
-            navigator(`/pay/${response.data.data.order.id}/alpayway`,{
-                replace:false,
-                state:{
-                    price:param.price
-                }
-            });
-        }).catch(function (msg) {
-            console.log(msg)
-        })
+        if (selectSeat.length === 0) {
+            info()
+        } else {
+            let param = {}
+            param.sessionId = sessionId
+            param.price = filmInfo.price * selectSeat.length
+            param.seats = selectSeat
+            getOrderInfoByObject(param).then(response => {
+                console.log(response)
+                navigator(`/pay/${response.data.data.order.id}/alpayway`, {
+                    replace: false,
+                    state: {
+                        price: param.price
+                    }
+                });
+            }).catch(function (msg) {
+                console.log(msg)
+            })
+        }
     }
+
+    const info = () => {
+        message.info('对不起，请先选位置');
+    };
+
     return (
         <div className="App">
             <div className="container">

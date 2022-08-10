@@ -62,7 +62,7 @@
     margin-left: 20px;
 }
 .user-orders-item-upper-sequence{
-    color: #eedbdb;
+    color: orangered;
     margin-left: 40px;
 }
 .user-orders-item-down-pic {
@@ -74,7 +74,8 @@
     display: flex;
     padding-left: 20px;
     align-items: center;
-    flex: 1 1 86%;
+    justify-content: space-between;
+    flex: 1 1 60%;
 }
 .ser-orders-item-down-detail{
     display: flex;
@@ -89,7 +90,7 @@
     color: rgba(65,122,137,0.36);
 }
 .user-orders-item-down-detail-price,.user-orders-item-down-detail-state,.user-orders-item-down-detail-link{
-    flex: 1 1 20%;
+    flex: 1 1 30%;
 }
 .user-orders-item-down-detail{
     flex: 1  1 40%;
@@ -101,4 +102,24 @@
     bottom: -30px;
     font-family: SFMono-Regular, Consolas, Liberation Mono, Menlo, Courier, monospace;
     color: red;
+}
+.user-orders-item-down-detail-state-span {
+    display: inline-block;
+    height: 30px;
+    width: 50px;
+    border-radius: 3px;
+    border: 1px solid #eec929;
+    background-color: rgba(238, 201, 41, 0.4);
+    line-height: 30px;
+    text-align: center;
+}
+.user-orders-item-down-detail-state-finish-span{
+    display: inline-block;
+    height: 30px;
+    width: 50px;
+    border-radius: 3px;
+    border: 1px solid #8cee29;
+    background-color: rgba(140, 238, 41, 0.4);
+    line-height: 30px;
+    text-align: center;
 }

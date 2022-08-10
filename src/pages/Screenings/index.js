@@ -4,12 +4,13 @@ import '../SearchPage/index.css'
 import ScreeningApi from "../../api/ScreeningApi";
 import './index.css';
 import {useLocation, useNavigate, useSearchParams,Navigate} from "react-router-dom";
-import * as PropTypes from "prop-types";
-import {useDispatch} from "react-redux";
-import {setSkipPageProperties} from "../../features/login/loginSlice";
+import ScreeningItem from "./screeningItem";
+const { TabPane } = Tabs;
 
 
 export default function ScreeningList(props) {
+export default function ScreeningList() {
+
     const [params, setParams] = useSearchParams()
     let cinemaId = params.get('cinemaId')
     let movieId = params.get('movieId')
@@ -64,22 +65,20 @@ export default function ScreeningList(props) {
 
     function TabPane(props) {
         return null;
+    const cinemaId = params.get('cinemaId')
+    const movieId = params.get('movieId')
+    let date = new Date();
+    let month = date.getMonth() + 1
+    if (month >= 1 && month <= 9) {
+        month = "0" + month;
     }
-
-    TabPane.propTypes = {
-        tab: PropTypes.string,
-        children: PropTypes.node
-    };
-
-    const navigator = useNavigate();
-    const toChooseSeat = (item) => {
-        const isLogin = window.localStorage.getItem('token');
-        if (isLogin == null && isLogin == undefined){
-            dispatch(setSkipPageProperties(item.id));
-            navigator('/login')
-        }else {
-            navigator("/chooseSeat?sessionId=" + item.id);
-        }
+    if (date >= 0 && date <= 9) {
+        date = "0" + date;
+    }
+    const day = date.getDate()
+    const todayTabPaneTitle = '今天' + month + '月' + day + '天'
+    const tomorrowTabPaneTitle = '明天' + month + '月' + (day +1 ) + '天'
+    const dayAfterTomorrowTabPaneTitle = '后天' + month + '月' + (day+2) + '天'
 
     }
     const [bottom, setBottom] = useState('bottomCenter');
@@ -89,49 +88,29 @@ export default function ScreeningList(props) {
             setScreeningList(res.data.data.sessionList)
         })
     },[movieId, cinemaId])
+    const todayDate = (date.getMonth()+1) + "-" + date.getDate();
+    const tomorrowDate =  (date.getMonth()+1) + "-" + date.getDate()+1;
+    const afterTomorrowDate =  (date.getMonth()+1) + "-" + date.getDate()+2;
 
-    const dataSource = screeningList.map((item)=>{
-        return {
-            id:item.id,
-            startTime: (<span className="ticket-time">
-                {item.startTime.slice(11,16)}
-            </span>),
-            endTime: (<span className="ticket-time">
-                {item.endTime.slice(11,16)}
-            </span>),
-            roomName: item.roomName,
-            languageVersion: item.languageVersion,
-            price : (<span className="ticket-price">¥{item.price}</span>)
-        }
-    })
 
   return (
       <>
           <div style={{width: "80%",margin :"0 auto"}}>
-
               <div style={{marginLeft:"10px"}}>
-                  <Tabs defaultActiveKey="1" >
+                  <Tabs defaultActiveKey="1"  >
                       <TabPane tab="观影时间:" key="6">
                       </TabPane>
-                      <TabPane tab="今天" key="1">
-                          Content of Tab Pane 1
+                      <TabPane tab={todayTabPaneTitle} key="1">
+                          <ScreeningItem cinemaId={cinemaId} movieId={movieId} filterDate={todayDate}  />
                       </TabPane>
-                      <TabPane tab="明天" key="2">
-                          Content of Tab Pane 2
+                      <TabPane tab={tomorrowTabPaneTitle} key="2">
+                          <ScreeningItem cinemaId={cinemaId} movieId={movieId} filterDate={tomorrowDate} />
                       </TabPane>
-                      <TabPane tab="后天" key="3">
-                          Content of Tab Pane 3
+                      <TabPane tab={dayAfterTomorrowTabPaneTitle} key="3">
+                          <ScreeningItem cinemaId={cinemaId} movieId={movieId} filterDate={afterTomorrowDate}  />
                       </TabPane>
                   </Tabs>
               </div>
-              <Table
-                  dataSource={dataSource}
-                  columns={columns}
-                  size="small"
-                  pagination={{
-                      position: [bottom],
-                  }}
-              />;
           </div>
       </>
   )
