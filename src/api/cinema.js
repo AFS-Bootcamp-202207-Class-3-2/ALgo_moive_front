@@ -19,3 +19,7 @@ export const getSeatAndMovieInfo = (id) => {
 export const getOrderInfoByObject = (param) => {
   return api.post("/order/generateOrder", param);
 };
+
+export const getMoviesByCinemaId = (cinemaId) =>{
+  return api.get("/movies/inCinema?cinemaId="+cinemaId);
+}

@@ -9,11 +9,14 @@ import {useDispatch} from "react-redux";
 import {setSkipPageProperties} from "../../features/login/loginSlice";
 
 
-export default function ScreeningList() {
-    console.log("wwww",window.localStorage.getItem('token'))
+export default function ScreeningList(props) {
     const [params, setParams] = useSearchParams()
-    const cinemaId = params.get('cinemaId')
-    const movieId = params.get('movieId')
+    let cinemaId = params.get('cinemaId')
+    let movieId = params.get('movieId')
+    if (props.cinemaId !== null &&props.movieId !==null) {
+        cinemaId = props.cinemaId
+        movieId = props.movieId
+    }
     const dispatch = useDispatch()
     const columns = [
         {
@@ -85,7 +88,7 @@ export default function ScreeningList() {
         ScreeningApi.getCinemas(cinemaId,movieId).then(res=>{
             setScreeningList(res.data.data.sessionList)
         })
-    },[])
+    },[movieId, cinemaId])
 
     const dataSource = screeningList.map((item)=>{
         return {
