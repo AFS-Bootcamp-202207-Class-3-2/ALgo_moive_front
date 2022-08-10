@@ -23,7 +23,8 @@ function RegisterView() {
 
     const onFinish = (values) => {
         if (values.password !== values.confirmPassword) {
-          message.warn("密码和确认密码不一致");
+            message.warn("密码和确认密码不一致");
+            return
         }
         register(values.username, values.password).then(res => {
             if(res.data.code === '201'){
@@ -31,7 +32,7 @@ function RegisterView() {
                 dispatch(changePageState());
             }
         }).catch(err => {
-            message.error(err);
+            message.error(err.response.data.msg);
         });
       };
 
@@ -49,7 +50,7 @@ function RegisterView() {
                 <Form.Item
                     name="username"
                     className="form-item"
-                    rules={[{ required: true, message: 'Please input your username!' }]}
+                    rules={[{ required: true, message: '请输入你的用户名' }]}
                 >
                     <Input
                         prefix={<UserOutlined
@@ -59,7 +60,7 @@ function RegisterView() {
                 <Form.Item
                     name="password"
                     className="form-item"
-                    rules={[{ required: true, message: 'Please input your password!' }]}
+                    rules={[{ required: true, min: 6, max: 12, message: '请输入你的密码(6-12位)！' }]}
                 >
                     <Input.Password
                         prefix={<LockOutlined className="site-form-item-icon" />}
@@ -71,7 +72,7 @@ function RegisterView() {
                 <Form.Item
                     name="confirmPassword"
                     className='form-item'
-                    rules={[{ required: true, message: 'Please confirm your password!' }]}
+                    rules={[{ required: true, min:6, max: 12, message: '请再输入你的密码(6-12位)！' }]}
                 >
                     <Input.Password
                         prefix={<LockOutlined className="site-form-item-icon" />}

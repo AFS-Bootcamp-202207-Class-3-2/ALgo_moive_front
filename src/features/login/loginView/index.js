@@ -39,7 +39,7 @@ function LoginView() {
         }
       })
       .catch((err) => {
-        message.error(err);
+        message.error(err.response.data.msg);
       });
   };
 
@@ -58,7 +58,7 @@ function LoginView() {
         <Form.Item
           name="username"
           className="form-item"
-          rules={[{ required: true, message: "Please input your username!" }]}
+          rules={[{ required: true, message: "请输入你的用户名！" }]}
         >
           <Input
             prefix={<UserOutlined className="site-form-item-icon" />}
@@ -68,7 +68,7 @@ function LoginView() {
         <Form.Item
           name="password"
           className="form-item"
-          rules={[{ required: true, message: "Please input your password!" }]}
+          rules={[{ required: true, message: "请输入你的密码！" }]}
         >
           <Input.Password
             prefix={<LockOutlined className="site-form-item-icon" />}
