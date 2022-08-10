@@ -18,8 +18,6 @@ export default function CinemaList() {
         setCinemaList(response.data.data.cinemas);
       }
     });
-  }, []);
-  useEffect(() => {
     getMovieById(movieId).then((response) => {
       setMovie(response.data.data.movie);
     });
