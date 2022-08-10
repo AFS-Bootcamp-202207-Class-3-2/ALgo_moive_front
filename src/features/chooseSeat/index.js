@@ -79,19 +79,19 @@ export default function ChooseSeat() {
     }
 
     const getOrderInfo = () => {
-        if (selectSeat.length === 0){
+        if (selectSeat.length === 0) {
             info()
-        }else {
+        } else {
             let param = {}
             param.sessionId = sessionId
             param.price = filmInfo.price * selectSeat.length
             param.seats = selectSeat
             getOrderInfoByObject(param).then(response => {
                 console.log(response)
-                navigator(`/pay/${response.data.data.order.id}/alpayway`,{
-                    replace:false,
-                    state:{
-                        price:param.price
+                navigator(`/pay/${response.data.data.order.id}/alpayway`, {
+                    replace: false,
+                    state: {
+                        price: param.price
                     }
                 });
             }).catch(function (msg) {
