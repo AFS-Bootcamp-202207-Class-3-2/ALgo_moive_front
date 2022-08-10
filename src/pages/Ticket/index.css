@@ -1,0 +1,58 @@
+.ticket-page {
+  margin: 0 20%;
+}
+.ticket-page .site-page-header {
+  border: 1px solid rgb(235, 237, 240);
+  margin-bottom: 20px;
+}
+
+.ticket-page .ant-page-header-heading-sub-title {
+  font-size: 18px;
+}
+
+.ticket-page .ant-page-header-heading {
+  display: flex;
+  align-items: center;
+}
+
+.ticket-page .ticket-des {
+  border: 1px solid rgb(235, 237, 240);
+  padding: 20px 55px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.ticket-des .ant-descriptions-title {
+  font-size: 22px;
+}
+
+.ticket-des .des-price {
+  color: red;
+  font-weight: bold;
+}
+
+.ticket-des .img-col {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.ticket-des .user-desc {
+  width: 60%;
+  background-color: #efefef;
+  opacity: 50%;
+  text-align: center;
+  border: 1px solid transparent;
+  border-radius: 5px;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.ticket-des .qr-code {
+  margin-bottom: 20px;
+}
+
+.ticket-des .cinema-des p:first-child {
+  font-weight: bold;
+}

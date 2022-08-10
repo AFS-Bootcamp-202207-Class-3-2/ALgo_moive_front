@@ -1,15 +1,11 @@
 import { Row, Col, Button, Statistic } from "antd";
 import { LikeOutlined } from "@ant-design/icons";
 import "./index.css";
-import { useNavigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function MovieBox(props) {
-  const { movie, buttonMsg } = props;
+  const { movie, buttonMsg, clickButton } = props;
   const navigator = useNavigate();
-
-  const toCinemaPage = () => {
-    navigator("/cinemas/all");
-  }
   return (
     <Row className="movie-box">
       <Col span={8} className="avatar-col">
@@ -40,7 +36,11 @@ function MovieBox(props) {
               {movie.releaseDate}
             </div>
           </div>
-          <Button type="danger" className="movie-buy-button" onClick={toCinemaPage}>
+          <Button
+            type="danger"
+            className="movie-buy-button"
+            onClick={clickButton}
+          >
             {buttonMsg}
           </Button>
         </div>

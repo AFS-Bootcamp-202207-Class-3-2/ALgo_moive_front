@@ -9,15 +9,22 @@ const { Search } = Input;
 
 function Navigation() {
   const navigate = useNavigate();
-  const toHomePage =() => {
+  const [searchValue, setSearchValue] = useState("");
+  const toHomePage = () => {
     navigate("/");
-  }
+  };
+  const onChange = (event) => {
+    setSearchValue(event.target.value);
+  };
   const onSearch = (event) => {
+    const value = searchValue;
+    setSearchValue("");
     navigate("searchPage", {
       replace: false,
       state: {
         category: selectSearchCategory,
         keyword: event,
+        value
       },
     });
   };
@@ -28,7 +35,12 @@ function Navigation() {
   return (
     <Row>
       <Col span={6}>
-        <img src={logo} alt="ALGO MOVIE" className="nav-logo" onClick={toHomePage} />
+        <img
+          src={logo}
+          alt="ALGO MOVIE"
+          className="nav-logo"
+          onClick={toHomePage}
+        />
       </Col>
       <Col span={12}>
         <nav className="nav-list">
@@ -77,15 +89,17 @@ function Navigation() {
               placeholder="找电影、影院"
               allowClear
               onSearch={onSearch}
+              onChange={onChange}
               className="nav-searchinput"
+              value={searchValue}
             />
           </Input.Group>
-         <NavLink to="/login">
-           <Avatar
-               size={{ xs: 24, sm: 24, md: 32, lg: 32, xl: 32, xxl: 40 }}
-               icon={<UserOutlined />}
-           ></Avatar>
-         </NavLink>
+          <NavLink to="/login">
+            <Avatar
+              size={{ xs: 24, sm: 24, md: 32, lg: 32, xl: 32, xxl: 40 }}
+              icon={<UserOutlined />}
+            ></Avatar>
+          </NavLink>
         </div>
       </Col>
     </Row>

@@ -1,11 +1,13 @@
 import axios from 'axios'
 // 创建一个axios实例
+//请使用api文件夹中带有token的axios示例
 const service = axios.create({
     // headers: {
     //   'content-type': 'application/json;charset=UTF-8',
     //   'token': 'one'
     // },
     baseURL: 'https://algo-moive-backed.herokuapp.com',//TODO:For your configuration
+    //baseURL: 'http://localhost:9999',
     withCredentials: true,
     timeout: 5000
 })

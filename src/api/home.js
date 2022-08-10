@@ -7,3 +7,7 @@ export const getCarousels = () => {
 export const getMovies = () =>{
     return api.get("/movies?pageSize=8&sortType=hotSpot")
 };
+
+export const getBoxOffice = () =>{
+    return api.get("/movies?pageSize=5&sortType=boxOffice")
+};
