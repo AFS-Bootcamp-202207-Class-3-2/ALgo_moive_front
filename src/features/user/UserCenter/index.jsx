@@ -1,10 +1,11 @@
-import {SwitcherOutlined, UserOutlined, SettingOutlined} from '@ant-design/icons';
+import {SwitcherOutlined, UserOutlined} from '@ant-design/icons';
 import {Menu} from 'antd';
 import React, {useEffect} from 'react';
 import './index.css'
-import {useNavigate, Outlet} from "react-router-dom";
+import {Outlet, useNavigate} from "react-router-dom";
 import {useSelector} from "react-redux";
-import {gsap,Back} from 'gsap'
+import {Back, gsap} from 'gsap'
+
 export default function UserOrder(props) {
     function getItem(label, key, icon, children, type) {
         return {
@@ -30,15 +31,20 @@ export default function UserOrder(props) {
         }
     };
     const userInfo = useSelector(state => state.navigation.userInfo);
-    console.log(userInfo)
+    console.log(userInfo);
     const separator = (nickName) => {
-        let nickNamelist = nickName.split('')
+        let nickNamelist;
+        if (nickName) {
+            nickNamelist = nickName.split('');
+        } else {
+            nickNamelist = []
+        }
         return nickNamelist.map((items, idx) => {
             return (
                 <span key={idx}>{items}</span>
             )
         })
-    }
+    };
     useEffect(() => {
         const tl1 = gsap.timeline()
         tl1.staggerFromTo(

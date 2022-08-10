@@ -18,8 +18,8 @@ export default function PaymentPage (props) {
     const {id} = useParams();
     console.log(id+'  aa')
     const navigate = useNavigate()
-    const [second, setSecond] = useState(30);
-    const [min, setMin] = useState(0);
+    const [second, setSecond] = useState(0);
+    const [min, setMin] = useState(15);
     const dispatch = useDispatch();
     const [orderData,setOrderData] = useState({})
     let countDown;
