@@ -28,7 +28,7 @@ export default function ALGO() {
             x: 0,
             delay: 2,
         }, .18)
-    }, [])
+    }, [id,navigate])
     return (
         <div className="tot">
             <div className="containera">

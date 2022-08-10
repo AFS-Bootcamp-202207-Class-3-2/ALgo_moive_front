@@ -17,7 +17,7 @@ import {setFilmInfo, setSeatsInfo, updateSeatInfo} from "./ChooseSeatSlice";
 
 export default function ChooseSeat() {
     const navigator = useNavigate();
-    const [params, setParams] = useSearchParams()
+    const [params] = useSearchParams()
     const sessionId = params.get('sessionId')
     let CONSTANT_SEAT_ROW = 7;
     const dispatch = useDispatch();
@@ -30,7 +30,7 @@ export default function ChooseSeat() {
         }).catch(function (msg) {
             console.log(msg)
         })
-    }, [dispatch]);
+    }, [dispatch,sessionId]);
     const roomInfo = useSelector((state) => state.chooseSeat.seatsInfo)
     const filmInfo = useSelector((state) => state.chooseSeat.filmInfo);
     const renderSeat = () => {

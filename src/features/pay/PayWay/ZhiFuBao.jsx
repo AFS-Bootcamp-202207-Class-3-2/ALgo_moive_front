@@ -16,7 +16,7 @@ export default function ZhiFuBao(props) {
     // const [qrValid,setqrValid] = useState(true)
     const qrValid = useSelector(state => state.payCountDown.qrValid)
     const navigate = useNavigate()
-    let countDown;
+
     const location = useLocation();
     useEffect(() => {
         OrderApi.cycleQueryOrderState(id)
@@ -29,7 +29,7 @@ export default function ZhiFuBao(props) {
         if (min < 0) {
             return;
         }
-        countDown = setInterval(() => {
+        let countDown = setInterval(() => {
             setSecond(second - 1)
             if (second <= 0) {
                 setSecond(59)
@@ -37,11 +37,11 @@ export default function ZhiFuBao(props) {
             }
         }, 1000);
         return () => clearInterval(countDown)
-    }, [id, second]);
+    }, [id, second,min,navigate]);
     return (
         <div className="pay-box">
             <div>
-                <img style={{
+                <img alt={"alipay"} style={{
                     height: '80px', width: '80px'
                 }} src={ZhiFuBaoPng}/>
                 <span className="pay-box-title">
@@ -49,7 +49,7 @@ export default function ZhiFuBao(props) {
                 </span>
             </div>
             <div>
-                <img height="200px" width="200px" src={qrValid ? qrImagUrl : FailQr}/>
+                <img alt={"二维码"} height="200px" width="200px" src={qrValid ? qrImagUrl : FailQr}/>
                 <span className="pay-real-box">
                     实际支付：
                     <span className="pay-real">

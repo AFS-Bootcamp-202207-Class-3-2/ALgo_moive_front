@@ -22,7 +22,6 @@ export default function PaymentPage (props) {
     const [min, setMin] = useState(15);
     const dispatch = useDispatch();
     const [orderData,setOrderData] = useState({})
-    let countDown;
     const qrValid = useSelector(state => state.payCountDown.qrValid)
     useEffect(()=>{
         // console.log('init')
@@ -33,12 +32,11 @@ export default function PaymentPage (props) {
             })
         dispatch(updateQrValid(true))
         if (min < 0) {
-            console.log(min,second,countDown)
             //二维码失效
             dispatch(updateQrValid(false))
             return ;
         }
-        countDown = setInterval(() => {
+        let countDown = setInterval(() => {
             setSecond(second - 1)
             if (second <= 0) {
                 setSecond(59)
@@ -46,7 +44,7 @@ export default function PaymentPage (props) {
             }
         }, 1000);
         return ()=> clearInterval(countDown)
-    },[second,min]);
+    },[second,min,dispatch,id]);
 
     const selectPayWay = ({ item, key, keyPath, domEvent })=>{
         if (key === 'ALGOpay') {
