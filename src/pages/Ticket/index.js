@@ -1,4 +1,4 @@
-import uuid from "node-uuid";
+import { v4 as uuidv4 } from 'uuid';
 import QRCode from "qrcode.react";
 import { PageHeader, Tag, Descriptions, Row, Col, Divider, Button } from "antd";
 import { useNavigate, useParams } from "react-router-dom";
@@ -29,7 +29,7 @@ function Ticket() {
         title="订单号"
         subTitle={order.orderId}
         extra={[
-          <Tag color="green" key={uuid.v4()}>
+          <Tag color="green" key={uuidv4()}>
             已完成
           </Tag>,
         ]}

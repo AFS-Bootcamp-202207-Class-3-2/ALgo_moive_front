@@ -48,7 +48,7 @@ export default function CinemaList() {
               <br />
               <span className="address_style">地址：{cinema.address}</span>
             </div>
-            <Button type="danger" shape="round" onClick={toScreenings(cinema.id)}>
+            <Button type="danger" shape="round" onClick={(e)=>toScreenings(cinema.id)}>
               选座购票
             </Button>
           </div>

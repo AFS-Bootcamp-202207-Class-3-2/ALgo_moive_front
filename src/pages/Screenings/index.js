@@ -75,7 +75,7 @@ export default function ScreeningList() {
     const [bottom, setBottom] = useState('bottomCenter');
     const [screeningList, setScreeningList] = useState([]);
     useEffect(()=>{
-        ScreeningApi.getCinemas('ALGOCINEMA1','ALGOMOVIE1').then(res=>{
+        ScreeningApi.getCinemas(cinemaId,movieId).then(res=>{
             setScreeningList(res.data.data.sessionList)
         })
     },[])

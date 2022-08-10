@@ -1,10 +1,11 @@
 import React, {useEffect} from 'react';
 import classnames from 'classnames';
-import uuid from 'node-uuid';
+import { v4 as uuidv4 } from 'uuid';
 import _ from 'lodash';
 import {useState} from 'react'
+import { useNavigate} from "react-router-dom";
 import {useSelector, useDispatch} from "react-redux";
-import {getSeatAndMovieInfo} from '../../api/cinema'
+import {getSeatAndMovieInfo, getOrderInfoByObject} from '../../api/cinema'
 
 import empty from '../../static/images/empty.png';
 import occupy from '../../static/images/occupy.png';
@@ -18,13 +19,14 @@ import {setFilmInfo, setSeatsInfo, updateSeatInfo} from "./ChooseSeatSlice";
 import {useSearchParams} from "react-router-dom";
 
 export default function ChooseSeat() {
+    const navigator = useNavigate();
     const [params, setParams] = useSearchParams()
     const sessionId = params.get('sessionId')
     let CONSTANT_SEAT_ROW = 7;
     const dispatch = useDispatch();
     const [selectSeat, setSelectSeat] = useState([])
     useEffect(() => {
-        getSeatAndMovieInfo().then(response => {
+        getSeatAndMovieInfo(sessionId).then(response => {
             dispatch(setFilmInfo(response.data.data.sessionInfo))
             dispatch(setSeatsInfo(response.data.data.sessionInfo))
             // code();
@@ -40,9 +42,9 @@ export default function ChooseSeat() {
         }
         let columns = [];
         for (let i = 0, len = roomInfo.length; i < len; i++) {
-            columns.push(<div key={uuid.v4()} className="row">
+            columns.push(<div key={uuidv4()} className="row">
                 {roomInfo[i].map((val, index) => {
-                    return <span key={uuid.v4()} onClick={e => click(i, index)} className={classnames('seat', {
+                    return <span key={uuidv4()} onClick={e => click(i, index)} className={classnames('seat', {
                         'empty': val.state === 1,
                         'occupy': val.state === 2,
                         'select': val.state === 3
@@ -56,7 +58,7 @@ export default function ChooseSeat() {
         let spans = [];
         let row = 0;
         for (let i = 0; i < CONSTANT_SEAT_ROW; i++) {
-            spans.push(<span key={uuid.v4()}>{++row}</span>);
+            spans.push(<span key={uuidv4()}>{++row}</span>);
         }
         return spans;
     }
@@ -77,6 +79,18 @@ export default function ChooseSeat() {
         }
         setSelectSeat(tmpSelectSeat)
         dispatch(updateSeatInfo(tmpRoom))
+    }
+    const getOrderInfo = () => {
+        let param = {}
+        param.sessionId = sessionId
+        param.price = filmInfo.price * selectSeat.length
+        param.seats = selectSeat
+        getOrderInfoByObject(param).then(response => {
+            console.log(response)
+            navigator(`/pay/${response.data.data.order.id}`);
+        }).catch(function (msg) {
+            console.log(msg)
+        })
     }
     return (
         <div className="App">
@@ -131,7 +145,7 @@ export default function ChooseSeat() {
                             <div className="select-seat">
                                 {
                                     selectSeat.length > 0 ? (selectSeat.map(val => {
-                                        return <span key={uuid.v4()}
+                                        return <span key={uuidv4()}
                                                      className="ticket">{(Math.trunc(val.index / CONSTANT_SEAT_ROW) + 1) + "排" + (val.index % CONSTANT_SEAT_ROW + 1) + "列"}</span>
                                     })) : <span>一次最多选择五张电影票</span>
                                 }
@@ -141,7 +155,7 @@ export default function ChooseSeat() {
                             <span className="select-label">总价：</span>
                             <span>{(selectSeat.length * filmInfo.price).toFixed(2)}元</span>
                         </div>
-                        <button className="btn">确认选座</button>
+                        <button className="btn" onClick={getOrderInfo}>确认选座</button>
                     </div>
                 </div>
             </div>
