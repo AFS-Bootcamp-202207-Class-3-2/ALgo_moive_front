@@ -5,7 +5,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import "./index.css";
 import { getOrderById } from "../../api/order";
-import moment from "moment";
+import { getDurationTime } from "../../util/getDurationTime";
 
 function Ticket() {
   const navigator = useNavigate();
@@ -16,20 +16,7 @@ function Ticket() {
   };
   useEffect(() => {
     getOrderById(orderId).then((response) => {
-      let startTime = new Date(response.data.data.data.startTime);
-      let endTime = new Date(
-        response.data.data.data.movieDuration * 60 * 1000 + startTime.getTime()
-      );
-      let durationTime =
-        moment(response.data.data.data.screeningDate).format("YYYY年MM月DD日") +
-        " " +
-        startTime.getHours() +
-        ":" +
-        startTime.getMinutes() +
-        "-" +
-        endTime.getHours() +
-        ":" +
-        endTime.getMinutes();
+      let durationTime = getDurationTime(response.data.data.data);
       setOrder(Object.assign(response.data.data.data, { durationTime }));
     });
   }, [orderId]);
