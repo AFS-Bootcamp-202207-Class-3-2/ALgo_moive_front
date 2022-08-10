@@ -1,18 +1,18 @@
-import { Col, Row, Input, Select, Avatar } from "antd";
+import { Col, Row, Input, Select, Avatar, Dropdown, Menu } from "antd";
 import { UserOutlined } from "@ant-design/icons";
-import {Link, NavLink, useNavigate} from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import logo from "../../static/images/Logo.png";
 import "./index.css";
-import {useEffect, useState} from "react";
-import {useDispatch, useSelector} from "react-redux";
-import {loadUserInfo} from "./NavigationSlice";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { loadUserInfo } from "./NavigationSlice";
 const { Option } = Select;
 const { Search } = Input;
 
 function Navigation() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const userInfo = useSelector(state => state.navigation.userInfo);
+  const userInfo = useSelector((state) => state.navigation.userInfo);
   const [searchValue, setSearchValue] = useState("");
   const toHomePage = () => {
     navigate("/");
@@ -28,19 +28,39 @@ function Navigation() {
       state: {
         category: selectSearchCategory,
         keyword: event,
-        value
+        value,
       },
     });
   };
 
   useEffect(() => {
     dispatch(loadUserInfo());
-  },[])
+  }, [dispatch]);
 
   const [selectSearchCategory, setSelectSearchCategory] = useState("movie");
   const selectSearchCategoryChange = (event) => {
     setSelectSearchCategory(event);
   };
+
+  const menu = (
+    <Menu
+      items={[
+        {
+          key: "1",
+          label: <Link to="/">个人中心</Link>,
+        },
+        {
+          key: "2",
+          label: <Link to="/">我的订单</Link>,
+        },
+        {
+          key: "3",
+          label: <Link to="/">退出登录</Link>,
+        },
+      ]}
+    />
+  );
+
   return (
     <Row>
       <Col span={6}>
@@ -103,12 +123,16 @@ function Navigation() {
               value={searchValue}
             />
           </Input.Group>
-          <Link to={userInfo ? "/" : "/login"}>
-            <Avatar
-              size={{ xs: 24, sm: 24, md: 32, lg: 32, xl: 32, xxl: 40 }}
-              icon={userInfo ? <img src={userInfo.avatar} /> : <UserOutlined /> }
-            ></Avatar>
-          </Link>
+          <Dropdown overlay={menu} disabled={userInfo ? false : true}>
+            <Link to={userInfo ? "/" : "/login"}>
+              <Avatar
+                size={{ xs: 24, sm: 24, md: 32, lg: 32, xl: 32, xxl: 40 }}
+                icon={
+                  userInfo ? <img src={userInfo.avatar} alt="用户头像" /> : <UserOutlined />
+                }
+              ></Avatar>
+            </Link>
+          </Dropdown>
         </div>
       </Col>
     </Row>
