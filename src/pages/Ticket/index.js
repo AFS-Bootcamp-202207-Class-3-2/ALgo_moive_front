@@ -57,15 +57,24 @@ function Ticket() {
           <p>{order.cinemaName}</p>
           <p>地址：{order.cinemaAddress}</p>
         </div>
-        <div className="user-desc">用户名：{order.movieName}</div>
-        <div className="qr-code">
-          <QRCode
-            //之后如果后端可以返回url再加value
-            value={""}
-            size={200}
-            fgColor="#000000"
-          />
+        <div className="user-desc">
+          <p>用户名：{order.userNickname}</p>
+          <p>手机号：{order.userPhone}</p>
         </div>
+        {order.seatInfo &&
+          order.seatInfo.split(" ").map((item, index) => {
+            return (
+              <div className="qr-code" key={"qrcode-" + index}>
+                <QRCode
+                  //之后如果后端可以返回url再加value
+                  value={""}
+                  size={200}
+                  fgColor="#000000"
+                />
+                <p>{item}</p>
+              </div>
+            );
+          })}
         <Button type="primary" onClick={() => navigator("/")}>
           返回
         </Button>
