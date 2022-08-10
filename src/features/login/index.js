@@ -1,6 +1,5 @@
 import {useDispatch, useSelector} from "react-redux";
 import loginAlgo from "../../static/images/LoginAlgo.png";
-import loginGlasses from "../../static/images/Logo.png";
 import LoginView from "./loginView";
 import RegisterView from "./registerView";
 import {changePageState} from "./loginSlice";

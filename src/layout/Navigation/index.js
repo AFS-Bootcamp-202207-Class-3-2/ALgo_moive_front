@@ -1,14 +1,18 @@
 import { Col, Row, Input, Select, Avatar } from "antd";
 import { UserOutlined } from "@ant-design/icons";
-import { NavLink, useNavigate } from "react-router-dom";
+import {Link, NavLink, useNavigate} from "react-router-dom";
 import logo from "../../static/images/Logo.png";
 import "./index.css";
-import { useState } from "react";
+import {useEffect, useState} from "react";
+import {useDispatch, useSelector} from "react-redux";
+import {loadUserInfo} from "./NavigationSlice";
 const { Option } = Select;
 const { Search } = Input;
 
 function Navigation() {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const userInfo = useSelector(state => state.navigation.userInfo);
   const [searchValue, setSearchValue] = useState("");
   const toHomePage = () => {
     navigate("/");
@@ -28,6 +32,11 @@ function Navigation() {
       },
     });
   };
+
+  useEffect(() => {
+    dispatch(loadUserInfo());
+  },[])
+
   const [selectSearchCategory, setSelectSearchCategory] = useState("movie");
   const selectSearchCategoryChange = (event) => {
     setSelectSearchCategory(event);
@@ -61,7 +70,7 @@ function Navigation() {
             电影
           </NavLink>
           <NavLink
-            to="/cinema"
+            to="/cinemaList"
             className={({ isActive }) =>
               "nav-item" + (isActive ? " active" : " ")
             }
@@ -94,12 +103,12 @@ function Navigation() {
               value={searchValue}
             />
           </Input.Group>
-          <NavLink to="/login">
+          <Link to={userInfo ? "/" : "/login"}>
             <Avatar
               size={{ xs: 24, sm: 24, md: 32, lg: 32, xl: 32, xxl: 40 }}
-              icon={<UserOutlined />}
+              icon={userInfo ? <img src={userInfo.avatar} /> : <UserOutlined /> }
             ></Avatar>
-          </NavLink>
+          </Link>
         </div>
       </Col>
     </Row>

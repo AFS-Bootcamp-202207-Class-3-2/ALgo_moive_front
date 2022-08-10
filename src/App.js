@@ -12,11 +12,12 @@ import ZhiFuBao from "./features/pay/PayWay/ZhiFuBao";
 import ALGOBank from "./features/pay/PayWay/ALGOBank";
 import ScreeningList from "./pages/Screenings"
 
-import CinemaList from "./pages/CinemaList";
 import ChooseSeat from "../src/features/chooseSeat/index"
 import ALGO from "./features/pay/PayWay/ALGO";
 
 import Ticket from "./pages/Ticket";
+import CinemaPage from "./pages/CinemaPage";
+import CinemaDetail from "./pages/CinemaDetail";
 
 import UserCenter from "./features/user/UserCenter";
 import UserOrders from "./features/user/UserOrders";
@@ -28,9 +29,10 @@ function App() {
                 <Route path="/" element={<PageLayout/>}>
                     <Route index element={<Home/>}/>
                     <Route path="movies" element={<Movie/>}/>
+                    <Route path="cinemaList" element={<CinemaPage/>}/>
                     <Route path="searchPage" element={<SearchPage/>}/>
                     <Route path="movie/:id" element={<MovieDetail/>}/>
-                    <Route path="cinemas/:movieId" element={<CinemaList/>}/>
+                    <Route path="cinemas/:movieId" element={<CinemaDetail/>}/>
                     {/*<Route path="screenings" element={<ScreeningList />} />*/}
                     <Route path="pay/:id" element={<PaymentPage/>}>
                         <Route path="alpayway" element={<ALGOBank/>}></Route>

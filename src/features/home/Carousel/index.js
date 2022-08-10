@@ -19,7 +19,7 @@ export default function Carousels(props) {
     return (
         <div>
             <br/><br/>
-            <Carousel autoplay>
+            <Carousel autoplay className='carousel-box'>
                 {
                     carousels.map((item, index) => {
                         return (

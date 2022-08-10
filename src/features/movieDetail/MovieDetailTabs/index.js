@@ -6,7 +6,7 @@ const { TabPane } = Tabs;
 function MovieDetailTabs(props) {
   const { movie } = props;
   return (
-    <div>
+    <div className="movie-detail-tabs-box">
       <div>
         <Breadcrumb>
           <Breadcrumb.Item>

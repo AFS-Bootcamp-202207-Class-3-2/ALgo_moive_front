@@ -3,6 +3,7 @@
   padding: 15px;
   color: #2a797c;
   font-size: 16px;
+  border: 1px solid #efefef;
 }
 
 .ticket_button:hover {

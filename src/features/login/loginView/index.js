@@ -8,13 +8,17 @@ import { Button, Form, Input, message } from "antd";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { login } from "../../../api/login";
+import {useDispatch, useSelector} from "react-redux";
+import {saveUserInfo} from "../../../layout/Navigation/NavigationSlice";
 import "./index.css";
+import {setSkipPageProperties} from "../loginSlice";
 
 function LoginView() {
   const [form] = Form.useForm();
+  const dispatch = useDispatch();
   const [, forceUpdate] = useState({});
   const navigator = useNavigate();
-
+  const sessionId = useSelector(state => state.login.sessionId);
   // To disable submit button at the beginning.
   useEffect(() => {
     forceUpdate({});
@@ -24,12 +28,18 @@ function LoginView() {
     login(values.username, values.password)
       .then((res) => {
         if (res.data.code === "201") {
-          window.localStorage.setItem("token", res.data.data.user.token);
-          navigator("/");
+          dispatch(saveUserInfo(res.data.data.user));
+          if (sessionId !== null) {
+            navigator("/chooseSeat?sessionId=" + sessionId);
+            dispatch(setSkipPageProperties(null));
+          }
+          else {
+            navigator("/");
+          }
         }
       })
       .catch((err) => {
-        message.error(err);
+        message.error(err.response.data.msg);
       });
   };
 
@@ -48,7 +58,7 @@ function LoginView() {
         <Form.Item
           name="username"
           className="form-item"
-          rules={[{ required: true, message: "Please input your username!" }]}
+          rules={[{ required: true, message: "请输入你的用户名！" }]}
         >
           <Input
             prefix={<UserOutlined className="site-form-item-icon" />}
@@ -58,7 +68,7 @@ function LoginView() {
         <Form.Item
           name="password"
           className="form-item"
-          rules={[{ required: true, message: "Please input your password!" }]}
+          rules={[{ required: true, message: "请输入你的密码！" }]}
         >
           <Input.Password
             prefix={<LockOutlined className="site-form-item-icon" />}
