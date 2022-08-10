@@ -1,6 +1,6 @@
 import { Card, Col, Row } from "antd";
 import { useNavigate, NavLink } from "react-router-dom";
-import MovieItem from "./MovieItem";
+import RecentMovieItem from "./RecentMovieItem";
 import "./index.css";
 import React from "react";
 
@@ -43,7 +43,7 @@ export default function RecentMovies(props) {
                 style={{ width: 180 }}
                 onClick={() => jumpToMovieDetail(movie.id)}
               >
-                <MovieItem key={movie.id} movie={{ movie }} />
+                <RecentMovieItem key={movie.id} movie={{ movie }} />
               </Card>
                 <div className="release-date">8月28日上映</div>
             </Col>
