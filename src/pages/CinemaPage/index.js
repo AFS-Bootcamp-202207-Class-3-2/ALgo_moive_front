@@ -1,7 +1,12 @@
 import CinemaList from "../CinemaList";
 
 function CinemaPage() {
-  return <CinemaList movieId="all"></CinemaList>;
+  return (
+    <div>
+      <br />
+      <CinemaList movieId="all"></CinemaList>
+    </div>
+  );
 }
 
 export default CinemaPage;
