@@ -5,5 +5,9 @@ export const getCinemaListByMovieId = (id) =>{
 }
 
 export const getSeatAndMovieInfo = (id) =>{
-    return api.get("/sessions/ALGOSESSION1");
+    return api.get("/sessions/"+id);
 }
+export const getOrderInfoByObject = (param) =>{
+    return api.post("/order/generateOrder", param);
+}
+
