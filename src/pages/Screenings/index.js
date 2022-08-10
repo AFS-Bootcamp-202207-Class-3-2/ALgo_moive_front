@@ -3,10 +3,17 @@ import { Table, Tabs} from 'antd';
 import '../SearchPage/index.css'
 import ScreeningApi from "../../api/ScreeningApi";
 import './index.css';
-import { useNavigate} from "react-router-dom";
+import {useLocation, useNavigate, useSearchParams} from "react-router-dom";
 import * as PropTypes from "prop-types";
 
 export default function ScreeningList() {
+    // const location = useLocation();
+    // const { state } = location;
+    // console.log("cinemaId",state.cinemaId)
+    // console.log("movieId",state.movieId)
+    const [params, setParams] = useSearchParams()
+    const cinemaId = params.get('cinemaId')
+    const movieId = params.get('movieId')
     const columns = [
         {
             title: (<div className="title">放映时间</div>),
@@ -40,10 +47,14 @@ export default function ScreeningList() {
         },
         {
             title: (<div className="title">选座购票</div>),
-            dataIndex: 'address',
+            // dataIndex: 'address',
             align: 'center',
-            key: 'address',
-            render: () => <a className="ticket-button" onClick={toChooseSeat}>选座购票</a>
+            // key: 'address',
+            render: (item) => {
+                return <div>
+                    <a className="ticket-button" onClick={() => toChooseSeat(item)}>选座购票</a>
+                </div>
+            }
         },
     ];
 
@@ -58,8 +69,8 @@ export default function ScreeningList() {
     };
 
     const navigator = useNavigate();
-    const toChooseSeat = () => {
-        navigator("/chooseSeat");
+    const toChooseSeat = (item) => {
+        navigator("/chooseSeat?sessionId=" + item.id);
     }
     const [bottom, setBottom] = useState('bottomCenter');
     const [screeningList, setScreeningList] = useState([]);
@@ -71,6 +82,7 @@ export default function ScreeningList() {
 
     const dataSource = screeningList.map((item)=>{
         return {
+            id:item.id,
             startTime: (<span className="ticket-time">
                 {item.startTime.slice(11,16)}
             </span>),
@@ -85,19 +97,6 @@ export default function ScreeningList() {
     // const data = screeningList
     // console.log("csssdata",data)
 
-
-    // const data = cinemaList
-    // const changePage = (page, pageSize) => {
-    //     console.log(page,pageSize)
-    //     searchApi.searchCinemasOrMovies({
-    //         page:page,
-    //         pageSize:pageSize})
-    //         .then(res=>{
-    //             console.log(res)
-    //
-    //         })
-    //     // setCurrPage(page);
-    // };
   return (
       <>
           <div style={{width: "80%",margin :"0 auto"}}>

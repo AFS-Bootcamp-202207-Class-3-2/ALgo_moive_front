@@ -15,8 +15,11 @@ import poster from '../../static/images/1.jpg';
 import '../../mock';
 import './index.css';
 import {setFilmInfo, setSeatsInfo, updateSeatInfo} from "./ChooseSeatSlice";
+import {useSearchParams} from "react-router-dom";
 
 export default function ChooseSeat() {
+    const [params, setParams] = useSearchParams()
+    const sessionId = params.get('sessionId')
     let CONSTANT_SEAT_ROW = 7;
     const dispatch = useDispatch();
     const [selectSeat, setSelectSeat] = useState([])

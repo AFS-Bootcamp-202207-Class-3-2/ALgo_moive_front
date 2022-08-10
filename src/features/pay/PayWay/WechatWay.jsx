@@ -19,7 +19,6 @@ export default function WechatWay (props) {
     const location = useLocation();
 
     useEffect(()=>{
-        console.log(location,id)
         OrderApi.cycleQueryOrderState(id)
             .then((res=>{
                 let order = res.data.data.order;
