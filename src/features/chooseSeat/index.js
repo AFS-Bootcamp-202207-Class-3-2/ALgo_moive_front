@@ -1,6 +1,5 @@
 import React, {useEffect} from 'react';
 import classnames from 'classnames';
-import axios from 'axios';
 import uuid from 'node-uuid';
 import _ from 'lodash';
 import {useState} from 'react'
@@ -29,7 +28,7 @@ export default function ChooseSeat() {
         }).catch(function (msg) {
             console.log(msg)
         })
-    }, []);
+    }, [dispatch]);
     const roomInfo = useSelector((state) => state.chooseSeat.seatsInfo)
     const filmInfo = useSelector((state) => state.chooseSeat.filmInfo);
     const renderSeat = () => {

@@ -1,11 +1,9 @@
 import { Row, Col, Button, Statistic } from "antd";
 import { LikeOutlined } from "@ant-design/icons";
 import "./index.css";
-import { useNavigate } from "react-router-dom";
 
 function MovieBox(props) {
   const { movie, buttonMsg, clickButton } = props;
-  const navigator = useNavigate();
   return (
     <Row className="movie-box">
       <Col span={8} className="avatar-col">
