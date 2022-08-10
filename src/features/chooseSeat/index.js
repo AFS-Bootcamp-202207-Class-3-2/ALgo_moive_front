@@ -6,13 +6,12 @@ import {useState} from 'react'
 import { useNavigate} from "react-router-dom";
 import {useSelector, useDispatch} from "react-redux";
 import {getSeatAndMovieInfo, getOrderInfoByObject} from '../../api/cinema'
-
+import { message } from 'antd';
 import empty from '../../static/images/empty.png';
 import occupy from '../../static/images/occupy.png';
 import select from '../../static/images/select.png';
 import screenImage from '../../static/images/screen.png';
 import poster from '../../static/images/1.jpg';
-
 import '../../mock';
 import './index.css';
 import {setFilmInfo, setSeatsInfo, updateSeatInfo} from "./ChooseSeatSlice";
@@ -80,23 +79,33 @@ export default function ChooseSeat() {
         setSelectSeat(tmpSelectSeat)
         dispatch(updateSeatInfo(tmpRoom))
     }
+
     const getOrderInfo = () => {
-        let param = {}
-        param.sessionId = sessionId
-        param.price = filmInfo.price * selectSeat.length
-        param.seats = selectSeat
-        getOrderInfoByObject(param).then(response => {
-            console.log(response)
-            navigator(`/pay/${response.data.data.order.id}/alpayway`,{
-                replace:false,
-                state:{
-                    price:param.price
-                }
-            });
-        }).catch(function (msg) {
-            console.log(msg)
-        })
+        if (selectSeat.length === 0){
+            info()
+        }else {
+            let param = {}
+            param.sessionId = sessionId
+            param.price = filmInfo.price * selectSeat.length
+            param.seats = selectSeat
+            getOrderInfoByObject(param).then(response => {
+                console.log(response)
+                navigator(`/pay/${response.data.data.order.id}/alpayway`,{
+                    replace:false,
+                    state:{
+                        price:param.price
+                    }
+                });
+            }).catch(function (msg) {
+                console.log(msg)
+            })
+        }
     }
+
+    const info = () => {
+        message.info('对不起，请先选位置');
+    };
+
     return (
         <div className="App">
             <div className="container">
