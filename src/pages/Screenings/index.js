@@ -3,14 +3,12 @@ import { Table, Tabs} from 'antd';
 import '../SearchPage/index.css'
 import ScreeningApi from "../../api/ScreeningApi";
 import './index.css';
-import {useLocation, useNavigate, useSearchParams} from "react-router-dom";
+import {useLocation, useNavigate, useSearchParams,Navigate} from "react-router-dom";
 import * as PropTypes from "prop-types";
 
+
 export default function ScreeningList() {
-    // const location = useLocation();
-    // const { state } = location;
-    // console.log("cinemaId",state.cinemaId)
-    // console.log("movieId",state.movieId)
+    console.log("wwww",window.localStorage.getItem('token'))
     const [params, setParams] = useSearchParams()
     const cinemaId = params.get('cinemaId')
     const movieId = params.get('movieId')
@@ -70,7 +68,14 @@ export default function ScreeningList() {
 
     const navigator = useNavigate();
     const toChooseSeat = (item) => {
-        navigator("/chooseSeat?sessionId=" + item.id);
+
+        const isLogin = window.localStorage.getItem('token');
+        if (isLogin == null && isLogin == undefined){
+            navigator('/login')
+        }else {
+            navigator("/chooseSeat?sessionId=" + item.id);
+        }
+
     }
     const [bottom, setBottom] = useState('bottomCenter');
     const [screeningList, setScreeningList] = useState([]);
@@ -94,8 +99,6 @@ export default function ScreeningList() {
             price : (<span className="ticket-price">¥{item.price}</span>)
         }
     })
-    // const data = screeningList
-    // console.log("csssdata",data)
 
   return (
       <>

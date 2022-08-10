@@ -1,8 +1,8 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: 'https://algo-moive-backed.herokuapp.com/'
-//   baseURL: "http://localhost:9999",
+  // baseURL: 'https://algo-moive-backed.herokuapp.com/'
+  baseURL: "http://localhost:9999",
 });
 
 api.interceptors.request.use(
