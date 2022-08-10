@@ -15,13 +15,18 @@ export default function UserOrder (props) {
     }
 
     const items = [
-        getItem('userDetail', 'userDetail', <UserOutlined />),
+        getItem('userDetail', 'detail', <UserOutlined />),
         getItem('userOrders', 'orders', <SwitcherOutlined />)
     ];
     const navigate = useNavigate()
     const onClick = ({ item, key, keyPath, domEvent }) => {
         console.log('click ', key);
-        navigate('orders')
+        if(key === 'orders'){
+            navigate('orders')
+        }
+        if(key === 'detail'){
+            navigate('detail')
+        }
     };
     return(
         <div className="user-total-box">

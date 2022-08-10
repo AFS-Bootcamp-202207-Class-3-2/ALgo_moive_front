@@ -1,11 +1,12 @@
 .baseInfo{
-    width: 80%;
+    width: 100%;
     padding: 20px;
     display: flex;
     flex-direction: column;
     margin: auto;
 }
 .baseInfo-title{
+    font-weight: bold;
     color: red;
     font-size: 18px;
     margin-bottom: 20px;
@@ -13,20 +14,18 @@
 .baseInfo-center{
     display: flex;
     width: 100%;
-    border-top: 1px solid #efefef;
+    border-top: 2px solid #efefef;
     padding: 30px;
 }
 
 .baseInfo-left{
     width: 40%;
-    border: 1px red dashed;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 .baseInfo-right{
     width: 60%;
-    border: 1px orange dashed;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -35,8 +34,9 @@
     width: 160px;
     height: 50px;
     border-radius: 10px;
-    background-color: #efefef;
+    background-color: #469699;
     margin: 10px;
+    color: white;
 }
 
 .baseInfo-avatar{
@@ -55,9 +55,10 @@
 }
 
 .baseInfo-save{
-    background-color: #ee3932;
+    background-color: #469699;
     border-radius: 10px;
     width: 100px;
+    color: white;
 }
 
 .baseInfo-form{
@@ -70,7 +71,20 @@
 }
 
 .baseInfo-reset{
-    background-color: #ee3932;
+    background-color: #469699;
     border-radius: 10px;
     width: 100px;
+    color: white;
+}
+
+.baseInfo-reset:hover{
+    background-color: #a9ced0;
+}
+
+.baseInfo-save:hover{
+    background-color: #a9ced0;
+}
+
+.baseInfo-avatar-button:hover{
+    background-color: #a9ced0;
 }

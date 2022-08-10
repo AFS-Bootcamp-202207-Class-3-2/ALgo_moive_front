@@ -7,6 +7,7 @@ import { getMovies } from "../../api/home";
 import { addAllMovies } from "../../features/home/HomeSlice";
 import "./index.css"
 import BoxOffice from "../../features/home/BoxOffice";
+import RecentMovies from "../../features/home/RecentMovies";
 
 function Home() {
   const movies = useSelector((state) => state.home.movies);
@@ -22,6 +23,7 @@ function Home() {
       <Row className="home-content-row">
         <Col span={16}>
           <MovieGroup movies={movies} />
+          <RecentMovies movies={movies} />
         </Col>
         <Col span={1}></Col>
         <Col span={7}>
