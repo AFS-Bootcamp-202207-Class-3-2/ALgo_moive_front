@@ -8,16 +8,17 @@ import { Button, Form, Input, message } from "antd";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { login } from "../../../api/login";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {saveUserInfo} from "../../../layout/Navigation/NavigationSlice";
 import "./index.css";
+import {setSkipPageProperties} from "../loginSlice";
 
 function LoginView() {
   const [form] = Form.useForm();
   const dispatch = useDispatch();
   const [, forceUpdate] = useState({});
   const navigator = useNavigate();
-
+  const sessionId = useSelector(state => state.login.sessionId);
   // To disable submit button at the beginning.
   useEffect(() => {
     forceUpdate({});
@@ -28,7 +29,13 @@ function LoginView() {
       .then((res) => {
         if (res.data.code === "201") {
           dispatch(saveUserInfo(res.data.data.user));
-          navigator("/");
+          if (sessionId !== null) {
+            navigator("/chooseSeat?sessionId=" + sessionId);
+            dispatch(setSkipPageProperties(null));
+          }
+          else {
+            navigator("/");
+          }
         }
       })
       .catch((err) => {

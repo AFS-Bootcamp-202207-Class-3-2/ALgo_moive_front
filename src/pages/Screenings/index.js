@@ -5,6 +5,8 @@ import ScreeningApi from "../../api/ScreeningApi";
 import './index.css';
 import {useLocation, useNavigate, useSearchParams,Navigate} from "react-router-dom";
 import * as PropTypes from "prop-types";
+import {useDispatch} from "react-redux";
+import {setSkipPageProperties} from "../../features/login/loginSlice";
 
 
 export default function ScreeningList() {
@@ -12,6 +14,7 @@ export default function ScreeningList() {
     const [params, setParams] = useSearchParams()
     const cinemaId = params.get('cinemaId')
     const movieId = params.get('movieId')
+    const dispatch = useDispatch()
     const columns = [
         {
             title: (<div className="title">放映时间</div>),
@@ -57,7 +60,6 @@ export default function ScreeningList() {
     ];
 
     function TabPane(props) {
-
         return null;
     }
 
@@ -68,9 +70,9 @@ export default function ScreeningList() {
 
     const navigator = useNavigate();
     const toChooseSeat = (item) => {
-
         const isLogin = window.localStorage.getItem('token');
         if (isLogin == null && isLogin == undefined){
+            dispatch(setSkipPageProperties(item.id));
             navigator('/login')
         }else {
             navigator("/chooseSeat?sessionId=" + item.id);
