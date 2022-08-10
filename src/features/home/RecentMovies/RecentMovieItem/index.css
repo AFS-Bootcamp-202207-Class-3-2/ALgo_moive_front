@@ -1,4 +1,4 @@
-.ticket_button {
+.preSell_button {
   position: relative;
   text-align: center;
   padding: 15px;
@@ -7,7 +7,7 @@
   border: 1px solid #efefef;
 }
 
-.ticket_button:hover {
+.preSell_button:hover {
   background-color: #3a9ef4;
   color: white;
 }
