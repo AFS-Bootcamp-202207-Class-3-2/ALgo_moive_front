@@ -1,42 +1,29 @@
 import React, { useEffect, useState } from "react";
-import { getCinemaListByMovieId } from "../../api/cinema";
-import { useParams } from "react-router-dom";
+import { getCinemaListByMovieId, getAllCinemaList } from "../../api/cinema";
 import "./index.css";
 import { Button, Empty } from "antd";
 import { useNavigate } from "react-router-dom";
-import MovieBox from "../../features/movieDetail/MovieBox";
-import { getMovieById } from "../../api/movieDetail";
 
-export default function CinemaList() {
+export default function CinemaList(props) {
   const navigator = useNavigate();
-  const { movieId } = useParams();
+  const { movieId } = props;
   const [cinemaList, setCinemaList] = useState([]);
-  const [movie, setMovie] = useState({});
   useEffect(() => {
-    getCinemaListByMovieId(movieId).then((response) => {
-      if (response.data.code === "200") {
+    if (movieId === "all") {
+      getAllCinemaList().then((response) => {
         setCinemaList(response.data.data.cinemas);
-      }
-    });
-    getMovieById(movieId).then((response) => {
-      setMovie(response.data.data.movie);
-    });
+      });
+    } else {
+      getCinemaListByMovieId(movieId).then((response) => {
+        setCinemaList(response.data.data.cinemas);
+      });
+    }
   }, [movieId]);
   const toScreenings = (cinemaId) => {
     navigator("/screenings?cinemaId=" + cinemaId + "&movieId=" + movieId);
-
-  };
-
-  const jumpToMovieDetail = () => {
-    navigator(`/movie/${movieId}`);
   };
   return (
     <div className="cinema_div">
-      <MovieBox
-        buttonMsg="查看电影详情"
-        movie={movie}
-        clickButton={jumpToMovieDetail}
-      ></MovieBox>
       <h2>影院列表</h2>
       {cinemaList.length === 0 ? (
         <Empty className="empty_style" />
@@ -48,7 +35,11 @@ export default function CinemaList() {
               <br />
               <span className="address_style">地址：{cinema.address}</span>
             </div>
-            <Button type="danger" shape="round" onClick={(e)=>toScreenings(cinema.id)}>
+            <Button
+              type="danger"
+              shape="round"
+              onClick={(e) => toScreenings(cinema.id)}
+            >
               选座购票
             </Button>
           </div>

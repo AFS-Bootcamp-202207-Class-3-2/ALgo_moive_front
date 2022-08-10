@@ -1,3 +1,8 @@
+.movie-detail-tabs-box {
+  margin: auto;
+  width: 70%;
+}
+
 .movie-detail-tabs .ant-tabs-nav-list .ant-tabs-tab {
   font-size: 18px;
 }

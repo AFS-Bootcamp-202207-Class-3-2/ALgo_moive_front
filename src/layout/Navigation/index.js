@@ -61,7 +61,7 @@ function Navigation() {
             电影
           </NavLink>
           <NavLink
-            to="/cinema"
+            to="/cinemaList"
             className={({ isActive }) =>
               "nav-item" + (isActive ? " active" : " ")
             }

@@ -3,7 +3,8 @@
   border: 3px solid #2a797c;
   border-image: linear-gradient(rgba(255, 255, 255, 0), rgba(42, 121, 124, 0.5))
     1 1;
-  margin-bottom: 20px;
+  margin: 0 auto 20px;
+  width: 70%;
 }
 
 .movie-box .avatar-col {
