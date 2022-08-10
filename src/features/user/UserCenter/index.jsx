@@ -1,9 +1,11 @@
-import { SwitcherOutlined, UserOutlined, SettingOutlined } from '@ant-design/icons';
-import { Menu } from 'antd';
-import React from 'react';
+import {SwitcherOutlined, UserOutlined, SettingOutlined} from '@ant-design/icons';
+import {Menu} from 'antd';
+import React, {useEffect} from 'react';
 import './index.css'
-import {useNavigate,Outlet} from "react-router-dom";
-export default function UserOrder (props) {
+import {useNavigate, Outlet} from "react-router-dom";
+import {useSelector} from "react-redux";
+import {gsap,Back} from 'gsap'
+export default function UserOrder(props) {
     function getItem(label, key, icon, children, type) {
         return {
             key,
@@ -15,28 +17,65 @@ export default function UserOrder (props) {
     }
 
     const items = [
-        getItem('userDetail', 'detail', <UserOutlined />),
-        getItem('userOrders', 'orders', <SwitcherOutlined />)
+        getItem('个人中心', 'detail', <UserOutlined/>),
+        getItem('订单列表', 'orders', <SwitcherOutlined/>)
     ];
     const navigate = useNavigate()
-    const onClick = ({ item, key, keyPath, domEvent }) => {
-        console.log('click ', key);
-        if(key === 'orders'){
+    const onClick = ({item, key, keyPath, domEvent}) => {
+        if (key === 'orders') {
             navigate('orders')
         }
-        if(key === 'detail'){
+        if (key === 'detail') {
             navigate('detail')
         }
     };
-    return(
+    const userInfo = useSelector(state => state.navigation.userInfo);
+    console.log(userInfo)
+    const separator = (nickName) => {
+        let nickNamelist = nickName.split('')
+        return nickNamelist.map((items, idx) => {
+            return (
+                <span key={idx}>{items}</span>
+            )
+        })
+    }
+    useEffect(() => {
+        const tl1 = gsap.timeline()
+        tl1.staggerFromTo(
+            '.user-center-nickname span', .8, {
+                ease: Back.easeOut.config(1.7),
+                opacity: 0,
+                rotation: -180,
+                y: -100
+
+            }, {
+                ease: Back.easeOut.config(1.7),
+                opacity: 1,
+                rotation: 360,
+                y: () => {
+                    return Math.random() * 50
+                }
+            }, .1, '+=0', () => {
+
+            }
+        )
+    }, [userInfo]);
+    return (
         <div className="user-total-box">
+            <div className="user-center-nickname">
+                <span>你</span>
+                <span>好</span>
+                <span>，</span>
+                {separator(userInfo.nickname)}
+            </div>
             <div className="user-total-box-inner-box">
                 <Menu
                     onClick={onClick}
                     style={{
-                        width: 256,height:'100%'
+                        width: 256, height: '900px',
+                        borderRadius: '12px'
                     }}
-                    defaultSelectedKeys={['userOrders']}
+                    defaultSelectedKeys={['detail']}
                     mode="inline"
                     items={items}
                 />

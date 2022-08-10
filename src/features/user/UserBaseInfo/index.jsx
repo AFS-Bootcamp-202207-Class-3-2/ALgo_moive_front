@@ -22,7 +22,7 @@ function UserBaseInfo() {
         }
     ]);
 
-    const onFinish = (values: any) => {
+    const onFinish = (values) => {
         console.log('Success:', values);
     };
     return (
