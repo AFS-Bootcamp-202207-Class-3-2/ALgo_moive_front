@@ -1,12 +1,11 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import classnames from 'classnames';
-import { v4 as uuidv4 } from 'uuid';
+import {v4 as uuidv4} from 'uuid';
 import _ from 'lodash';
-import {useState} from 'react'
-import { useNavigate} from "react-router-dom";
-import {useSelector, useDispatch} from "react-redux";
-import {getSeatAndMovieInfo, getOrderInfoByObject} from '../../api/cinema'
-import { message } from 'antd';
+import {useNavigate, useSearchParams} from "react-router-dom";
+import {useDispatch, useSelector} from "react-redux";
+import {getOrderInfoByObject, getSeatAndMovieInfo} from '../../api/cinema'
+import {message} from 'antd';
 import empty from '../../static/images/empty.png';
 import occupy from '../../static/images/occupy.png';
 import select from '../../static/images/select.png';
@@ -15,7 +14,6 @@ import poster from '../../static/images/1.jpg';
 import '../../mock';
 import './index.css';
 import {setFilmInfo, setSeatsInfo, updateSeatInfo} from "./ChooseSeatSlice";
-import {useSearchParams} from "react-router-dom";
 
 export default function ChooseSeat() {
     const navigator = useNavigate();
