@@ -19,6 +19,9 @@ export default function CinemaList(props) {
       });
     }
   }, [movieId]);
+  const toCinemaDesc = (cinemaId) => {
+    navigator(`/cinemaDesc/${cinemaId}`);
+  };
   const toScreenings = (cinemaId) => {
     navigator("/screenings?cinemaId=" + cinemaId + "&movieId=" + movieId);
   };
@@ -31,14 +34,27 @@ export default function CinemaList(props) {
         cinemaList.map((cinema) => (
           <div className="cinemaList_div" key={cinema.id}>
             <div>
-              <span className="cinema_style">{cinema.cinemaName}</span>
+              <span
+                className="cinema_style"
+                onClick={(e) =>
+                  movieId === "all"
+                    ? toCinemaDesc(cinema.id)
+                    : toScreenings(cinema.id)
+                }
+              >
+                {cinema.cinemaName}
+              </span>
               <br />
               <span className="address_style">地址：{cinema.address}</span>
             </div>
             <Button
               type="danger"
               shape="round"
-              onClick={(e) => toScreenings(cinema.id)}
+              onClick={(e) =>
+                movieId === "all"
+                  ? toCinemaDesc(cinema.id)
+                  : toScreenings(cinema.id)
+              }
             >
               选座购票
             </Button>
