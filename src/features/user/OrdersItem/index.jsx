@@ -4,26 +4,32 @@ import {DeleteOutlined} from "@ant-design/icons";
 import {Button, message, Popconfirm} from 'antd';
 import {useNavigate} from "react-router-dom";
 import Finish from '../../../static/images/finish.png'
-import OrderApi from '../../../api/UserOrdersApi'
+import UserOrdersApi from "../../../api/UserOrdersApi";
+import {deleteOrder} from "../userOrderSlice";
+import {useDispatch} from "react-redux";
 
 export default function OrdersItem(props) {
     const {order} = props
     const navigate = useNavigate()
+    const dispatch = useDispatch();
     const viewDetail = (e) => {
         navigate(`/order/${order.orderId}`)
     };
-    const deleteOrder =()=>{
-        OrderApi.deleteOrdersFromUserById(order.orderId)
-            .then(res=>{
-                message.success(res.data.msg);
-                navigate('/user')
-            })
+
+    const deleteThisOrder = () => {
+        const orderId = order.orderId;
+        UserOrdersApi.deleteOrdersFromUserById(orderId).then(res=>{
+            dispatch(deleteOrder(orderId));
+            console.log(orderId);
+            message.success(res.data.msg);
+        })
     }
+
     return (
         <div>
             <div className="user-orders-item">
                 {order.status !== '1'?
-                    <Popconfirm placement="top" title={"你确定删除该订单吗？"} onConfirm={deleteOrder} okText="Yes" cancelText="No">
+                    <Popconfirm placement="top" title={"你确定删除该订单吗？"} onConfirm={deleteThisOrder} okText="Yes" cancelText="No">
 
                     <div className="user-orders-item-delete">
                     <DeleteOutlined/>

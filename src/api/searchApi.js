@@ -6,7 +6,7 @@ const searchApi =  {
                               sortType = 'releaseDate'
                           }) {
         return request({
-            url: `/${category}?page=${page - 1}&pageSize=${pageSize}&soetType=${sortType}&search=${keyword}`,
+            url: `/${category}?page=${page - 1}&pageSize=${pageSize}&sortType=${sortType}&search=${keyword}`,
             method: 'get'
         })
     }
