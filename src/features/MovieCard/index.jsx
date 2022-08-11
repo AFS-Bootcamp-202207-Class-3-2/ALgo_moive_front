@@ -36,7 +36,7 @@ export default function MovieCard (props) {
                         电影类型：<span>{movie.movieType}</span>
                     </div>
                     <div className="movie-score">
-                        <span className="movie-card-inner-desc">电影评分：</span>{movie.score}
+                        <span className="movie-card-inner-desc">电影评分：</span>{movie.score !== 0 ? movie.score : '暂无评分'}
                     </div>
                     <div className="movie-desc-movie-desc">
                         {movie.movieDesc}
