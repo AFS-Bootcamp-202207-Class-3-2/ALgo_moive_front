@@ -1,4 +1,4 @@
-import {Row, Col, Divider, Breadcrumb} from "antd";
+import {Row, Col, Divider, Breadcrumb,Tag} from "antd";
 import {useEffect, useState} from "react";
 import {useParams, Link} from "react-router-dom";
 import $ from 'jquery'
@@ -80,6 +80,18 @@ const CinemaDesc = () => {
                                     <div>
                                         <span>地址&nbsp;&nbsp;</span>
                                         {cinema.address}
+                                    </div>
+                                    <br />
+                                    <div>
+                                        <span>联系方式&nbsp;&nbsp;</span>
+                                        {cinema.phone}
+                                    </div>
+                                    <Divider></Divider>
+                                    <div>
+                                        <span>特色服务&nbsp;&nbsp;</span>
+                                        {cinema.cinemaService && cinema.cinemaService.split(",").map((item,index)=>{
+                                            return <Tag color="geekblue">{item}</Tag>
+                                        })}
                                     </div>
                                 </div>
                             </div>
