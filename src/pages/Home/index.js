@@ -23,7 +23,7 @@ function Home() {
       <Row className="home-content-row">
         <Col span={16}>
           <MovieGroup movies={movies} />
-          <RecentMovies movies={movies} />
+          <RecentMovies />
         </Col>
         <Col span={1}></Col>
         <Col span={7}>

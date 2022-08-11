@@ -2,20 +2,27 @@ import { Card, Col, Row } from "antd";
 import { useNavigate, NavLink } from "react-router-dom";
 import RecentMovieItem from "./RecentMovieItem";
 import "./index.css";
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { getFutureMovie } from "../../../api/home";
+import moment from "moment";
 
-export default function RecentMovies(props) {
-  const { movies } = props;
+export default function RecentMovies() {
+  const [movies, setMovies] = useState([]);
   const navigate = useNavigate();
   const jumpToMovieDetail = (id) => {
     navigate(`movie/${id}`);
   };
+  useEffect(() => {
+    getFutureMovie().then((response) => {
+      setMovies(response.data.data.movies.slice(0, 8));
+      console.log(response.data.data.movies);
+    });
+  }, []);
+
   return (
     <div>
       <div className="home-recent">
-        <span className="recent-title">
-          即将上映
-        </span>
+        <span className="recent-title">即将上映</span>
         <NavLink to="/movies" className="recent-link">
           {"全部 >"}
         </NavLink>
@@ -45,7 +52,9 @@ export default function RecentMovies(props) {
               >
                 <RecentMovieItem key={movie.id} movie={{ movie }} />
               </Card>
-                <div className="release-date">8月28日上映</div>
+              <div className="release-date">
+                {moment(movie.releaseDate).format("MM月DD日")}上映
+              </div>
             </Col>
           ))}
         </Row>

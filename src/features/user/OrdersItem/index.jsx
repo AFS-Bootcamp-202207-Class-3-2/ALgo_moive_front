@@ -1,14 +1,38 @@
 import React from 'react'
 import '../UserOrders/index.css'
 import {DeleteOutlined} from "@ant-design/icons";
+import {Button, message, Popconfirm} from 'antd';
+import {useNavigate} from "react-router-dom";
+import Finish from '../../../static/images/finish.png'
+import OrderApi from '../../../api/UserOrdersApi'
+
 export default function OrdersItem(props) {
     const {order} = props
+    const navigate = useNavigate()
+    const viewDetail = (e) => {
+        navigate(`/order/${order.orderId}`)
+    };
+    const deleteOrder =()=>{
+        OrderApi.deleteOrdersFromUserById(order.orderId)
+            .then(res=>{
+                message.success(res.data.msg);
+                navigate('/user')
+            })
+    }
     return (
         <div>
             <div className="user-orders-item">
-                <div className="user-orders-item-delete">
+                {order.status !== '1'?
+                    <Popconfirm placement="top" title={"你确定删除该订单吗？"} onConfirm={deleteOrder} okText="Yes" cancelText="No">
+
+                    <div className="user-orders-item-delete">
                     <DeleteOutlined/>
                 </div>
+                    </Popconfirm>:
+                    <div className="user-orders-item-delete-f">
+                    <img src={Finish} alt={"finish"} width={24} height={24}/>
+                </div>
+                }
                 <div className="user-orders-item-upper">
                     <div className="user-orders-item-upper-time">
                         {order.createTime}
@@ -19,7 +43,7 @@ export default function OrdersItem(props) {
                 </div>
                 <div className="user-orders-item-down">
                     <div className="user-orders-item-down-pic">
-                        <img height="130px" width="95px" src={order.movieCover}/>
+                        <img alt={"电影封面"} height="130px" width="95px" src={order.movieCover}/>
                     </div>
                     <div className="user-orders-item-down-detail-box">
                         <div className="user-orders-item-down-detail">
@@ -48,9 +72,13 @@ export default function OrdersItem(props) {
                                 {order.status === '1'?'已完成':'未完成'}
                             </span>
                         </div>
-                        {/*<div className="user-orders-item-down-detail-link">*/}
-                        {/*    */}
-                        {/*</div>*/}
+                        <div className="user-orders-item-down-detail-link">
+                            {order.status === '1'?<Button onClick={viewDetail}
+                                     size={"small"} type="link">查看详情</Button>:<Button ghost disabled>
+                                无法查看发票
+                            </Button>
+                            }
+                        </div>
                     </div>
                 </div>
             </div>

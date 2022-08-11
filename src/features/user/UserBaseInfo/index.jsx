@@ -1,13 +1,13 @@
 import React, {useState} from 'react';
-import {UploadOutlined, UserOutlined} from "@ant-design/icons";
-import {Avatar, Button, Form, Input, Upload, message} from "antd";
+import {UploadOutlined} from "@ant-design/icons";
+import {Avatar, Button, Form, Input, Upload} from "antd";
 import './index.css'
 import {useSelector} from "react-redux";
 
 
 function UserBaseInfo() {
     const userInfo = useSelector(state => state.navigation.userInfo);
-    const [fields, setFields] = useState([
+    const [fields] = useState([
         {
             name: ['nickname'],
             value: userInfo.nickname ? userInfo.nickname : '',
