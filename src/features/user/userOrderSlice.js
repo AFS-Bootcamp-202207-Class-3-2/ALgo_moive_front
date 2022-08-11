@@ -2,7 +2,7 @@ import {createSlice} from "@reduxjs/toolkit";
 
 const initialState = {
     orders: [],
-    totalCount: 1,
+    totalCount: 0,
     pages:[]
 };
 
@@ -25,6 +25,7 @@ const userOrderSlice = createSlice({
         deleteOrder: (state, action) => {
             const index = state.orders.findIndex(order => order.orderId === action.payload);
             state.orders.splice(index, 1);
+            state.totalCount = state.orders.length;
         },
         refundOrder: (state, action) => {
             const index = state.orders.findIndex(order => order.orderId === action.payload.id);
