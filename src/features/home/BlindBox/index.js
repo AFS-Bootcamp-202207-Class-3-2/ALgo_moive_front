@@ -2,8 +2,8 @@ import { Modal } from "antd";
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import blindBoxGif from "../../static/images/blindBoxAnimate.gif";
-import { changeBlindBoxModalVisible } from "../BlindBox/BlindBoxSlice";
+import blindBoxGif from "../../../static/images/blindBoxAnimate.gif";
+import { changeBlindBoxModalVisible } from "./BlindBoxSlice";
 import "./index.css";
 
 function BlindBox() {

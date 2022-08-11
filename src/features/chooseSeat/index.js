@@ -10,7 +10,6 @@ import empty from '../../static/images/empty.png';
 import occupy from '../../static/images/occupy.png';
 import select from '../../static/images/select.png';
 import screenImage from '../../static/images/screen.png';
-import poster from '../../static/images/1.jpg';
 import '../../mock';
 import './index.css';
 import {setFilmInfo, setSeatsInfo, updateSeatInfo} from "./ChooseSeatSlice";
@@ -148,7 +147,7 @@ export default function ChooseSeat() {
                     </div>
                     <div className="msg-container">
                         <div className="info-header">
-                            <img src={poster} alt="电影海报"/>
+                            <img style={{width: 150, height:230}} src={filmInfo.poster} alt="电影海报"/>
                             <div className="header-msg">
                                 <h3>{filmInfo.name}</h3>
                                 <p><span>类型：</span>{filmInfo.type}</p>
