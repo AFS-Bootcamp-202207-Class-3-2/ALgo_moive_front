@@ -1,4 +1,4 @@
-import {Row, Col, Divider, Breadcrumb,Tag} from "antd";
+import {Breadcrumb, Col, Divider, Row, Tag} from "antd";
 import {useEffect, useState} from "react";
 import {Link, useParams} from "react-router-dom";
 
@@ -29,7 +29,7 @@ const CinemaDesc = () => {
 
     useEffect(() => {
         getData()
-    }, [cinemaId]);
+    }, []);
     const changeIndexAndGetRoomData = (id, index) => {
         setMovieIndex(index)
         setMovieId(id)
@@ -92,7 +92,7 @@ const CinemaDesc = () => {
                     {
                         movies.map((item, index) => {
                             return (
-                                <img alt="image" key={index} src={item.cover} className={selectImg}
+                                <img alt="" key={index} src={item.cover} className={selectImg}
                                      onClick={(e) => changeIndexAndGetRoomData(item.id, index)}/>
                             )
                         })}
