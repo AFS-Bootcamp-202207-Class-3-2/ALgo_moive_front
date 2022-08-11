@@ -1,11 +1,11 @@
 import React from 'react'
 import '../UserOrders/index.css'
-import {DeleteOutlined,UndoOutlined} from "@ant-design/icons";
-import {Button, message, Popconfirm,Tag } from 'antd';
+import {DeleteOutlined} from "@ant-design/icons";
+import {Button, message, Popconfirm, Tag} from 'antd';
 import {useNavigate} from "react-router-dom";
 import Finish from '../../../static/images/finish.png'
 import UserOrdersApi from "../../../api/UserOrdersApi";
-import {deleteOrder,refundOrder} from "../userOrderSlice";
+import {deleteOrder, refundOrder} from "../userOrderSlice";
 import {useDispatch} from "react-redux";
 
 export default function OrdersItem(props) {
@@ -140,7 +140,7 @@ export default function OrdersItem(props) {
                                     </div> :
                                     order.status === '0' ?
                                         //todo:跳转支付页面
-                                        <Button size={"small"} size={"small"} onClick={gotoPay}
+                                        <Button size={"small"} onClick={gotoPay}
                                                 type="link">去支付</Button>
                                         :
                                         <Button size={"small"} ghost disabled>
