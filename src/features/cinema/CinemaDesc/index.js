@@ -15,21 +15,22 @@ const CinemaDesc = () => {
     const [movieId, setMovieId] = useState("")
     let selectImg = "detail-img"
 
-    const getData = async () => {
-        getCinemaByCinemaId(cinemaId).then(response => {
-            setCinema(response.data.data.cinema);
-        });
-        await getMoviesByCinemaId(cinemaId).then(response => {
-            setMovies(response.data.data.movies)
-            setMovieId(response.data.data.movies[movieIndex].id)
-        }).catch(function (msg) {
-            console.log(msg)
-        })
-    }
+
 
     useEffect(() => {
+        const getData = async () => {
+            getCinemaByCinemaId(cinemaId).then(response => {
+                setCinema(response.data.data.cinema);
+            });
+            await getMoviesByCinemaId(cinemaId).then(response => {
+                setMovies(response.data.data.movies)
+                setMovieId(response.data.data.movies[movieIndex].id)
+            }).catch(function (msg) {
+                console.log(msg)
+            })
+        };
         getData()
-    }, []);
+    }, [cinemaId,movieIndex]);
     const changeIndexAndGetRoomData = (id, index) => {
         setMovieIndex(index)
         setMovieId(id)
