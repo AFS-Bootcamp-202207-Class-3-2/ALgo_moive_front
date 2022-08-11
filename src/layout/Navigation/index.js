@@ -52,11 +52,11 @@ function Navigation() {
       items={[
         {
           key: "1",
-          label: <Link to="/">个人中心</Link>,
+          label: <Link to="/user/detail">个人中心</Link>,
         },
         {
           key: "2",
-          label: <Link to="/">我的订单</Link>,
+          label: <Link to="/user/orders">我的订单</Link>,
         },
         {
           key: "3",
