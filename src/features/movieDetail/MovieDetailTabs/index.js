@@ -5,6 +5,10 @@ const { TabPane } = Tabs;
 
 function MovieDetailTabs(props) {
   const { movie } = props;
+  let moviePic = [];
+  if (movie.pictures){
+    moviePic = movie.pictures.split(",");
+  }
   return (
     <div className="movie-detail-tabs-box">
       <div>
@@ -26,6 +30,12 @@ function MovieDetailTabs(props) {
         <TabPane tab={<span>剧情介绍</span>} key="1">
           <article>
             <p>{movie.movieDesc}</p>
+            <br/>
+            {
+              moviePic.map((item, index)=>{
+                return <img className="img-css" src={item}/>
+              })
+            }
           </article>
         </TabPane>
         <TabPane tab={<span>演员列表</span>} key="2">

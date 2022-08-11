@@ -8,7 +8,7 @@ export default function TopMovie() {
 
         return (
             <div className="tab_div">
-                <Tabs defaultActiveKey="1" centered>
+                <Tabs defaultActiveKey="1" size="large" centered>
                     {/*<div >*/}
                         <TabPane tab='评分' key="1">
                             <MovieItemRank searchField={'score'}/>
