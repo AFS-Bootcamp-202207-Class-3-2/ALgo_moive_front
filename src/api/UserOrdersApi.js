@@ -5,7 +5,9 @@ const UserOrdersApi = {
             url: `/order/user/${userId}?page=${page}&pageSize=${pageSize}`,
             method: 'get'
         })
-    },deleteOrdersFromUserById(orderId){
+    },
+
+    deleteOrdersFromUserById(orderId){
         return request({
             url:`/order/user/d/${orderId}`,
             method:'delete'
