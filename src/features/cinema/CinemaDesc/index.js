@@ -17,21 +17,33 @@ const CinemaDesc = () => {
     const [movieIndex, setMovieIndex] = useState(0)
     const [movieId, setMovieId] = useState("")
 
-    async function getData() {
-        getCinemaByCinemaId(cinemaId).then(response => {
-            setCinema(response.data.data.cinema);
-        });
-        await getMoviesByCinemaId(cinemaId).then(response => {
-            setMovies(response.data.data.movies)
-            setMovieIndex(movies.length >= 3 ? 3 : 0)
-            setMovieId(movies[movieIndex].id)
-        }).catch(function (msg) {
-            console.log(msg)
-        })
-    }
+    // async function getData() {
+    //     getCinemaByCinemaId(cinemaId).then(response => {
+    //         setCinema(response.data.data.cinema);
+    //     });
+    //     await getMoviesByCinemaId(cinemaId).then(response => {
+    //         setMovies(response.data.data.movies)
+    //         setMovieIndex(movies.length >= 3 ? 3 : 0)
+    //         setMovieId(movies[movieIndex].id)
+    //     }).catch(function (msg) {
+    //         console.log(msg)
+    //     })
+    // }
     useEffect(() => {
+        async function getData() {
+            getCinemaByCinemaId(cinemaId).then(response => {
+                setCinema(response.data.data.cinema);
+            });
+            await getMoviesByCinemaId(cinemaId).then(response => {
+                setMovies(response.data.data.movies)
+                setMovieIndex(movies.length >= 3 ? 3 : 0)
+                setMovieId(movies[movieIndex].id)
+            }).catch(function (msg) {
+                console.log(msg)
+            })
+        }
         getData();
-    }, [cinemaId]);
+    }, [cinemaId,movieIndex,movies]);
     const flickityOptions = {
         initialIndex: movieIndex
     }
@@ -92,7 +104,7 @@ const CinemaDesc = () => {
                 {
                     movies.map((item, index) => {
                         return (
-                            <div key={index} className="carousel-cell"><img className="carousel_img" src={item.cover}/>
+                            <div key={index} className="carousel-cell"><img alt={"carousel_img"} className="carousel_img" src={item.cover}/>
                             </div>
                         )
                     })
