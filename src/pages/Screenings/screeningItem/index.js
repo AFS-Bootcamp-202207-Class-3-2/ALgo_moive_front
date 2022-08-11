@@ -4,14 +4,16 @@ import '../../SearchPage/index.css'
 import ScreeningApi from "../../../api/ScreeningApi";
 import '../index.css';
 import {useNavigate} from "react-router-dom";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {setSkipPageProperties} from "../../../features/login/loginSlice";
+import {loadUserInfo} from "../../../layout/Navigation/NavigationSlice";
 
 
 export default function ScreeningItem(props) {
 
     const {cinemaId,movieId,filterDate} = props
 
+    const token = useSelector(state => state.navigation.token);
     useEffect(() => {
         const sessionRequest = {cinemaId:cinemaId,movieId:movieId,filterDate:filterDate}
         ScreeningApi.getCinemasBySessionRequest(sessionRequest).then(res => {
@@ -64,8 +66,8 @@ export default function ScreeningItem(props) {
 
     const navigator = useNavigate();
     const toChooseSeat = (item) => {
-        const isLogin = window.localStorage.getItem('token');
-        if (isLogin === null && isLogin === undefined) {
+        dispatch(loadUserInfo());
+        if (token === '' || token === undefined || token===null) {
             dispatch(setSkipPageProperties(item.id))
             navigator('/login', {
                 replace: true
