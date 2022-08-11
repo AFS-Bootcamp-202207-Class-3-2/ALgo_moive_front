@@ -36,7 +36,6 @@ const CinemaDesc = () => {
             });
             await getMoviesByCinemaId(cinemaId).then(response => {
                 setMovies(response.data.data.movies)
-                setMovieIndex(movies.length >= 3 ? 3 : 0)
                 setMovieId(movies[movieIndex].id)
             }).catch(function (msg) {
                 console.log(msg)
