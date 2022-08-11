@@ -4,7 +4,7 @@ import './index.css'
 import {useDispatch, useSelector} from "react-redux";
 import {useNavigate} from "react-router-dom";
 import OrdersItem from "../OrdersItem";
-import {message, Pagination} from 'antd';
+import {Pagination} from 'antd';
 import NoData from '../../../static/images/NoData.png'
 import {saveOrders, setTotalCount} from "../userOrderSlice";
 
@@ -27,7 +27,7 @@ export default function UserOrders(props) {
         } else {
             navigate('/');
         }
-    }, [page, pageSize, totalCount,userInfo,navigate]);
+    }, [page, pageSize, totalCount,userInfo,navigate,dispatch]);
 
     const onChange = (page, pageSize) => {
         setPage(page)
