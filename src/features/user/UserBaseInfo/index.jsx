@@ -1,26 +1,29 @@
-import React, {useState} from 'react';
-import {UploadOutlined, UserOutlined} from "@ant-design/icons";
-import {Avatar, Button, Form, Input, Upload, message} from "antd";
+import {useEffect, useState} from 'react';
+import {UploadOutlined} from "@ant-design/icons";
+import {Avatar, Button, Form, Input, Upload,message} from "antd";
 import './index.css'
 import {useSelector} from "react-redux";
 
 
 function UserBaseInfo() {
     const userInfo = useSelector(state => state.navigation.userInfo);
-    const [fields, setFields] = useState([
-        {
-            name: ['nickname'],
-            value: userInfo.nickname ? userInfo.nickname : '',
-        },
-        {
-            name: ['phone'],
-            value: userInfo.phone ? userInfo.phone : '',
-        },
-        {
-            name: ['sign'],
-            value: userInfo.sign ? userInfo.sign : '',
-        }
-    ]);
+    const [fields,setFields] = useState([]);
+    useEffect(() => {
+        setFields([{
+                name: ['nickname'],
+                value: userInfo.nickname ? userInfo.nickname : '',
+            },
+            {
+                name: ['phone'],
+                value: userInfo.phone ? userInfo.phone : '',
+            },
+            {
+                name: ['sign'],
+                value: userInfo.sign ? userInfo.sign : '',
+            }])
+    },[userInfo]);
+
+
 
     const onFinish = (values) => {
         console.log('Success:', values);
@@ -57,7 +60,7 @@ function UserBaseInfo() {
                         </Form.Item>
                         <Form.Item>
                             <div className="baseInfo-button-group">
-                                <Button className="baseInfo-save" htmlType="submit">保存</Button>
+                                <Button className="baseInfo-save" htmlType="submit" onClick={() => { message.success("保存成功")}}>保存</Button>
                                 <Button className="baseInfo-reset" htmlType="reset">重置</Button>
                             </div>
                         </Form.Item>

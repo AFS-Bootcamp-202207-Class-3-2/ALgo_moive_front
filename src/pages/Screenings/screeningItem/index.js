@@ -10,8 +10,8 @@ import {setSkipPageProperties} from "../../../features/login/loginSlice";
 
 export default function ScreeningItem(props) {
 
+    const sessionRequest = {...props}
     useEffect(() => {
-        const sessionRequest = {...props}
         ScreeningApi.getCinemasBySessionRequest(sessionRequest).then(res => {
             setScreeningList(res.data.data.sessionList)
         })
@@ -63,7 +63,7 @@ export default function ScreeningItem(props) {
     const navigator = useNavigate();
     const toChooseSeat = (item) => {
         const isLogin = window.localStorage.getItem('token');
-        if (isLogin == null && isLogin == undefined) {
+        if (isLogin === null && isLogin === undefined) {
             dispatch(setSkipPageProperties(item.id))
             navigator('/login', {
                 replace: true

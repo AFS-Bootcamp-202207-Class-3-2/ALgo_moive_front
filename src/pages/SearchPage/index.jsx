@@ -24,7 +24,7 @@ export default function SearchPage(props) {
         setTotalData(res.data.data.movies);
         setMovies(res.data.data.movies.content);
       });
-  }, []);
+  }, [currPage,state]);
 
   const getInput = (event) => {
     setInput(event.target.value);
@@ -66,7 +66,7 @@ export default function SearchPage(props) {
             placeholder="搜电影，演职员"
             value={input}
           />
-          <a className="button_style" type="submit" onClick={onSearch}></a>
+          <a className="button_style" type="submit" onClick={onSearch} />
         </div>
       </div>
       {movies.length === 0 ? (
