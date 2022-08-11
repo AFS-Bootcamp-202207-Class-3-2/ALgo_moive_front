@@ -33,7 +33,7 @@ function MovieDetailTabs(props) {
             <br/>
             {
               moviePic.map((item, index)=>{
-                return <img className="img-css" src={item}/>
+                return <img className="img-css" src={item} alt='' />
               })
             }
           </article>
