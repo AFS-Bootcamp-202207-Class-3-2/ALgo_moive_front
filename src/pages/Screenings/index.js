@@ -8,7 +8,7 @@ const { TabPane } = Tabs;
 
 export default function ScreeningList(props) {
 
-    const [params, setParams] = useSearchParams()
+    const [params] = useSearchParams()
     let cinemaId = params.get('cinemaId')
     let movieId = params.get('movieId')
     if (props.cinemaId && props.movieId) {
@@ -28,9 +28,9 @@ export default function ScreeningList(props) {
     const tomorrowTabPaneTitle = '明天' + month + '月' + (day +1 ) + '天'
     const dayAfterTomorrowTabPaneTitle = '后天' + month + '月' + (day+2) + '天'
 
-    const todayDate = (date.getMonth()+1) + "-" + date.getDate();
-    const tomorrowDate =  (date.getMonth()+1) + "-" + date.getDate()+1;
-    const afterTomorrowDate =  (date.getMonth()+1) + "-" + date.getDate()+2;
+    const todayDate = (date.getMonth()+1) + "-" + (date.getDate());
+    const tomorrowDate =  (date.getMonth()+1) + "-" + (date.getDate()+1);
+    const afterTomorrowDate =  (date.getMonth()+1) + "-" + (date.getDate()+2);
 
 
     return (
