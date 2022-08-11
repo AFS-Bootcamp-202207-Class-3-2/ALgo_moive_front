@@ -66,7 +66,7 @@ export default function SearchPage(props) {
             placeholder="搜电影，演职员"
             value={input}
           />
-          <a className="button_style" type="submit" onClick={onSearch} />
+          <button className="button_style" type="submit" onClick={onSearch} />
         </div>
       </div>
       {movies.length === 0 ? (

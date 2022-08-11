@@ -18,6 +18,7 @@ function CinemaDetail() {
   };
   return (
     <div className="cinema-detail">
+      <br />
       <MovieBox
         buttonMsg="查看电影详情"
         movie={movie}

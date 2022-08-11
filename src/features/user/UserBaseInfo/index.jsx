@@ -1,13 +1,16 @@
 import {useEffect, useState} from 'react';
 import {UploadOutlined} from "@ant-design/icons";
-import {Avatar, Button, Form, Input, Upload,message} from "antd";
+import {Avatar, Button, Form, Input, message, Upload} from "antd";
 import './index.css'
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
+import {updateUserDetail} from "../../../api/UserDetail";
+import {updateUserInfo} from "../../../layout/Navigation/NavigationSlice";
 
 
 function UserBaseInfo() {
     const userInfo = useSelector(state => state.navigation.userInfo);
     const [fields,setFields] = useState([]);
+    const dispatch = useDispatch();
     useEffect(() => {
         setFields([{
                 name: ['nickname'],
@@ -23,10 +26,21 @@ function UserBaseInfo() {
             }])
     },[userInfo]);
 
-
+    const onClickSave = () => { message.success("保存成功")};
 
     const onFinish = (values) => {
-        console.log('Success:', values);
+       const user = {
+            nickname: values.nickname,
+            sign: values.sign,
+            phone: values.phone
+        };
+        updateUserDetail(userInfo.id, user).then(res => {
+            if(res.data.code === '200'){
+                dispatch(updateUserInfo(res.data.data.user));
+            }
+        }).catch((err) => {
+            message.error(err.response.data.msg);
+        });
     };
     return (
         <div className="baseInfo">
@@ -49,18 +63,20 @@ function UserBaseInfo() {
                         onFinish={onFinish}
                         fields={fields}
                         >
-                        <Form.Item label="昵称" name="nickname">
+                        <Form.Item label="昵称" name="nickname" rules={[{ required: true, message: '昵称不可为空' }]}>
                             <Input placeholder="nickname"/>
                         </Form.Item>
-                        <Form.Item label="手机号" name="phone">
-                            <Input placeholder="phone"/>
+                        <Form.Item label="手机号" name="phone"
+                                   rules={[{pattern: '^(13[0-9]|14[01456879]|15[0-35-9]|16[2567]|17[0-8]|18[0-9]|19[0-35-9])\\d{8}$' , message:"电话号码不匹配"}]}
+                        >
+                            <Input placeholder="phone" />
                         </Form.Item>
                         <Form.Item label="个性签名" name="sign">
                             <Input placeholder="sign"/>
                         </Form.Item>
                         <Form.Item>
                             <div className="baseInfo-button-group">
-                                <Button className="baseInfo-save" htmlType="submit" onClick={() => { message.success("保存成功")}}>保存</Button>
+                                <Button className="baseInfo-save" htmlType="submit" onClick={onClickSave}>保存</Button>
                                 <Button className="baseInfo-reset" htmlType="reset">重置</Button>
                             </div>
                         </Form.Item>

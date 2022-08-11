@@ -7,9 +7,7 @@
   padding: 3% 2%;
   margin-bottom: 20px;
   height: 370px;
-  border: 3px solid #2a797c;
-  border-image: linear-gradient(rgba(255, 255, 255, 0), rgba(42, 45, 86, 0.5)) 1
-    1;
+  background-image: linear-gradient(rgba(255, 255, 255, 0), rgba(42, 45, 86, 0.404));
 }
 
 .cinema-des-row .image-col {
@@ -55,4 +53,68 @@
 
 .cinema-des-box span {
   font-weight: bold;
+}
+
+.detail-img {
+  margin-left: 20px;
+  margin-top: 26px;
+  width: 190px;
+  height: 260px;
+  line-height: 260px;
+}
+
+.detail-img:hover{
+  border: 3px solid #ccc;
+  transform:scale(1.2)
+}
+.detail-img-select{
+  width: 200px;
+  height: 200px;
+  border: 3px solid #ccc;
+  /*transform:scale(1.2)*/
+}
+
+.image-container{
+  height: 315px;
+  white-space: nowrap;
+  margin: auto;
+  width: 80%;
+  overflow: auto;
+}
+
+.images-desc{
+  display: inline-block;
+  overflow-x: scroll;
+}
+
+.movie-info{
+  margin: auto;
+  margin-top: 50px;
+  width: 80%;
+  height: 100px;
+}
+
+.movie-name{
+  display: inline-block;
+  margin: 0 20px 20px 0;
+  font-size: 26px;
+  font-weight: 400;
+  color: #333;
+}
+
+.score{
+  display: inline-block;
+  font-size: 24px;
+  color: #faaf00;
+}
+
+.key{
+  color: #999
+}
+.value{
+  display: inline-block;
+  font-size: 14px;
+  color: #151515;
+  margin-bottom: 20px;
+  margin-right: 40px;
 }

@@ -69,11 +69,18 @@ const NavigationSlice = createSlice({
             Storage.prototype.setCanExpireLocal("token", action.payload.token, 2);
         },
 
+        updateUserInfo: (state, action) => {
+            const userInfo = action.payload;
+            userInfo.token = state.token;
+            state.userInfo = userInfo;
+            Storage.prototype.setCanExpireLocal("userInfo", userInfo, 2);
+        },
+
         userLogout: (state, action) => {
             removeUserInfoAndToken(state);
         }
     },
 });
 
-export const { loadUserInfo, saveUserInfo, userLogout } = NavigationSlice.actions;
+export const { loadUserInfo, saveUserInfo, userLogout, updateUserInfo } = NavigationSlice.actions;
 export default NavigationSlice.reducer;

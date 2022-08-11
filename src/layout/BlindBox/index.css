@@ -1,0 +1,31 @@
+.blind-box-modal .ant-modal-content {
+  border-radius: 10px;
+}
+
+.blind-box-modal .ant-modal-header {
+  border: 1px solid transparent;
+}
+
+.blind-box-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.blind-box-content-movie {
+  height: auto;
+  width: auto;
+  padding: 20px;
+  border: 1px solid #efefef;
+}
+
+.blind-box-content-movie:hover {
+  cursor: pointer;
+  box-shadow: 2px 2px 4px #9c9c9c;
+}
+
+.blind-box-content-movie p {
+  font-size: 18px;
+  text-align: center;
+}

@@ -1,14 +1,11 @@
-import {Row, Col, Divider, Breadcrumb} from "antd";
+import {Breadcrumb, Col, Divider, Row, Tag} from "antd";
 import {useEffect, useState} from "react";
-import {useParams, Link} from "react-router-dom";
-import $ from 'jquery'
+import {Link, useParams} from "react-router-dom";
 
 import {getCinemaByCinemaId, getMoviesByCinemaId} from "../../../api/cinema";
 import "./index.css";
-import "./flickity.css"
-import "flickity/dist/flickity.min.css"
-import Flickity from 'react-flickity-component'
 import ScreeningList from "../../../pages/Screenings";
+
 
 const CinemaDesc = () => {
     const {cinemaId} = useParams();
@@ -16,47 +13,28 @@ const CinemaDesc = () => {
     const [movies, setMovies] = useState([])
     const [movieIndex, setMovieIndex] = useState(0)
     const [movieId, setMovieId] = useState("")
+    let selectImg = "detail-img"
 
-    // async function getData() {
-    //     getCinemaByCinemaId(cinemaId).then(response => {
-    //         setCinema(response.data.data.cinema);
-    //     });
-    //     await getMoviesByCinemaId(cinemaId).then(response => {
-    //         setMovies(response.data.data.movies)
-    //         setMovieIndex(movies.length >= 3 ? 3 : 0)
-    //         setMovieId(movies[movieIndex].id)
-    //     }).catch(function (msg) {
-    //         console.log(msg)
-    //     })
-    // }
-    useEffect(() => {
-        async function getData() {
-            getCinemaByCinemaId(cinemaId).then(response => {
-                setCinema(response.data.data.cinema);
-            });
-            await getMoviesByCinemaId(cinemaId).then(response => {
-                setMovies(response.data.data.movies)
-                setMovieIndex(movies.length >= 3 ? 3 : 0)
-                setMovieId(movies[movieIndex].id)
-            }).catch(function (msg) {
-                console.log(msg)
-            })
-        }
-        getData();
-    }, [cinemaId,movieIndex,movies]);
-    const flickityOptions = {
-        initialIndex: movieIndex
+    const getData = async () => {
+        getCinemaByCinemaId(cinemaId).then(response => {
+            setCinema(response.data.data.cinema);
+        });
+        await getMoviesByCinemaId(cinemaId).then(response => {
+            setMovies(response.data.data.movies)
+            setMovieId(response.data.data.movies[movieIndex].id)
+        }).catch(function (msg) {
+            console.log(msg)
+        })
     }
-    $(".flickity-prev-next-button.previous").click(function () {
-        setMovieIndex(movieIndex - 1)
-        setMovieId(movies[movieIndex].id)
-        console.log(movieIndex)
-    });
-    $(".flickity-prev-next-button.next").click(function () {
-        setMovieIndex(movieIndex + 1)
-        setMovieId(movies[movieIndex].id)
-        console.log(movieIndex)
-    });
+
+    useEffect(() => {
+        getData()
+    }, []);
+    const changeIndexAndGetRoomData = (id, index) => {
+        setMovieIndex(index)
+        setMovieId(id)
+        selectImg = "detail-img-select"
+    }
     return (
         <>
             <div className="cinema-des-banner">
@@ -82,6 +60,18 @@ const CinemaDesc = () => {
                                         <span>地址&nbsp;&nbsp;</span>
                                         {cinema.address}
                                     </div>
+                                    <br />
+                                    <div>
+                                        <span>联系方式&nbsp;&nbsp;</span>
+                                        {cinema.phone}
+                                    </div>
+                                    <Divider></Divider>
+                                    <div>
+                                        <span>特色服务&nbsp;&nbsp;</span>
+                                        {cinema.cinemaService && cinema.cinemaService.split(",").map((item,index)=>{
+                                            return <Tag color="geekblue">{item}</Tag>
+                                        })}
+                                    </div>
                                 </div>
                             </div>
                         </Col>
@@ -97,23 +87,21 @@ const CinemaDesc = () => {
                     <Breadcrumb.Item>{cinema.cinemaName}</Breadcrumb.Item>
                 </Breadcrumb>
             </div>
-
-            <Flickity
-                className="carousel"
-                options={flickityOptions}>
-                {
-                    movies.map((item, index) => {
-                        return (
-                            <div key={index} className="carousel-cell"><img alt={"carousel_img"} className="carousel_img" src={item.cover}/>
-                            </div>
-                        )
-                    })
-                }
-            </Flickity>
+            <div className="image-container">
+                <div className="images-desc">
+                    {
+                        movies.map((item, index) => {
+                            return (
+                                <img alt="" key={index} src={item.cover} className={selectImg}
+                                     onClick={(e) => changeIndexAndGetRoomData(item.id, index)}/>
+                            )
+                        })}
+                </div>
+            </div>
             {movies.length !== 0 ?
                 <div className="movie-info">
                     <p className="movie-name">{movies[movieIndex].movieName}</p>
-                    <p className="score">{movies[movieIndex].score}分</p>
+                    <p className="score">{movies[movieIndex].score === 0 ? "暂无评分" : +movies[movieIndex].score + "分"}</p>
                     <br/>
                     <span className="key">类型：</span>
                     <span className="value">{movies[movieIndex].movieType}</span>
@@ -126,7 +114,7 @@ const CinemaDesc = () => {
             }
 
             <hr/>
-            <ScreeningList cinemaId={cinemaId} movieId={movieId !== "" ? movieId : "ALGOMOVIE1"}/>
+            {movieId && <ScreeningList movieId={movieId} cinemaId={cinemaId}/>}
         </>
     );
 }

@@ -15,7 +15,6 @@ export default function RecentMovies() {
   useEffect(() => {
     getFutureMovie().then((response) => {
       setMovies(response.data.data.movies.slice(0, 8));
-      console.log(response.data.data.movies);
     });
   }, []);
 
@@ -42,7 +41,7 @@ export default function RecentMovies() {
                     />
                     <div className="movie_desc">
                       <div className="movie_score">
-                        <b>{movie.score}</b>
+                        <b>{movie.score !== 0 ? movie.score : '暂无评分'}</b>
                       </div>
                     </div>
                   </div>
