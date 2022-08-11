@@ -66,7 +66,7 @@ export default function ScreeningItem(props) {
     const navigator = useNavigate();
     const toChooseSeat = (item) => {
         dispatch(loadUserInfo());
-        if (token === '') {
+        if (token === '' || token === undefined || token===null) {
             dispatch(setSkipPageProperties(item.id))
             navigator('/login', {
                 replace: true
