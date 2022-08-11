@@ -31,7 +31,6 @@ export default function UserOrder(props) {
         }
     };
     const userInfo = useSelector(state => state.navigation.userInfo);
-    console.log(userInfo);
     const separator = (nickName) => {
         let nickNamelist;
         if (nickName) {

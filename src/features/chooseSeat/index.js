@@ -5,7 +5,7 @@ import _ from 'lodash';
 import {useNavigate, useSearchParams} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {getOrderInfoByObject, getSeatAndMovieInfo} from '../../api/cinema'
-import {message} from 'antd';
+import {message, Steps} from 'antd';
 import empty from '../../static/images/empty.png';
 import occupy from '../../static/images/occupy.png';
 import select from '../../static/images/select.png';
@@ -14,8 +14,10 @@ import poster from '../../static/images/1.jpg';
 import '../../mock';
 import './index.css';
 import {setFilmInfo, setSeatsInfo, updateSeatInfo} from "./ChooseSeatSlice";
+import {EditOutlined, InsertRowAboveOutlined, LoadingOutlined, VideoCameraTwoTone} from "@ant-design/icons";
 
 export default function ChooseSeat() {
+    const {Step} = Steps;
     const navigator = useNavigate();
     const [params] = useSearchParams()
     const sessionId = params.get('sessionId')
@@ -30,7 +32,7 @@ export default function ChooseSeat() {
         }).catch(function (msg) {
             console.log(msg)
         })
-    }, [dispatch,sessionId]);
+    }, [dispatch, sessionId]);
     const roomInfo = useSelector((state) => state.chooseSeat.seatsInfo)
     const filmInfo = useSelector((state) => state.chooseSeat.filmInfo);
     const renderSeat = () => {
@@ -101,77 +103,86 @@ export default function ChooseSeat() {
     }
 
     const info = () => {
-        message.info('对不起，请先选位置');
+        message.warning('请先选位置');
     };
 
     return (
-        <div className="App">
-            <div className="container">
-                <div className="seat-container">
-                    <div className="seat-header">
-                        <ul>
-                            <li>
-                                <img src={empty} alt="可选座位"/><span>可选座位</span>
-                            </li>
-                            <li>
-                                <img src={occupy} alt="已售座位"/><span>已售座位</span>
-                            </li>
-                            <li>
-                                <img src={select} alt="已选座位"/><span>已选座位</span>
-                            </li>
-                        </ul>
-                    </div>
-                    <div className="seat-main">
-                        <div className="screen">
-                            <img src={screenImage} alt="屏幕"/>
-                            <h4>屏幕中央</h4>
+        <>
+            <div className="pay-step-box">
+                <Steps>
+                    <Step status="finish" title="选择影片场次" icon={<EditOutlined/>}/>
+                    <Step status="finish" title="选择座位" icon={<LoadingOutlined/>}/>
+                    <Step status="process" title="支付" icon={<InsertRowAboveOutlined/>}/>
+                    <Step status="wait" title="影院取票观影" icon={<VideoCameraTwoTone/>}/>
+                </Steps>
+            </div>
+            <div className="App">
+                <div className="container">
+                    <div className="seat-container">
+                        <div className="seat-header">
+                            <ul>
+                                <li>
+                                    <img src={empty} alt="可选座位"/><span>可选座位</span>
+                                </li>
+                                <li>
+                                    <img src={occupy} alt="已售座位"/><span>已售座位</span>
+                                </li>
+                                <li>
+                                    <img src={select} alt="已选座位"/><span>已选座位</span>
+                                </li>
+                            </ul>
                         </div>
-                        <div className="seats">
-                            <span className="line"/>
-                            {renderSeat()}
-                            <div className="seat-number">
-                                {renderNumber()}
+                        <div className="seat-main">
+                            <div className="screen">
+                                <img src={screenImage} alt="屏幕"/>
+                                <h4>屏幕中央</h4>
+                            </div>
+                            <div className="seats">
+                                <span className="line"/>
+                                {renderSeat()}
+                                <div className="seat-number">
+                                    {renderNumber()}
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div className="msg-container">
-                    <div className="info-header">
-                        <img src={poster} alt="电影海报"/>
-                        <div className="header-msg">
-                            <h3>{filmInfo.name}</h3>
+                    <div className="msg-container">
+                        <div className="info-header">
+                            <img src={poster} alt="电影海报"/>
+                            <div className="header-msg">
+                                <h3>{filmInfo.name}</h3>
+                                <p><span>类型：</span>{filmInfo.type}</p>
+                                <p><span>时长：</span>{filmInfo.duration}</p>
+                            </div>
+                        </div>
+                        <div className="info-main">
+                            <p><span>影院：</span>{filmInfo.cinema}</p>
+                            <p><span>影厅：</span>{filmInfo.filmRoom}</p>
+                            <p><span>场次：</span>{filmInfo.arrange}</p>
                             <p><span>类型：</span>{filmInfo.type}</p>
-                            <p><span>时长：</span>{filmInfo.duration}</p>
+                            <p><span>票价：</span>{"￥" + Number(filmInfo.price).toFixed(2) + "/张"}</p>
                         </div>
-                    </div>
-                    <div className="info-main">
-                        <p><span>影院：</span>{filmInfo.cinema}</p>
-                        <p><span>影厅：</span>{filmInfo.filmRoom}</p>
-                        <p><span>场次：</span>{filmInfo.arrange}</p>
-                        <p><span>类型：</span>{filmInfo.type}</p>
-                        <p><span>票价：</span>{"￥" + Number(filmInfo.price).toFixed(2) + "/张"}</p>
-                    </div>
-                    <div>
-                        <div className="select-item">
-                            <span className="select-label">座位：</span>
-                            <div className="select-seat">
-                                {
-                                    selectSeat.length > 0 ? (selectSeat.map(val => {
-                                        return <span key={uuidv4()}
-                                                     className="ticket">{(Math.trunc(val.index / CONSTANT_SEAT_ROW) + 1) + "排" + (val.index % CONSTANT_SEAT_ROW + 1) + "列"}</span>
-                                    })) : <span>一次最多选择五张电影票</span>
-                                }
+                        <div>
+                            <div className="select-item">
+                                <span className="select-label">座位：</span>
+                                <div className="select-seat">
+                                    {
+                                        selectSeat.length > 0 ? (selectSeat.map(val => {
+                                            return <span key={uuidv4()}
+                                                         className="ticket">{(Math.trunc(val.index / CONSTANT_SEAT_ROW) + 1) + "排" + (val.index % CONSTANT_SEAT_ROW + 1) + "列"}</span>
+                                        })) : <span>一次最多选择五张电影票</span>
+                                    }
+                                </div>
                             </div>
+                            <div className="select-item">
+                                <span className="select-label">总价：</span>
+                                <span>{(selectSeat.length * filmInfo.price).toFixed(2)}元</span>
+                            </div>
+                            <button className="btn" onClick={getOrderInfo}>确认选座</button>
                         </div>
-                        <div className="select-item">
-                            <span className="select-label">总价：</span>
-                            <span>{(selectSeat.length * filmInfo.price).toFixed(2)}元</span>
-                        </div>
-                        <button className="btn" onClick={getOrderInfo}>确认选座</button>
                     </div>
                 </div>
             </div>
-
-        </div>
+        </>
     );
 }

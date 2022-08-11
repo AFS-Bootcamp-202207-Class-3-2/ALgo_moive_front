@@ -1,5 +1,5 @@
 import { Outlet } from "react-router-dom";
-import { Layout } from "antd";
+import { Layout, BackTop  } from "antd";
 import Navigation from "../Navigation";
 
 import "./index.css";
@@ -17,6 +17,8 @@ function PageLayout() {
           <Outlet />
         </Content>
       </Layout>
+        <BackTop />
+        <strong className="site-back-top-basic">-</strong>
     </div>
   );
 }

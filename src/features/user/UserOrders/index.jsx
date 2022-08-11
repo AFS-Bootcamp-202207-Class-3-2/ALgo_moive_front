@@ -1,37 +1,41 @@
 import React, {useEffect, useState} from 'react'
 import UserOrdersApi from "../../../api/UserOrdersApi";
 import './index.css'
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {useNavigate} from "react-router-dom";
 import OrdersItem from "../OrdersItem";
 import {Pagination} from 'antd';
 import NoData from '../../../static/images/NoData.png'
+import {saveOrders, setTotalCount} from "../userOrderSlice";
 
 export default function UserOrders(props) {
-    const [orders, setOrders] = useState([])
     const [page, setPage] = useState(1)
     const [pageSize] = useState(3)
     const userInfo = useSelector(state => state.navigation.userInfo);
-    const [totalCount, setTotalCount] = useState(1);
-    const navigate = useNavigate()
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
+    const orders = useSelector(state => state.userOrder.orders);
+    const totalCount = useSelector(state => state.userOrder.totalCount);
+
     useEffect(() => {
         if (userInfo) {
             UserOrdersApi.getUserOrders(userInfo.id, page, pageSize)
                 .then(res => {
-                    setOrders(res.data.data.orders)
-                    setTotalCount(res.data.data.totalCount)
+                    dispatch(saveOrders(res.data.data.orders));
+                    dispatch(setTotalCount(res.data.data.totalCount));
                 })
         } else {
             navigate('/');
         }
-    }, [page, pageSize, totalCount,userInfo,navigate]);
+    }, [page, pageSize, totalCount,userInfo,navigate,dispatch]);
+
     const onChange = (page, pageSize) => {
         setPage(page)
-        UserOrdersApi.getUserOrders(userInfo.id, page, pageSize)
-            .then(res => {
-                setOrders(res.data.data.orders)
-            })
+        UserOrdersApi.getUserOrders(userInfo.id, page, pageSize).then(res => {
+            dispatch(saveOrders(res.data.data.orders));
+        })
     }
+
     return (
         <div className="user-order-tot-box">
             <div className="orders-title-user">

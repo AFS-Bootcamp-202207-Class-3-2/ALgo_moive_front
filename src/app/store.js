@@ -5,6 +5,7 @@ import movieDetailSlice from "../features/movieDetail/movieDetailSlice";
 import paySlice from '../features/pay/paySlice'
 import chooseSeatSlice from "../features/chooseSeat/ChooseSeatSlice"
 import navigationSlice from "../layout/Navigation/NavigationSlice";
+import userOrderSlice from "../features/user/userOrderSlice";
 
 export const store = configureStore({
   reducer: {
@@ -13,7 +14,8 @@ export const store = configureStore({
     movieDetail: movieDetailSlice,
     payCountDown:paySlice,
     chooseSeat:chooseSeatSlice,
-    navigation: navigationSlice
+    navigation: navigationSlice,
+    userOrder: userOrderSlice
   },
 });
 

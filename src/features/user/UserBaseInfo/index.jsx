@@ -1,29 +1,46 @@
-import React, {useState} from 'react';
+import {useEffect, useState} from 'react';
 import {UploadOutlined} from "@ant-design/icons";
-import {Avatar, Button, Form, Input, Upload} from "antd";
+import {Avatar, Button, Form, Input, message, Upload} from "antd";
 import './index.css'
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
+import {updateUserDetail} from "../../../api/UserDetail";
+import {updateUserInfo} from "../../../layout/Navigation/NavigationSlice";
 
 
 function UserBaseInfo() {
     const userInfo = useSelector(state => state.navigation.userInfo);
-    const [fields] = useState([
-        {
-            name: ['nickname'],
-            value: userInfo.nickname ? userInfo.nickname : '',
-        },
-        {
-            name: ['phone'],
-            value: userInfo.phone ? userInfo.phone : '',
-        },
-        {
-            name: ['sign'],
-            value: userInfo.sign ? userInfo.sign : '',
-        }
-    ]);
+    const [fields,setFields] = useState([]);
+    const dispatch = useDispatch();
+    useEffect(() => {
+        setFields([{
+                name: ['nickname'],
+                value: userInfo.nickname ? userInfo.nickname : '',
+            },
+            {
+                name: ['phone'],
+                value: userInfo.phone ? userInfo.phone : '',
+            },
+            {
+                name: ['sign'],
+                value: userInfo.sign ? userInfo.sign : '',
+            }])
+    },[userInfo]);
+
+    const onClickSave = () => { message.success("保存成功")};
 
     const onFinish = (values) => {
-        console.log('Success:', values);
+       const user = {
+            nickname: values.nickname,
+            sign: values.sign,
+            phone: values.phone
+        };
+        updateUserDetail(userInfo.id, user).then(res => {
+            if(res.data.code === '200'){
+                dispatch(updateUserInfo(res.data.data.user));
+            }
+        }).catch((err) => {
+            message.error(err.response.data.msg);
+        });
     };
     return (
         <div className="baseInfo">
@@ -57,7 +74,7 @@ function UserBaseInfo() {
                         </Form.Item>
                         <Form.Item>
                             <div className="baseInfo-button-group">
-                                <Button className="baseInfo-save" htmlType="submit">保存</Button>
+                                <Button className="baseInfo-save" htmlType="submit" onClick={onClickSave}>保存</Button>
                                 <Button className="baseInfo-reset" htmlType="reset">重置</Button>
                             </div>
                         </Form.Item>
