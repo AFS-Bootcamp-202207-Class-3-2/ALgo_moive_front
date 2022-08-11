@@ -4,6 +4,7 @@ import '../SearchPage/index.css'
 import './index.css';
 import {useSearchParams} from "react-router-dom";
 import ScreeningItem from "./screeningItem";
+
 const { TabPane } = Tabs;
 
 export default function ScreeningList(props) {
