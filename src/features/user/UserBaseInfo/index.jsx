@@ -63,11 +63,13 @@ function UserBaseInfo() {
                         onFinish={onFinish}
                         fields={fields}
                         >
-                        <Form.Item label="昵称" name="nickname">
+                        <Form.Item label="昵称" name="nickname" rules={[{ required: true, message: '昵称不可为空' }]}>
                             <Input placeholder="nickname"/>
                         </Form.Item>
-                        <Form.Item label="手机号" name="phone">
-                            <Input placeholder="phone"/>
+                        <Form.Item label="手机号" name="phone"
+                                   rules={[{pattern: '^(13[0-9]|14[01456879]|15[0-35-9]|16[2567]|17[0-8]|18[0-9]|19[0-35-9])\\d{8}$' , message:"电话号码不匹配"}]}
+                        >
+                            <Input placeholder="phone" />
                         </Form.Item>
                         <Form.Item label="个性签名" name="sign">
                             <Input placeholder="sign"/>
