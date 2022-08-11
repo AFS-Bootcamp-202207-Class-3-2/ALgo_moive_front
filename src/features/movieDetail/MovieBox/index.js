@@ -1,11 +1,11 @@
-import {Row, Col, Button, Statistic, Modal, Slider, InputNumber, Tag, message} from "antd";
-import { LikeOutlined } from "@ant-design/icons";
+import {Button, Col, InputNumber, message, Modal, Row, Slider, Statistic, Tag} from "antd";
+import {LikeOutlined} from "@ant-design/icons";
 import "./index.css";
 import dragonImg from '../../../static/images/dragon.png'
-import {useEffect, useState} from "react";
+import {useState} from "react";
 import {getOrderByMovieId} from "../../../api/movieDetail";
 import {loadUserInfo} from "../../../layout/Navigation/NavigationSlice";
-import {setSkipPageProperties, setSkipToDragon} from "../../login/loginSlice";
+import {setSkipToDragon} from "../../login/loginSlice";
 import {useDispatch, useSelector} from "react-redux";
 import {useNavigate} from "react-router-dom";
 
@@ -33,7 +33,7 @@ function MovieBox(props) {
     setIsModalVisible(false);
   };
 
-  const onChange = (newValue: number) => {
+  const onChange = (newValue) => {
     setInputValue(newValue);
   };
   const onClickDragon = () => {
@@ -79,7 +79,7 @@ function MovieBox(props) {
             </div>
           </div>
           <div>
-            <img src={dragonImg} className="dragon" onClick={onClickDragon}/>
+            <img src={dragonImg} className="dragon" alt="" onClick={onClickDragon}/>
           </div>
           <Button
             type="danger"
