@@ -7,9 +7,7 @@
   padding: 3% 2%;
   margin-bottom: 20px;
   height: 370px;
-  border: 3px solid #2a797c;
-  border-image: linear-gradient(rgba(255, 255, 255, 0), rgba(42, 45, 86, 0.5)) 1
-    1;
+  background-image: linear-gradient(rgba(255, 255, 255, 0), rgba(42, 45, 86, 0.404));
 }
 
 .cinema-des-row .image-col {
