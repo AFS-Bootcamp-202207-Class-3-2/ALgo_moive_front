@@ -1,10 +1,54 @@
-import { Row, Col, Button, Statistic } from "antd";
+import {Row, Col, Button, Statistic, Modal, Slider, InputNumber, Tag, message} from "antd";
 import { LikeOutlined } from "@ant-design/icons";
 import "./index.css";
+import dragonImg from '../../../static/images/dragon.png'
+import {useEffect, useState} from "react";
+import {getOrderByMovieId} from "../../../api/movieDetail";
+import {loadUserInfo} from "../../../layout/Navigation/NavigationSlice";
+import {setSkipPageProperties, setSkipToDragon} from "../../login/loginSlice";
+import {useDispatch, useSelector} from "react-redux";
+import {useNavigate} from "react-router-dom";
 
 function MovieBox(props) {
   const { movie, buttonMsg, clickButton } = props;
+  const [isModalVisible, setIsModalVisible] = useState(false);
+  const [inputValue, setInputValue] = useState(1);
+  const token = useSelector(state => state.navigation.token);
+  const dispatch = useDispatch();
+  const navigator = useNavigate();
+
+  const handleOk = () => {
+    setIsModalVisible(false);
+    getOrderByMovieId(movie.id,inputValue).then(res => {
+      navigator(`/pay/${res.data.data.order.id}/alpayway`, {
+        replace: false,
+        state: {
+          price: res.data.data.order.price
+        }
+      });
+    }).catch(err => message.error(err.response.data.msg))
+  };
+
+  const handleCancel = () => {
+    setIsModalVisible(false);
+  };
+
+  const onChange = (newValue: number) => {
+    setInputValue(newValue);
+  };
+  const onClickDragon = () => {
+    dispatch(loadUserInfo());
+    if (token === '' || token === undefined || token===null) {
+      dispatch(setSkipToDragon(movie.id))
+      navigator('/login', {
+        replace: true
+      })
+    } else {
+      setIsModalVisible(true);
+    }
+  }
   return (
+      <>
     <Row className="movie-box">
       <Col span={8} className="avatar-col">
         <div className="avatar-box">
@@ -34,6 +78,9 @@ function MovieBox(props) {
               {movie.releaseDate}
             </div>
           </div>
+          <div>
+            <img src={dragonImg} className="dragon" onClick={onClickDragon}/>
+          </div>
           <Button
             type="danger"
             className="movie-buy-button"
@@ -58,6 +105,29 @@ function MovieBox(props) {
         />
       </Col>
     </Row>
+    <Modal title="升龙服务" visible={isModalVisible} onOk={handleOk} onCancel={handleCancel}>
+      <Tag color="#298589">已选座位数</Tag>
+      <Row>
+        <Col span={12}>
+          <Slider
+              min={1}
+              max={5}
+              onChange={onChange}
+              value={typeof inputValue === 'number' ? inputValue : 0}
+          />
+        </Col>
+        <Col span={4}>
+          <InputNumber
+              min={1}
+              max={5}
+              style={{ margin: '0 16px' }}
+              value={inputValue}
+              onChange={onChange}
+          />
+        </Col>
+      </Row>
+    </Modal>
+      </>
   );
 }
 

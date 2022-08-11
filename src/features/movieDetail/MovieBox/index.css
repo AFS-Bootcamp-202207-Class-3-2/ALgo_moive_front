@@ -84,3 +84,12 @@
   font-size: 24px;
   color: #ff5b5b;
 }
+
+.dragon {
+  width: 250px;
+  cursor: pointer;
+}
+
+.ant-slider-track {
+  background-color: #298589;
+}

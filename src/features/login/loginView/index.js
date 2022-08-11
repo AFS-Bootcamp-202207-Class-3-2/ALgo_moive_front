@@ -11,7 +11,7 @@ import { login } from "../../../api/login";
 import {useDispatch, useSelector} from "react-redux";
 import {saveUserInfo} from "../../../layout/Navigation/NavigationSlice";
 import "./index.css";
-import {setSkipPageProperties} from "../loginSlice";
+import {setSkipPageProperties, setSkipToDragon} from "../loginSlice";
 
 function LoginView() {
   const [form] = Form.useForm();
@@ -19,6 +19,7 @@ function LoginView() {
   const [, forceUpdate] = useState({});
   const navigator = useNavigate();
   const sessionId = useSelector(state => state.login.sessionId);
+  const movieId = useSelector(state => state.login.movieId);
   // To disable submit button at the beginning.
   useEffect(() => {
     forceUpdate({});
@@ -32,6 +33,10 @@ function LoginView() {
           if (sessionId !== null) {
             navigator("/chooseSeat?sessionId=" + sessionId);
             dispatch(setSkipPageProperties(null));
+          }
+          else if (movieId !== null) {
+            navigator("/cinemas/" + movieId);
+            dispatch(setSkipToDragon(null));
           }
           else {
             navigator("/");
