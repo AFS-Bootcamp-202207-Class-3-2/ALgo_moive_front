@@ -34,7 +34,7 @@ export default function MovieGroup(props) {
                     />
                     <div className="movie_desc">
                       <div className="movie_score">
-                        <b>{movie.score}</b>
+                        <b>{movie.score !== 0 ? movie.score : '暂无评分'}</b>
                       </div>
                     </div>
                   </div>
