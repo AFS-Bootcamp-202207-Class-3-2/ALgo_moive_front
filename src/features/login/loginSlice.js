@@ -3,6 +3,7 @@ import {createSlice} from "@reduxjs/toolkit";
 const initialState = {
     isLogin: true,
     sessionId: null,
+    movieId: null,
 };
 
 const loginSlice = createSlice({
@@ -15,9 +16,13 @@ const loginSlice = createSlice({
 
         setSkipPageProperties : (state, action) => {
            state.sessionId = action.payload;
+        },
+
+        setSkipToDragon : (state, action) => {
+            state.movieId = action.payload;
         }
     }
 });
 
-export const { changePageState, setSkipPageProperties } = loginSlice.actions;
+export const { changePageState, setSkipPageProperties, setSkipToDragon } = loginSlice.actions;
 export default loginSlice.reducer;

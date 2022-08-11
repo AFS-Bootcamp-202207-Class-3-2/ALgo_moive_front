@@ -72,7 +72,8 @@ const NavigationSlice = createSlice({
         updateUserInfo: (state, action) => {
             const userInfo = action.payload;
             userInfo.token = state.token;
-            Storage.prototype.setCanExpireLocal("userInfo", action.payload, 2);
+            state.userInfo = userInfo;
+            Storage.prototype.setCanExpireLocal("userInfo", userInfo, 2);
         },
 
         userLogout: (state, action) => {

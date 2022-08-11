@@ -19,6 +19,24 @@
   left: 0;
 }
 
+.blind-box-button {
+  width: 80px;
+  height: 80px;
+  background-color: white;
+  border: 1px solid #a8a8a8;
+  border-radius: 50%;
+  position: fixed;
+  bottom: 10%;
+  left: 5%;
+  color: rgb(226, 51, 226);
+}
+
+.blind-box-button:hover {
+  cursor: pointer;
+  border: 1px solid plum;
+  box-shadow: 3px 3px 5px #a8a8a8;
+}
+
 ::-webkit-scrollbar {
   width: 0;
 }

@@ -1,0 +1,23 @@
+.movie-box-a {
+    margin: 0 auto;
+    /*background-color: #00FFFF;*/
+    /*height: 900px;*/
+    /*width: 900px;*/
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+}
+.movie-pic-box{
+}
+.message-box-a {
+    font-family: SFMono-Regular, Consolas, Liberation Mono, Menlo, Courier, monospace;
+    font-size: 3rem;
+
+}
+.limiit{
+    width: 100%;
+}
+.movie-bottom-a {
+    margin-top: 20px;
+
+}

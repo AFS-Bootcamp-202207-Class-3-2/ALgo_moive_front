@@ -48,12 +48,12 @@
 
 @media screen and (max-width: 1600px){
   .nav-searchinput {
-    width: 150px;
+    width: 170px;
   }
 }
 
 @media screen and (min-width: 1600px) and (max-width: 2000px){
   .nav-searchinput {
-    width: 200px;
+    width: 250px;
   }
 }

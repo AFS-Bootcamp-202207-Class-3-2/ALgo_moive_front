@@ -23,6 +23,8 @@ import UserCenter from "./features/user/UserCenter";
 import UserOrders from "./features/user/UserOrders";
 import CinemaDesc from "./features/cinema/CinemaDesc";
 import UserBaseInfo from "./features/user/UserBaseInfo";
+import WatchMoving from "./pages/WatchMoving";
+import TopMovie from "./pages/TopMovie";
 function App() {
     return (
         <>
@@ -36,6 +38,7 @@ function App() {
                     <Route path="movie/:id" element={<MovieDetail/>}/>
                     <Route path="cinemas/:movieId" element={<CinemaDetail/>}/>
                     <Route path="cinemaDesc/:cinemaId" element={<CinemaDesc/>}/>
+                    <Route path="top" element={<TopMovie />}/>
                     {/*<Route path="screenings" element={<ScreeningList />} />*/}
                     <Route path="pay/:id" element={<PaymentPage/>}>
                         <Route path="alpayway" element={<ALGOBank/>}></Route>
@@ -53,6 +56,7 @@ function App() {
                 </Route>
                 <Route path="/login" element={<Login/>}/>
                 <Route path="/algo/:id" element={<ALGO/>}/>
+                <Route path="/watchmovie" element={<WatchMoving/>}/>
             </Routes>
         </div>
             </>
