@@ -4,7 +4,7 @@ import {Avatar, Button, Form, Input, Upload, message} from "antd";
 import './index.css'
 import {useDispatch, useSelector} from "react-redux";
 import {updateUserDetail} from "../../../api/UserDetail";
-import {saveUserInfo} from "../../../layout/Navigation/NavigationSlice";
+import {saveUserInfo, updateUserInfo} from "../../../layout/Navigation/NavigationSlice";
 
 
 function UserBaseInfo() {
@@ -36,7 +36,7 @@ function UserBaseInfo() {
         };
         updateUserDetail(userInfo.id, user).then(res => {
             if(res.data.code === '200'){
-                dispatch(saveUserInfo(res.data.data.user));
+                dispatch(updateUserInfo(res.data.data.user));
             }
         }).catch((err) => {
             message.error(err.response.data.msg);
