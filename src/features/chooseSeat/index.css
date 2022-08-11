@@ -1,5 +1,5 @@
 .container{
-    margin: 8% 5% 0;
+    margin: 4% 5% 0;
     width: 90%;
     border: 1px solid #c9c9c9;
     display: flex;
@@ -174,4 +174,9 @@
     display: inline-block;
     width: 240px;
     vertical-align: top;
+}
+
+.pay-step-box {
+    margin: 100px auto 0px auto;
+    width: 80%;
 }
