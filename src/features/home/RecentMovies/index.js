@@ -15,7 +15,6 @@ export default function RecentMovies() {
   useEffect(() => {
     getFutureMovie().then((response) => {
       setMovies(response.data.data.movies.slice(0, 8));
-      console.log(response.data.data.movies);
     });
   }, []);
 
