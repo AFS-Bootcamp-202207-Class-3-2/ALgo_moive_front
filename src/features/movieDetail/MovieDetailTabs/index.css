@@ -14,3 +14,8 @@
 .movie-detail-tabs article p {
   font-size: 18px;
 }
+.img-css{
+  width: 1200px;
+  height: auto;
+  margin-bottom: 10px;
+}

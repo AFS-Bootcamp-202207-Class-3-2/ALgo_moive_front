@@ -6,7 +6,7 @@ import paySlice from "../features/pay/paySlice";
 import chooseSeatSlice from "../features/chooseSeat/ChooseSeatSlice";
 import navigationSlice from "../layout/Navigation/NavigationSlice";
 import userOrderSlice from "../features/user/userOrderSlice";
-import blindBoxSlice from "../layout/BlindBox/BlindBoxSlice";
+import blindBoxSlice from "../features/home/BlindBox/BlindBoxSlice";
 
 export const store = configureStore({
   reducer: {

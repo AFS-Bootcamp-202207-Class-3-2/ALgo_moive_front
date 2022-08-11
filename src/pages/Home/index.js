@@ -8,10 +8,15 @@ import { addAllMovies } from "../../features/home/HomeSlice";
 import "./index.css"
 import BoxOffice from "../../features/home/BoxOffice";
 import RecentMovies from "../../features/home/RecentMovies";
+import blindBoxImage from "../../static/images/blindBox.png";
+import {changeBlindBoxModalVisible} from "../../features/home/BlindBox/BlindBoxSlice";
 
 function Home() {
   const movies = useSelector((state) => state.home.movies);
   const dispatch = useDispatch();
+  const openBlindBoxModal = () => {
+    dispatch(changeBlindBoxModalVisible(true));
+  };
   useEffect(() => {
     getMovies().then((response) => {
       dispatch(addAllMovies(response.data.data.movies.content));
@@ -30,6 +35,10 @@ function Home() {
           <BoxOffice/>
         </Col>
       </Row>
+      <button className="blind-box-button" onClick={openBlindBoxModal}>
+        <img src={blindBoxImage} alt="盲盒图标" width={40} />
+        <p>精选盲盒</p>
+      </button>
     </div>
   );
 }

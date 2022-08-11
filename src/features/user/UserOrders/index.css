@@ -10,7 +10,7 @@
     font-size: 1rem;
     font-family: SFMono-Regular, Consolas, Liberation Mono, Menlo, Courier, monospace;
     font-weight: 600;
-    color: red;
+    color: #707070;
     height: 50px;
     line-height: 50px;
     position: relative;
@@ -51,7 +51,7 @@
     display: flex;
     align-items: center;
     flex: 1 1 25%;
-    background-color: rgba(41,133,137,.4);
+    background-color: #2a797cc7;
 }
 .user-orders-item-down{
     flex: 1 1 75%;
@@ -62,7 +62,7 @@
     margin-left: 20px;
 }
 .user-orders-item-upper-sequence{
-    color: orangered;
+    color: #ffffff;
     margin-left: 40px;
 }
 .user-orders-item-down-pic {
@@ -87,7 +87,7 @@
     font-weight: 600;
 }
 .user-orders-item-down-detail-cinema,.user-orders-item-down-detail-room-seat{
-    color: rgba(65,122,137,0.36);
+    color: #0000008c;
 }
 .user-orders-item-down-detail-price,.user-orders-item-down-detail-state,.user-orders-item-down-detail-link{
     flex: 1 1 30%;
@@ -101,7 +101,7 @@
     left: 0;
     bottom: -30px;
     font-family: SFMono-Regular, Consolas, Liberation Mono, Menlo, Courier, monospace;
-    color: red;
+    color: #d70000;
 }
 .user-orders-item-down-detail-state-span {
     display: inline-block;
