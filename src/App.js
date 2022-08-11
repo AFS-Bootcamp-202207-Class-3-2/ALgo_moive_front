@@ -23,6 +23,7 @@ import UserCenter from "./features/user/UserCenter";
 import UserOrders from "./features/user/UserOrders";
 import CinemaDesc from "./features/cinema/CinemaDesc";
 import UserBaseInfo from "./features/user/UserBaseInfo";
+import WatchMoving from "./pages/WatchMoving";
 function App() {
     return (
         <>
@@ -53,6 +54,7 @@ function App() {
                 </Route>
                 <Route path="/login" element={<Login/>}/>
                 <Route path="/algo/:id" element={<ALGO/>}/>
+                <Route path="/watchmovie" element={<WatchMoving/>}/>
             </Routes>
         </div>
             </>

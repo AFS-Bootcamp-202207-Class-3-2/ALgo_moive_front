@@ -4,7 +4,7 @@ import './index.css'
 import {useDispatch, useSelector} from "react-redux";
 import {useNavigate} from "react-router-dom";
 import OrdersItem from "../OrdersItem";
-import {message, Pagination} from 'antd';
+import {Pagination} from 'antd';
 import NoData from '../../../static/images/NoData.png'
 import {saveOrders, setTotalCount} from "../userOrderSlice";
 
@@ -21,18 +21,21 @@ export default function UserOrders(props) {
         if (userInfo) {
             UserOrdersApi.getUserOrders(userInfo.id, page, pageSize)
                 .then(res => {
+                    // dispatch(clearCurrentPageOrders([]))
                     dispatch(saveOrders(res.data.data.orders));
                     dispatch(setTotalCount(res.data.data.totalCount));
                 })
         } else {
             navigate('/');
         }
-    }, [page, pageSize, totalCount,userInfo,navigate]);
+    }, [page, pageSize, totalCount,userInfo,navigate,dispatch]);
 
     const onChange = (page, pageSize) => {
         setPage(page)
         UserOrdersApi.getUserOrders(userInfo.id, page, pageSize).then(res => {
+            // dispatch(clearCurrentPageOrders([]))
             dispatch(saveOrders(res.data.data.orders));
+            dispatch(setTotalCount(res.data.data.totalCount));
         })
     }
 
@@ -41,7 +44,7 @@ export default function UserOrders(props) {
             <div className="orders-title-user">
                 我的订单
             </div>
-            {orders.length === 0 ? <img height={200} width={200} style={{
+            {totalCount === 0 ? <img height={200} width={200} style={{
                 display:'block',margin:'0 auto'
             }} alt={"没数据"} src={NoData}/> : <div>
                 {

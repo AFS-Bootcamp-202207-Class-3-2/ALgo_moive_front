@@ -13,6 +13,20 @@ const UserOrdersApi = {
             method:'delete'
         })
     }
-
+    ,
+    //退票改状态为3，解锁座位
+    refundUnlockSeats(orderId){
+        return request(({
+            url: `/order/refund/${orderId}`,
+            method: 'put'
+        }))
+    }
+    ,
+    realDeleteForWatched(orderId){
+        return request(({
+            url: `/order/user/refund/d/${orderId}`,
+            method: 'delete'
+        }))
+    }
 }
 export default UserOrdersApi;
