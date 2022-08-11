@@ -1,10 +1,10 @@
 import {useEffect, useState} from 'react';
 import {UploadOutlined} from "@ant-design/icons";
-import {Avatar, Button, Form, Input, Upload, message} from "antd";
+import {Avatar, Button, Form, Input, message, Upload} from "antd";
 import './index.css'
 import {useDispatch, useSelector} from "react-redux";
 import {updateUserDetail} from "../../../api/UserDetail";
-import {saveUserInfo, updateUserInfo} from "../../../layout/Navigation/NavigationSlice";
+import {updateUserInfo} from "../../../layout/Navigation/NavigationSlice";
 
 
 function UserBaseInfo() {

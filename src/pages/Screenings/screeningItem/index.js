@@ -11,13 +11,14 @@ import {loadUserInfo} from "../../../layout/Navigation/NavigationSlice";
 
 export default function ScreeningItem(props) {
 
-    const sessionRequest = {...props}
+    const {cinemaId,movieId,filterDate} = props
     const token = useSelector(state => state.navigation.token);
     useEffect(() => {
+        const sessionRequest = {cinemaId:cinemaId,movieId:movieId,filterDate:filterDate}
         ScreeningApi.getCinemasBySessionRequest(sessionRequest).then(res => {
             setScreeningList(res.data.data.sessionList)
         })
-    }, [])
+    }, [cinemaId,movieId,filterDate])
 
     const dispatch = useDispatch()
     const columns = [
@@ -56,7 +57,7 @@ export default function ScreeningItem(props) {
             align: 'center',
             render: (item) => {
                 return <div>
-                    <a className="ticket-button" onClick={() => toChooseSeat(item)}>选座购票</a>
+                    <button className="ticket-button" onClick={() => toChooseSeat(item)}>选座购票</button>
                 </div>
             }
         },
