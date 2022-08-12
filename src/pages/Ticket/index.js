@@ -25,9 +25,7 @@ function Ticket() {
                 navigator('/watchmovie')
             }
         }))
-    if (jump){
-        return ;
-    }
+
     useEffect(() => {
         getOrderById(orderId).then((response) => {
             let durationTime = getDurationTime(response.data.data.data);
@@ -46,6 +44,11 @@ function Ticket() {
         }, 1000);
         // return clearInterval(cycQuery)
     }, [orderId,navigator,count,jump]);
+
+    if (jump){
+        return ;
+    }
+
     let qrImagUrl = request.getUri() + '/order/qr-code/finish/' + orderId
     return (
         <div className="ticket-page">
