@@ -25,6 +25,9 @@ function Ticket() {
                 navigator('/watchmovie')
             }
         }))
+    if (jump){
+        return ;
+    }
     useEffect(() => {
         getOrderById(orderId).then((response) => {
             let durationTime = getDurationTime(response.data.data.data);
