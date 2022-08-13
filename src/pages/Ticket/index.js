@@ -42,7 +42,7 @@ function Ticket() {
                 clearInterval(cycQuery)
             }
         }, 1000);
-        // return clearInterval(cycQuery)
+        return ()=> {clearInterval(cycQuery)}
     }, [orderId,navigator,count,jump]);
 
     if (jump){
